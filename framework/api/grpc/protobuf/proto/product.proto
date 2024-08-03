@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.atlas.framework.grpc.protobuf.product";
+
+import "google/protobuf/empty.proto";
+
+package product;
+
+service ProductService {
+  rpc ListProduct (ListProductRequestProto) returns (ProductPageProto) {};
+  rpc ListProductByIds (ListProductByIdsRequestProto) returns (ProductListProto) {};
+  rpc GetProduct (GetProductRequestProto) returns (ProductProto) {};
+  rpc SearchProduct (SearchProductRequestProto) returns (ProductPageProto) {};
+  rpc CreateProduct (CreateProductRequestProto) returns (google.protobuf.Empty) {};
+  rpc UpdateProduct (UpdateProductRequestProto) returns (google.protobuf.Empty) {};
+  rpc DeleteProduct (DeleteProductRequestProto) returns (google.protobuf.Empty) {};
+  rpc ImportProduct (ImportProductRequestProto) returns (google.protobuf.Empty) {};
+  rpc ExportProduct (ExportProductRequestProto) returns (ExportProductResponseProto) {};
+  rpc UploadImage (UploadImageRequestProto) returns (google.protobuf.Empty) {};
+}
+
+service CategoryService {
+  rpc ListCategory (google.protobuf.Empty) returns (CategoryListProto) {};
+}
+
+message ProductProto {
+  int32 id = 1;
+  string name = 2;
+  CategoryProto category = 3;
+  double price = 4;
+  int32 quantity = 5;
+  string status = 6;
+  bool featured = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message ProductListProto {
+  repeated ProductProto product = 1;
+}
+
+message ProductPageProto {
+  repeated ProductProto product = 1;
+  int64 total_count = 2;
+}
+
+message CategoryProto {
+  int32 id = 1;
+  string name = 2;
+}
+
+message CategoryListProto {
+  repeated CategoryProto category = 1;
+}
+
+message ListProductRequestProto {
+  int32 id = 1;
+  string name = 2;
+  int32 category_id = 3;
+  double min_price = 4;
+  double max_price = 5;
+  bool in_stock = 6;
+  string status = 7;
+  bool featured = 8;
+  string start_created_at = 9;
+  string end_created_at = 10;
+  int32 page = 11;
+  int32 size = 12;
+  string sort = 13;
+}
+
+message ListProductByIdsRequestProto {
+  repeated int32 id = 1;
+}
+
+message GetProductRequestProto {
+  int32 id = 1;
+}
+
+message SearchProductRequestProto {
+  int32 id = 1;
+  string name = 2;
+  int32 category_id = 3;
+  double min_price = 4;
+  double max_price = 5;
+  bool in_stock = 6;
+  string status = 7;
+  bool featured = 8;
+  string start_created_at = 9;
+  string end_created_at = 10;
+  int32 page = 11;
+  int32 size = 12;
+  string sort = 13;
+}
+
+message CreateProductRequestProto {
+  string name = 1;
+  int32 category_id = 2;
+  double price = 3;
+  int32 quantity = 4;
+  string status = 5;
+  bool featured = 6;
+}
+
+message CreateProductResponseProto {
+  int32 id = 1;
+}
+
+message UpdateProductRequestProto {
+  int32 id = 1;
+  string name = 2;
+  int32 category_id = 3;
+  double price = 4;
+  int32 quantity = 5;
+  string status = 6;
+  bool featured = 7;
+}
+
+message DeleteProductRequestProto {
+  int32 id = 1;
+}
+
+message ImportProductRequestProto {
+  string file_type = 1;
+  bytes file_content = 2;
+}
+
+message UploadImageRequestProto {
+  int32 id = 1;
+  bytes file_content = 2;
+}
+
+message ExportProductRequestProto {
+  int32 id = 1;
+  string name = 2;
+  int32 category_id = 3;
+  double min_price = 4;
+  double max_price = 5;
+  bool in_stock = 6;
+  string status = 7;
+  bool featured = 8;
+  string start_created_at = 9;
+  string end_created_at = 10;
+  string sort = 11;
+  string file_type = 12;
+}
+
+message ExportProductResponseProto {
+  bytes file_content = 1;
+}

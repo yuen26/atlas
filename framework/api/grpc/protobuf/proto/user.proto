@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.atlas.framework.grpc.protobuf.user";
+
+import "google/protobuf/empty.proto";
+
+package user;
+
+service UserService {
+  rpc GetUser (GetUserRequestProto) returns (UserProto) {};
+  rpc GetLoginUser (GetLoginUserRequestProto) returns (LoginUserProto) {};
+  rpc CreateCustomer (CreateCustomerRequestProto) returns (CreateCustomerResponseProto) {};
+}
+
+message GetUserRequestProto {
+  int32 id = 1;
+}
+
+message UserProto {
+  int32 id = 1;
+  string username = 2;
+  string email = 3;
+  string role = 4;
+}
+
+message GetLoginUserRequestProto {
+  string email = 1;
+}
+
+message LoginUserProto {
+  int32 id = 1;
+  string email = 2;
+  string password = 3;
+  string role = 4;
+}
+
+message CreateCustomerRequestProto {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateCustomerResponseProto {
+  int32 id = 1;
+}

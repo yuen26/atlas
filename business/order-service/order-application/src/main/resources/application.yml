@@ -1,0 +1,58 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8761/eureka}
+
+grpc:
+  server:
+    port: 50053
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: 8083
+
+spring:
+  application:
+    name: order-service
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: order-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+springdoc:
+  packages-to-scan: org.atlas.framework.rest.server.order.controller
+
+app:
+  event:
+    kafka:
+      consumer:
+        topics: reserve_quantity_reply,reserve_credit_reply,reserve_quantity_failed,credit_reserved,reserve_credit_failed
+  internal:
+    product:
+      base-url: http://localhost:8082
+  outbox:
+    enabled: true
+  saga-mode: orchestration

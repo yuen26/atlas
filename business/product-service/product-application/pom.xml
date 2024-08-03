@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.atlas</groupId>
+        <artifactId>atlas</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../../pom.xml</relativePath>
+    </parent>
+    <groupId>org.atlas.business</groupId>
+    <artifactId>product-application</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>product-application</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.atlas</groupId>
+            <artifactId>shared-kernel</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.business</groupId>
+            <artifactId>product-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.business</groupId>
+            <artifactId>product-application-contract</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.business</groupId>
+            <artifactId>product-infrastructure-contract</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- API -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>rest-server-product</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>grpc-server-product</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Cache -->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>cache-caffeine</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>cache-ehcache</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>cache-redis</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- CSV -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>csv-opencsv</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- DataSource -->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>datasource-h2</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>datasource-mysql</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Discovery client -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>eureka-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Event -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>event-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>event-kafka</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>event-sns-fanout</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <!-- Excel -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>excel-easyexcel</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>excel-poi</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <!-- Migration -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>migration-flyway-product</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Monitor -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>monitoring</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Persistence -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>persistence-jdbc-product</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>persistence-jpa-product</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>persistence-mybatis-product</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <!-- Search -->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>search-elasticsearch</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <!-- Storage -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>storage-filesystem</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>storage-s3</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <!-- Tracing -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>tracing-zipkin</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

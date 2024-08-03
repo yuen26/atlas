@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin-slim
+    ports:
+      - "9411:9411"
+    environment:
+      STORAGE_TYPE: mem

@@ -1,0 +1,5 @@
+app:
+  search:
+    elasticsearch:
+      host: localhost
+      port: 9200

@@ -1,0 +1,65 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.atlas.framework.persistence.mybatis.product.mapper.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="org.atlas.business.order.domain.entity.Order">
+        <id property="id" column="id" />
+        <result property="customerId" column="customer_id" />
+        <result property="amount" column="amount" />
+        <result property="status" column="status" />
+        <result property="canceledReason" column="canceled_reason" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <collection property="orderItems" ofType="org.atlas.business.order.domain.entity.OrderItem"
+                    column="id" select="selectOrderItemsByOrderId" />
+    </resultMap>
+
+    <resultMap id="OrderItemResultMap" type="org.atlas.business.order.domain.entity.OrderItem">
+        <result property="productId" column="product_id" />
+        <result property="productPrice" column="product_price" />
+        <result property="quantity" column="quantity" />
+    </resultMap>
+
+    <select id="findAll" resultMap="OrderResultMap">
+        SELECT o.id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at
+        FROM orders o
+    </select>
+
+    <select id="selectOrderItemsByOrderId" resultMap="OrderItemResultMap">
+        SELECT oi.order_id, oi.product_id, oi.product_price, oi.quantity
+        FROM order_item oi
+        WHERE oi.order_id = #{id}
+    </select>
+
+    <select id="countAll" resultType="long">
+        SELECT COUNT(id)
+        FROM orders
+    </select>
+
+    <select id="findById" resultMap="OrderResultMap">
+        SELECT o.id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at
+        FROM orders o
+        WHERE o.id = #{id}
+    </select>
+
+    <insert id="insertOrder" parameterType="org.atlas.business.order.domain.entity.Order"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO orders (customer_id, amount, status, canceled_reason)
+        VALUES (#{customerId}, #{amount}, #{status}, #{canceledReason})
+    </insert>
+
+    <insert id="insertOrderItem" parameterType="org.atlas.business.order.domain.entity.OrderItem"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO order_item (order_id, product_id, product_price, quantity)
+        VALUES (#{order.id}, #{productId}, #{productPrice}, #{quantity})
+    </insert>
+
+    <update id="update" parameterType="org.atlas.business.order.domain.entity.Order">
+        UPDATE orders
+        SET
+            customer_id = #{customerId},
+            amount = #{amount},
+            status = #{status},
+            canceled_reason = #{canceledReason}
+        WHERE id = #{id}
+    </update>
+</mapper>

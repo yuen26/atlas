@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+    </parent>
+    <groupId>org.atlas</groupId>
+    <artifactId>atlas</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>17</java.version>
+        <spring-data-commons.version>3.2.5</spring-data-commons.version>
+        <spring-tx.version>6.1.6</spring-tx.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
+    </properties>
+
+    <modules>
+        <module>shared-kernel</module>
+
+        <module>framework</module>
+
+        <!-- Aggregator Service -->
+        <module>business/aggregator-service/aggregator-application-contract</module>
+        <module>business/aggregator-service/aggregator-application</module>
+
+        <!-- Notification Service -->
+        <module>business/notification-service/notification-application</module>
+
+        <!-- Order Service -->
+        <module>business/order-service/order-domain</module>
+        <module>business/order-service/order-domain-shared</module>
+        <module>business/order-service/order-application-contract</module>
+        <module>business/order-service/order-application</module>
+
+        <!-- Product Service -->
+        <module>business/product-service/product-domain</module>
+        <module>business/product-service/product-domain-shared</module>
+        <module>business/product-service/product-application-contract</module>
+        <module>business/product-service/product-application</module>
+        <module>business/product-service/product-infrastructure-contract</module>
+
+        <!-- User Service -->
+        <module>business/user-service/user-domain</module>
+        <module>business/user-service/user-domain-shared</module>
+        <module>business/user-service/user-application-contract</module>
+        <module>business/user-service/user-application</module>
+
+        <!-- Edge Servers -->
+        <module>edge/discovery-server/eureka-server</module>
+        <module>edge/auth-server</module>
+        <module>edge/gateway-server</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <!-- Support log4j2 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.2.0-jre</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <!-- Use this dependency for AsyncLoggerConfig of log4j2 -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

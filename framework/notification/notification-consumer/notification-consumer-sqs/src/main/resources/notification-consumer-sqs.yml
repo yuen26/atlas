@@ -1,0 +1,6 @@
+app:
+  notification:
+    queue:
+      sqs:
+        notification-queue-url: <notification-queue-url>
+        notification-dlq-url: <notification-dlq-url>

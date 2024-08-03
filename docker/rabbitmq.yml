@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    build:
+      context: rabbitmq
+      dockerfile: rabbitmq/Dockerfile
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq-data:

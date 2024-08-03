@@ -1,0 +1,54 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8761/eureka}
+
+grpc:
+  server:
+    port: 50051
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/users?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: user-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+springdoc:
+  packages-to-scan: org.atlas.framework.rest.server.user.controller
+
+app:
+  event:
+    kafka:
+      consumer:
+        topics: reserve_credit_request,quantity_reserved
+  outbox:
+    enabled: true

@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  activemq:
+    container_name: activemq
+    image: rmohr/activemq:5.14.0-alpine
+    ports:
+      - "8161:8161" # Admin console (admin/admin)
+      - "61616:61616" # JMX
+    volumes:
+      # - ./activemq.xml:/opt/activemq/conf/activemq.xml
+      - activemq-data:/data/activemq
+      - activemq-log:/var/log/activemq
+
+volumes:
+  activemq-data:
+  activemq-log:

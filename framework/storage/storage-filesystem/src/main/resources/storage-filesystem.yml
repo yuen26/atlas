@@ -1,0 +1,4 @@
+#app:
+#  storage:
+#    filesystem:
+#      location: <your-filesystem-location>

@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.atlas.framework.persistence.mybatis.user.mapper.UserMapper">
+
+    <resultMap id="UserMap" type="org.atlas.business.user.domain.entity.User">
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <select id="findById" resultMap="UserMap">
+        SELECT *
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByEmail" resultMap="UserMap">
+        SELECT *
+        FROM users
+        WHERE email = #{email}
+    </select>
+
+    <insert id="insert" parameterType="org.atlas.business.user.domain.entity.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (username, email, password, role, credit)
+        VALUES (#{username}, #{email}, #{password}, #{role}, #{credit})
+    </insert>
+
+    <update id="decreaseCredit">
+        UPDATE users
+        SET credit = credit - #{amount}
+        WHERE id = #{id}
+          AND credit >= #{amount}
+    </update>
+</mapper>

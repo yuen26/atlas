@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <!-- Properties section to define variables -->
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSS} %X{x-request-id} [%thread] %-5level %logger{36} - %msg%n%ex</Property>
+        <Property name="LOG_FILE">/logs/notification-service/notification-service.log</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console appender -->
+        <Console name="Console"
+                 target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+
+        <!-- File appender -->
+        <RollingRandomAccessFile name="File"
+                                 fileName="${LOG_FILE}"
+                                 filePattern="logs/atlas.log.%d{yyyy-MM-dd}.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax" compressionLevel="9" />
+        </RollingRandomAccessFile>
+
+        <!-- Logstash appender -->
+<!--        <Socket name="Logstash"-->
+<!--                host="${sys:logstash.host:-localhost}"-->
+<!--                port="${sys:logstash.port:-5000}"-->
+<!--                reconnectionDelayMillis="5000">-->
+<!--            <PatternLayout pattern="${LOG_PATTERN}" />-->
+<!--        </Socket>-->
+
+        <!-- Async appender -->
+        <Async name="AsyncAppender">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="Logstash"/>
+        </Async>
+    </Appenders>
+
+    <!-- Logger configuration -->
+    <Loggers>
+        <logger name="org.atlas" level="DEBUG"/>
+        <logger name="org.quartz" level="DEBUG"/>
+
+        <!-- Root logger -->
+        <Root level="info">
+            <AppenderRef ref="AsyncAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

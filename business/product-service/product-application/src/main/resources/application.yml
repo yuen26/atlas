@@ -1,0 +1,52 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8761/eureka}
+
+grpc:
+  server:
+    port: 50052
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: product-service
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/product?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: product-service
+
+springdoc:
+  packages-to-scan: org.atlas.framework.rest.server.product.controller
+
+app:
+  event:
+    kafka:
+      consumer:
+        topics: reserve_quantity_request,order_created,reserve_credit_failed
+  outbox:
+    enabled: true
+  storage:
+    filesystem:
+      location: D:/storage

@@ -1,0 +1,5 @@
+app:
+  notification:
+    queue:
+      sqs:
+        notification-queue-url: <notification-queue-url>

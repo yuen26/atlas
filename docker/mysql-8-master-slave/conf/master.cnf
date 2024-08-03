@@ -1,0 +1,8 @@
+[mysqld]
+
+default-authentication-plugin=mysql_native_password
+
+server-id=1
+log_bin=1
+binlog_do_db=test
+binlog-format=ROW
