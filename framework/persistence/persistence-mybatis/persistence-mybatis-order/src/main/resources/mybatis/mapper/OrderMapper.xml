@@ -22,6 +22,7 @@
     <select id="findAll" resultMap="OrderResultMap">
         SELECT o.id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at
         FROM orders o
+        LIMIT #{limit} OFFSET #{offset}
     </select>
 
     <select id="selectOrderItemsByOrderId" resultMap="OrderItemResultMap">
@@ -62,4 +63,11 @@
             canceled_reason = #{canceledReason}
         WHERE id = #{id}
     </update>
+
+    <select id="findByStatusAndCreatedAtBefore" resultMap="OrderResultMap">
+        SELECT o.id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at
+        FROM orders o
+        WHERE o.status = #{status}
+          AND o.created_at < #{date}
+    </select>
 </mapper>

@@ -3,6 +3,7 @@ package org.atlas.framework.persistence.jpa.order.adapter;
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.repository.OrderRepository;
+import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.framework.persistence.jpa.order.entity.JpaOrder;
 import org.atlas.framework.persistence.jpa.order.mapper.OrderMapper;
 import org.atlas.framework.persistence.jpa.order.repository.JpaOrderRepository;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,5 +54,13 @@ public class JpaOrderRepositoryAdapter implements OrderRepository {
     public void update(Order order) {
         JpaOrder jpaOrder = OrderMapper.map(order, true);
         jpaOrderRepository.save(jpaOrder);
+    }
+
+    @Override
+    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        return jpaOrderRepository.findByStatusAndCreatedAtBefore(status, date)
+            .stream()
+            .map(OrderMapper::map)
+            .toList();
     }
 }

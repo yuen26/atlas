@@ -7,11 +7,12 @@ public enum AppError {
     BAD_REQUEST(10002, "error.common.bad_request"),
 
     ORDER_NOT_FOUND(20000, "error.order.not_found"),
+    ORDER_INVALID_STATUS(20000, "error.order.invalid_status"),
 
     PRODUCT_NOT_FOUND(30000, "error.product.not_found"),
 
     USER_NOT_FOUND(30000, "error.user.not_found"),
-    EMAIL_ALREADY_EXISTS(30000, "error.user.email_exists"),
+    USER_EMAIL_EXISTS(30000, "error.user.email_exists"),
     ;
 
     private final int errorCode;

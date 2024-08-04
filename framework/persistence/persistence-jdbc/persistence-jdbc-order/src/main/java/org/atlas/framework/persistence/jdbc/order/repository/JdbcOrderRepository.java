@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,6 +96,21 @@ public class JdbcOrderRepository {
             " WHERE id = :id";
         MapSqlParameterSource params = toOrderParams(order);
         return namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        String sql = "SELECT o.id AS order_id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at, " +
+            "oi.id AS order_item_id, oi.product_id, oi.product_price, oi.quantity " +
+            "FROM orders o " +
+            "LEFT JOIN order_item oi ON o.id = oi.order_id " +
+            "WHERE o.status = :status " +
+            "  AND o.created_at < :date";
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("status", status.name());
+        parameters.addValue("date", date);
+
+        return namedParameterJdbcTemplate.query(sql, parameters, new OrderWithItemsExtractor());
     }
 
     private static class OrderWithItemsExtractor implements ResultSetExtractor<List<Order>> {

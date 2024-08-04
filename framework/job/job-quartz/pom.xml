@@ -16,6 +16,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.atlas.business</groupId>
+            <artifactId>order-application-contract</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>command</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>

@@ -27,7 +27,7 @@ public class CreateCustomerCommandExecutor implements CommandExecutor<CreateCust
     public Integer execute(CreateCustomerCommand command) throws Exception {
         userRepository.findByEmail(command.getEmail())
             .ifPresent(existedUser -> {
-                throw new BusinessException(AppError.EMAIL_ALREADY_EXISTS);
+                throw new BusinessException(AppError.USER_EMAIL_EXISTS);
             });
 
         User customer = newCustomer(command);

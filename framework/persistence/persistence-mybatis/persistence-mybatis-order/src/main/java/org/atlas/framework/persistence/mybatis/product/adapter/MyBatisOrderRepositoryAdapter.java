@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
 import org.atlas.business.order.domain.repository.OrderRepository;
+import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.framework.persistence.mybatis.product.mapper.OrderMapper;
 import org.atlas.shared.util.paging.PageDto;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +49,10 @@ public class MyBatisOrderRepositoryAdapter implements OrderRepository {
     @Override
     public void update(Order order) {
         orderMapper.update(order);
+    }
+
+    @Override
+    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        return orderMapper.findByStatusAndCreatedAtBefore(status, date);
     }
 }
