@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+
   cassandra:
     container_name: cassandra
     image: cassandra:3.11

@@ -91,9 +91,14 @@
         <!-- Notification -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>notification-publisher-rabbit</artifactId>
+            <artifactId>notification-publisher-activemq</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>notification-publisher-rabbit</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.atlas.framework</groupId>-->
 <!--            <artifactId>notification-publisher-sqs</artifactId>-->

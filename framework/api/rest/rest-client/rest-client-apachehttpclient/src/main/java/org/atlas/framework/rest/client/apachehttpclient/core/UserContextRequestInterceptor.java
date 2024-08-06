@@ -16,7 +16,9 @@ public class UserContextRequestInterceptor implements HttpRequestInterceptor {
     @Override
     public void process(HttpRequest httpRequest, EntityDetails entityDetails, HttpContext httpContext) throws HttpException, IOException {
         UserInfo userInfo = UserContext.getCurrentUser();
-        httpRequest.addHeader(CustomHeaders.USER_ID, userInfo.getUserId());
-        httpRequest.addHeader(CustomHeaders.USER_ROLE, userInfo.getRole());
+        if (userInfo != null) {
+            httpRequest.addHeader(CustomHeaders.USER_ID, userInfo.getUserId());
+            httpRequest.addHeader(CustomHeaders.USER_ROLE, userInfo.getRole());
+        }
     }
 }

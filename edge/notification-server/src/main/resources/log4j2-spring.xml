@@ -43,7 +43,7 @@
     <!-- Logger configuration -->
     <Loggers>
         <logger name="org.atlas" level="DEBUG"/>
-        <logger name="org.quartz" level="DEBUG"/>
+        <logger name="org.springframework.jms" level="DEBUG"/>
 
         <!-- Root logger -->
         <Root level="info">

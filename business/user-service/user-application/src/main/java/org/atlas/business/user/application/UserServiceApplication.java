@@ -1,16 +1,16 @@
-package org.atlas.business.product.application;
+package org.atlas.business.user.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
-	"org.atlas.business.product",
+	"org.atlas.business.user",
 	"org.atlas.framework"
 })
-public class ProductApplication {
+public class UserServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductApplication.class, args);
+		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
 }

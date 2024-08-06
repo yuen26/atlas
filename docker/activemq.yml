@@ -4,12 +4,11 @@ services:
 
   activemq:
     container_name: activemq
-    image: rmohr/activemq:5.14.0-alpine
+    image: apache/activemq-artemis:latest-alpine
     ports:
-      - "8161:8161" # Admin console (admin/admin)
+      - "8161:8161" # Admin console (artemis/artemis)
       - "61616:61616" # JMX
     volumes:
-      # - ./activemq.xml:/opt/activemq/conf/activemq.xml
       - activemq-data:/data/activemq
       - activemq-log:/var/log/activemq
 

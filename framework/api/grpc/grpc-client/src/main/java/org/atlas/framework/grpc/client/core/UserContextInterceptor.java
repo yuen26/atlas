@@ -28,8 +28,10 @@ public class UserContextInterceptor implements ClientInterceptor {
         return new ForwardingClientCall.SimpleForwardingClientCall<>(next.newCall(method, callOptions)) {
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
-                headers.put(USER_ID_HEADER, String.valueOf(userInfo.getUserId()));
-                headers.put(USER_ROLE_HEADER, userInfo.getRole().name());
+                if (userInfo != null) {
+                    headers.put(USER_ID_HEADER, String.valueOf(userInfo.getUserId()));
+                    headers.put(USER_ROLE_HEADER, userInfo.getRole().name());
+                }
                 super.start(responseListener, headers);
             }
         };

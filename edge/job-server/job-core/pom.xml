@@ -6,7 +6,7 @@
         <groupId>org.atlas</groupId>
         <artifactId>framework</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../../../pom.xml</relativePath>
     </parent>
     <groupId>org.atlas.framework</groupId>
     <artifactId>job-core</artifactId>

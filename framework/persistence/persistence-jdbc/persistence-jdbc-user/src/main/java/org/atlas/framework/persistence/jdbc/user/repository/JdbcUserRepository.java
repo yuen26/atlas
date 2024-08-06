@@ -1,11 +1,10 @@
 package org.atlas.framework.persistence.jdbc.user.repository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.atlas.business.user.domain.entity.User;
 import org.atlas.business.user.domain.shared.enums.Role;
 import org.atlas.framework.persistence.jdbc.core.NullSafeRowMapper;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -21,7 +20,6 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-@Slf4j
 public class JdbcUserRepository {
 
     private static final RowMapper<User> rowMapper = (rs, rowNum) -> {
@@ -41,23 +39,23 @@ public class JdbcUserRepository {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public Optional<User> findById(Integer id) {
+        String sql = "SELECT * FROM users WHERE id = :id";
+        SqlParameterSource params = new MapSqlParameterSource("id", id);
         try {
-            String sql = "SELECT * FROM users WHERE id = :id";
-            SqlParameterSource params = new MapSqlParameterSource("id", id);
-            return Optional.ofNullable(namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper));
-        } catch (DataAccessException e) {
-            log.error("Occurred error while executing query", e);
+            User user = namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper);
+            return Optional.ofNullable(user);
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
     }
 
     public Optional<User> findByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = :email";
+        SqlParameterSource params = new MapSqlParameterSource("email", email);
         try {
-            String sql = "SELECT * FROM users WHERE email = :email";
-            SqlParameterSource params = new MapSqlParameterSource("email", email);
-            return Optional.ofNullable(namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper));
-        } catch (DataAccessException e) {
-            log.error("Occurred error while executing query", e);
+            User user = namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper);
+            return Optional.ofNullable(user);
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
     }

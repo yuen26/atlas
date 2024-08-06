@@ -43,7 +43,6 @@
     <!-- Logger configuration -->
     <Loggers>
         <logger name="org.atlas" level="DEBUG"/>
-        <logger name="org.quartz" level="DEBUG"/>
 
         <!-- Root logger -->
         <Root level="info">

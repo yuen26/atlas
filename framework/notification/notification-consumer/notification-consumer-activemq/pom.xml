@@ -9,21 +9,21 @@
         <relativePath>../../../pom.xml</relativePath>
     </parent>
     <groupId>org.atlas.framework</groupId>
-    <artifactId>job-quartz</artifactId>
+    <artifactId>notification-consumer-activemq</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>job-quartz</name>
+    <name>notification-consumer-activemq</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>job-core</artifactId>
+            <artifactId>notification-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
     </dependencies>
 </project>

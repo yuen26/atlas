@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 	"org.atlas.business.aggregator",
 	"org.atlas.framework"
 })
-public class AggregatorApplication {
+public class AggregatorServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AggregatorApplication.class, args);
+		SpringApplication.run(AggregatorServiceApplication.class, args);
 	}
 
 }

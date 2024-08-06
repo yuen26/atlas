@@ -15,8 +15,10 @@ public class UserContextRequestInterceptor implements ClientHttpRequestIntercept
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         UserInfo userInfo = UserContext.getCurrentUser();
-        request.getHeaders().add(CustomHeaders.USER_ID, String.valueOf(userInfo.getUserId()));
-        request.getHeaders().add(CustomHeaders.USER_ROLE, userInfo.getRole().name());
+        if (userInfo != null) {
+            request.getHeaders().add(CustomHeaders.USER_ID, String.valueOf(userInfo.getUserId()));
+            request.getHeaders().add(CustomHeaders.USER_ROLE, userInfo.getRole().name());
+        }
         return execution.execute(request, body);
     }
 }

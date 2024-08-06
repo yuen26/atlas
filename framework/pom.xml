@@ -89,10 +89,12 @@
         <module>notification/notification-core</module>
 
         <!-- Notification::Publisher -->
+        <module>notification/notification-publisher/notification-publisher-activemq</module>
         <module>notification/notification-publisher/notification-publisher-rabbit</module>
         <module>notification/notification-publisher/notification-publisher-sqs</module>
 
         <!-- Notification::Consumer -->
+        <module>notification/notification-consumer/notification-consumer-activemq</module>
         <module>notification/notification-consumer/notification-consumer-rabbit</module>
         <module>notification/notification-consumer/notification-consumer-sqs</module>
 

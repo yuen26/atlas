@@ -1,16 +1,16 @@
-package org.atlas.business.order.application;
+package org.atlas.business.product.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
-	"org.atlas.business.order",
+	"org.atlas.business.product",
 	"org.atlas.framework"
 })
-public class OrderApplication {
+public class ProductServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrderApplication.class, args);
+		SpringApplication.run(ProductServiceApplication.class, args);
 	}
 
 }
