@@ -7,8 +7,9 @@ public class HttpClientFactory {
 
     public static CloseableHttpClient custom() {
         return HttpClients.custom()
-            .addRequestInterceptorFirst(new LoggingRequestInterceptor())
-            .addResponseInterceptorFirst(new LoggingResponseInterceptor())
+            .addRequestInterceptorFirst(new RestLoggingRequestInterceptor())
+            .addRequestInterceptorFirst(new UserContextRequestInterceptor())
+            .addResponseInterceptorFirst(new RestLoggingResponseInterceptor())
             .build();
     }
 }

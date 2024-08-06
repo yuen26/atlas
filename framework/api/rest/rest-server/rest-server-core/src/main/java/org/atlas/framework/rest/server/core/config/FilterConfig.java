@@ -1,6 +1,6 @@
 package org.atlas.framework.rest.server.core.config;
 
-import org.atlas.framework.rest.server.core.context.CurrentUserFilter;
+import org.atlas.framework.rest.server.core.context.UserContextFilter;
 import org.atlas.framework.rest.server.core.logging.RequestLoggingFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +21,9 @@ public class FilterConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<CurrentUserFilter> currentUserFilterFilterRegistration() {
-        FilterRegistrationBean<CurrentUserFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new CurrentUserFilter());
+    public FilterRegistrationBean<UserContextFilter> currentUserFilterFilterRegistration() {
+        FilterRegistrationBean<UserContextFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new UserContextFilter());
         registrationBean.addUrlPatterns(API_PATH_SERVLET_PATTERN);
         registrationBean.setOrder(1);
         return registrationBean;

@@ -8,9 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Need to enable feign client via {@link org.springframework.cloud.openfeign.EnableFeignClients} as well.
- */
 @Configuration
 @EnableFeignClients(basePackages = "org.atlas.framework.rest.client.feign.client")
 public class FeignConfig {

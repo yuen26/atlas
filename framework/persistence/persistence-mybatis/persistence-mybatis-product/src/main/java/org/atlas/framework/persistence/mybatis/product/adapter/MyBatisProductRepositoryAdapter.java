@@ -18,11 +18,6 @@ public class MyBatisProductRepositoryAdapter implements ProductRepository {
     private final ProductMapper productMapper;
 
     @Override
-    public List<Product> findByIdIn(List<Integer> ids) {
-        return productMapper.findByIdIn(ids);
-    }
-
-    @Override
     public PageDto<Product> find(FindProductCondition condition) {
         long totalCount = productMapper.count(condition);
         if (totalCount == 0L) {
@@ -30,6 +25,11 @@ public class MyBatisProductRepositoryAdapter implements ProductRepository {
         }
         List<Product> products = productMapper.find(condition);
         return PageDto.of(products, totalCount);
+    }
+
+    @Override
+    public List<Product> findByIdIn(List<Integer> ids) {
+        return productMapper.findByIdIn(ids);
     }
 
     @Override

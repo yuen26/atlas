@@ -180,7 +180,10 @@ public class JdbcProductRepository {
     }
 
     private List<Product> doFind(String whereClause, String sort, Integer page, Integer size, MapSqlParameterSource params) {
-        StringBuilder selectBuilder = new StringBuilder("SELECT * FROM product ");
+        StringBuilder selectBuilder = new StringBuilder(
+            "SELECT p.*, c.name as category_name " +
+            "FROM product p " +
+            "LEFT JOIN category c ON c.id = p.category_id ");
         selectBuilder.append(whereClause);
 
         // Sorting

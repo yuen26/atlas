@@ -5,23 +5,21 @@ import lombok.Data;
 @Data
 public class RestResponse<T> {
 
-    public static final int DEFAULT_SUCCESS_CODE = 200;
-    public static final String DEFAULT_SUCCESS_MESSAGE = "success";
-
-    private int code;
+    private boolean success;
     private T data;
+    private Integer code;
     private String message;
 
     public static <T> RestResponse<T> success(T data) {
         RestResponse<T> instance = new RestResponse<>();
-        instance.setCode(DEFAULT_SUCCESS_CODE);
+        instance.setSuccess(true);
         instance.setData(data);
-        instance.setMessage(DEFAULT_SUCCESS_MESSAGE);
         return instance;
     }
 
     public static RestResponse<Void> error(int code, String message) {
         RestResponse<Void> instance = new RestResponse<>();
+        instance.setSuccess(false);
         instance.setCode(code);
         instance.setMessage(message);
         return instance;

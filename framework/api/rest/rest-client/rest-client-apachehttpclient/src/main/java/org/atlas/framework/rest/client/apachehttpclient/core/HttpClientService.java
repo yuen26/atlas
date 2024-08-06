@@ -1,7 +1,6 @@
 package org.atlas.framework.rest.client.apachehttpclient.core;
 
 import jakarta.annotation.PreDestroy;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
@@ -28,11 +27,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class HttpClientService {
 
     private final CloseableHttpClient httpClient;
+
+    public HttpClientService() {
+        this.httpClient = HttpClientFactory.custom();
+    }
 
     @PreDestroy
     public void preDestroy() {

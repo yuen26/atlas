@@ -81,7 +81,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- Monitor -->
+        <!-- Monitoring -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>monitoring</artifactId>

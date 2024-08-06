@@ -96,18 +96,6 @@
         <!--            <version>0.0.1-SNAPSHOT</version>-->
         <!--        </dependency>-->
 
-        <!-- Job -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>job-quartz</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>job-spring</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-
         <!-- Migration -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
@@ -115,7 +103,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- Monitor -->
+        <!-- Monitoring -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>monitoring</artifactId>

@@ -18,11 +18,6 @@ public class JdbcProductRepositoryAdapter implements ProductRepository {
     private final JdbcProductRepository jdbcProductRepository;
 
     @Override
-    public List<Product> findByIdIn(List<Integer> ids) {
-        return jdbcProductRepository.findByIdIn(ids);
-    }
-
-    @Override
     public PageDto<Product> find(FindProductCondition condition) {
         long totalCount = jdbcProductRepository.count(condition);
         if (totalCount == 0L) {
@@ -30,6 +25,11 @@ public class JdbcProductRepositoryAdapter implements ProductRepository {
         }
         List<Product> products = jdbcProductRepository.find(condition);
         return PageDto.of(products, totalCount);
+    }
+
+    @Override
+    public List<Product> findByIdIn(List<Integer> ids) {
+        return jdbcProductRepository.findByIdIn(ids);
     }
 
     @Override

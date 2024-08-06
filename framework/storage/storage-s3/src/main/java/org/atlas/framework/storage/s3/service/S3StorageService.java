@@ -3,7 +3,7 @@ package org.atlas.framework.storage.s3.service;
 import org.atlas.framework.storage.contract.StorageService;
 import org.atlas.shared.util.function.Callback;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class S3StorageService implements StorageService {
 
     @Value("${app.storage.s3.bucket}")

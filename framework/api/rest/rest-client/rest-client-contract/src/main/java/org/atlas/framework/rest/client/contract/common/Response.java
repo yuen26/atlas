@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class Response<T> {
 
-    private int code;
+    private boolean success;
     private T data;
+    private Integer code;
     private String message;
 }

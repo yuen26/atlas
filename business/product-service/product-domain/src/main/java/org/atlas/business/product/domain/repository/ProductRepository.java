@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface ProductRepository {
 
-    List<Product> findByIdIn(List<Integer> ids);
     PageDto<Product> find(FindProductCondition query);
+    List<Product> findByIdIn(List<Integer> ids);
     Optional<Product> findById(Integer id);
     void insert(Product product);
     void update(Product product);

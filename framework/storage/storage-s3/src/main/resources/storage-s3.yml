@@ -1,5 +1,5 @@
-#app:
-#  storage:
-#    s3:
-#      bucket: <your-bucket>
-#      general-upload-max-size: 100 # 100 MB
+app:
+  storage:
+    s3:
+      bucket: <your-bucket>
+      general-upload-max-size: 100 # 100 MB

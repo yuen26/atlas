@@ -29,9 +29,6 @@
         <module>business/aggregator-service/aggregator-application-contract</module>
         <module>business/aggregator-service/aggregator-application</module>
 
-        <!-- Notification Service -->
-        <module>business/notification-service/notification-application</module>
-
         <!-- Order Service -->
         <module>business/order-service/order-domain</module>
         <module>business/order-service/order-domain-shared</module>
@@ -53,8 +50,11 @@
 
         <!-- Edge Servers -->
         <module>edge/discovery-server/eureka-server</module>
-        <module>edge/auth-server</module>
         <module>edge/gateway-server</module>
+        <module>edge/auth-server</module>
+        <module>edge/notification-server</module>
+        <module>edge/job-server/job-core</module>
+        <module>edge/job-server/job-quartz</module>
     </modules>
 
     <dependencies>

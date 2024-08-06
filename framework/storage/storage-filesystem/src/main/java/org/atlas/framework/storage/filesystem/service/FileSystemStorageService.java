@@ -3,7 +3,7 @@ package org.atlas.framework.storage.filesystem.service;
 import org.atlas.framework.storage.contract.StorageService;
 import org.atlas.shared.util.function.Callback;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.Map;
 
-@Component
+@Service
 public class FileSystemStorageService implements StorageService {
 
     @Value("${app.storage.filesystem.location}")

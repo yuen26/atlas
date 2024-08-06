@@ -1,0 +1,22 @@
+server:
+  port: 8093
+
+spring:
+  application:
+    name: job
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+  quartz:
+    # Quartz can store job and scheduling information in a relational database or RAM.
+    # With RAM option, any information will be deleted with application restart.
+    job-store-type: memory
+    properties:
+      org.quartz.scheduler:
+        instanceName: DefaultScheduler
+        instanceId: AUTO
+      org.quartz.threadPool:
+        threadNamePrefix: quartz
+        threadCount: 10

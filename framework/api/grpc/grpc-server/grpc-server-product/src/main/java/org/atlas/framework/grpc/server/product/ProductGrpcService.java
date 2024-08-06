@@ -5,6 +5,7 @@ import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.atlas.business.product.application.contract.command.CreateProductCommand;
 import org.atlas.business.product.application.contract.command.DeleteProductCommand;
 import org.atlas.business.product.application.contract.command.ExportProductCommand;
@@ -303,7 +304,7 @@ public class ProductGrpcService extends ProductServiceGrpc.ProductServiceImplBas
     private CategoryProto map(CategoryDto categoryDto) {
         return CategoryProto.newBuilder()
             .setId(categoryDto.getId())
-            .setName(categoryDto.getName())
+            .setName(StringUtils.defaultString(categoryDto.getName()))
             .build();
     }
 

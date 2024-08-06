@@ -22,14 +22,6 @@ public class JpaProductRepositoryAdapter implements ProductRepository {
     private final CustomJpaProductRepository customJpaProductRepository;
 
     @Override
-    public List<Product> findByIdIn(List<Integer> ids) {
-        return jpaProductRepository.findAllById(ids)
-            .stream()
-            .map(jpaProduct -> ModelMapperUtil.map(jpaProduct, Product.class))
-            .toList();
-    }
-
-    @Override
     public PageDto<Product> find(FindProductCondition condition) {
         long totalCount = customJpaProductRepository.count(condition);
         if (totalCount == 0L) {
@@ -40,6 +32,14 @@ public class JpaProductRepositoryAdapter implements ProductRepository {
             .map(jpaProduct -> ModelMapperUtil.map(jpaProduct, Product.class))
             .toList();
         return PageDto.of(products, totalCount);
+    }
+
+    @Override
+    public List<Product> findByIdIn(List<Integer> ids) {
+        return jpaProductRepository.findAllById(ids)
+            .stream()
+            .map(jpaProduct -> ModelMapperUtil.map(jpaProduct, Product.class))
+            .toList();
     }
 
     @Override

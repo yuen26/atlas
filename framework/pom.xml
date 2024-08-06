@@ -73,18 +73,14 @@
         <!-- i18n -->
         <module>i18n</module>
 
-        <!-- Job -->
-        <module>job/job-quartz</module>
-        <module>job/job-spring</module>
-
         <!-- Lock -->
         <module>lock/lock-core</module>
         <module>lock/lock-redis</module>
 
         <!-- Migration -->
-        <module>migration/migration-flyway-order</module>
-        <module>migration/migration-flyway-product</module>
-        <module>migration/migration-flyway-user</module>
+        <module>migration/migration-flyway/migration-flyway-order</module>
+        <module>migration/migration-flyway/migration-flyway-product</module>
+        <module>migration/migration-flyway/migration-flyway-user</module>
 
         <!-- Monitoring -->
         <module>monitoring</module>
@@ -139,6 +135,7 @@
         <!-- Storage -->
         <module>storage/storage-core</module>
         <module>storage/storage-filesystem</module>
+        <module>storage/storage-firebase</module>
         <module>storage/storage-s3</module>
 
         <!-- Tracing -->

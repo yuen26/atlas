@@ -45,7 +45,7 @@
 			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
 		</dependency>
 
-		<!-- Monitor -->
+		<!-- Monitoring -->
 		<dependency>
 			<groupId>org.atlas.framework</groupId>
 			<artifactId>monitoring</artifactId>
