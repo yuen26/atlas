@@ -4,11 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.atlas</groupId>
-        <artifactId>framework</artifactId>
+        <artifactId>atlas</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../../pom.xml</relativePath>
     </parent>
-    <groupId>org.atlas.framework</groupId>
     <artifactId>job-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>job-core</name>
@@ -33,17 +32,17 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- Monitoring -->
+        <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>monitoring</artifactId>
+            <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- Persistence -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>persistence-jdbc-order</artifactId>
+            <artifactId>jdbc-order</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--        <dependency>-->
@@ -56,12 +55,5 @@
         <!--            <artifactId>persistence-mybatis-order</artifactId>-->
         <!--            <version>0.0.1-SNAPSHOT</version>-->
         <!--        </dependency>-->
-
-        <!-- Tracing -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>tracing-zipkin</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

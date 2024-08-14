@@ -32,6 +32,13 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+		<!-- Observability -->
+		<dependency>
+			<groupId>org.atlas.framework</groupId>
+			<artifactId>observability-v1</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Auth -->
 		<dependency>
 			<groupId>com.auth0</groupId>
@@ -43,20 +50,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-		</dependency>
-
-		<!-- Monitoring -->
-		<dependency>
-			<groupId>org.atlas.framework</groupId>
-			<artifactId>monitoring</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<!-- Tracing -->
-		<dependency>
-			<groupId>org.atlas.framework</groupId>
-			<artifactId>tracing-zipkin</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- API documenting -->

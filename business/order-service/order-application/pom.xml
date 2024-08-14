@@ -26,7 +26,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- API server -->
+        <!-- API::Server -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>rest-server-order</artifactId>
@@ -38,41 +38,61 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- API client -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>rest-client-apachehttpclient</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
+        <!-- API::Client -->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>rest-client-apachehttpclient</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>rest-client-feign</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>rest-client-resttemplate</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>grpc-client</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>rest-client-resttemplate</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>grpc-client</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <!-- DataSource -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>datasource-h2</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>datasource-h2</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>datasource-mysql</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>jdbc-order</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>jpa-order</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>mybatis-order</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>flyway-order</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-        <!-- Discovery client -->
+        <!-- Discovery::Client -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>eureka-client</artifactId>
@@ -90,25 +110,11 @@
             <artifactId>event-kafka</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>event-sns-fanout</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-
-        <!-- Migration -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>migration-flyway-order</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Monitoring -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>monitoring</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>event-sns-fanout</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <!-- Notification -->
         <dependency>
@@ -116,28 +122,18 @@
             <artifactId>notification-publisher-rabbit</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>notification-publisher-sqs</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>notification-publisher-sqs</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
-        <!-- Persistence -->
+        <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>persistence-jdbc-order</artifactId>
+            <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>persistence-jpa-order</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>persistence-mybatis-order</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
 
         <!-- Realtime -->
         <dependency>
@@ -148,13 +144,6 @@
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>realtime-websocket</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Tracing -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>tracing-zipkin</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

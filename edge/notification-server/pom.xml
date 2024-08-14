@@ -39,17 +39,10 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- Monitoring -->
+        <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>monitoring</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Tracing -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>tracing-zipkin</artifactId>
+            <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

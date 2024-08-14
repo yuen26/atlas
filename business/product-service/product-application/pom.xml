@@ -36,7 +36,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- API -->
+        <!-- API::Server -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>rest-server-product</artifactId>
@@ -72,7 +72,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- DataSource -->
+        <!-- Database -->
 <!--        <dependency>-->
 <!--            <groupId>org.atlas.framework</groupId>-->
 <!--            <artifactId>datasource-h2</artifactId>-->
@@ -81,6 +81,26 @@
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>datasource-mysql</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>jdbc-product</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>jpa-product</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>mybatis-product</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>flyway-product</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -120,36 +140,12 @@
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
 
-        <!-- Migration -->
+        <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>migration-flyway-product</artifactId>
+            <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <!-- Monitoring -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>monitoring</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Persistence -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>persistence-jdbc-product</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>persistence-jpa-product</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>persistence-mybatis-product</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
 
         <!-- Search -->
 <!--        <dependency>-->
@@ -169,12 +165,5 @@
 <!--            <artifactId>storage-s3</artifactId>-->
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
-
-        <!-- Tracing -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>tracing-zipkin</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

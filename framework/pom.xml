@@ -51,9 +51,32 @@
         <!-- CSV -->
         <module>csv/csv-opencsv</module>
 
-        <!-- DataSource -->
-        <module>datasource/datasource-h2</module>
-        <module>datasource/datasource-mysql</module>
+        <!-- Database::DataSource -->
+        <module>database/datasource/datasource-h2</module>
+        <module>database/datasource/datasource-mysql</module>
+
+        <!-- Database::Migration -->
+        <module>database/migration/flyway/flyway-order</module>
+        <module>database/migration/flyway/flyway-product</module>
+        <module>database/migration/flyway/flyway-user</module>
+
+        <!-- Database::ORM:JDBC -->
+        <module>database/orm/jdbc/jdbc-core</module>
+        <module>database/orm/jdbc/jdbc-order</module>
+        <module>database/orm/jdbc/jdbc-product</module>
+        <module>database/orm/jdbc/jdbc-user</module>
+
+        <!-- Database::ORM::JPA -->
+        <module>database/orm/jpa/jpa-core</module>
+        <module>database/orm/jpa/jpa-order</module>
+        <module>database/orm/jpa/jpa-product</module>
+        <module>database/orm/jpa/jpa-user</module>
+
+        <!-- Database::ORM::MyBatis -->
+        <module>database/orm/mybatis/mybatis-core</module>
+        <module>database/orm/mybatis/mybatis-order</module>
+        <module>database/orm/mybatis/mybatis-product</module>
+        <module>database/orm/mybatis/mybatis-user</module>
 
         <!-- Discovery client -->
         <module>discovery-client/eureka-client</module>
@@ -77,14 +100,6 @@
         <module>lock/lock-core</module>
         <module>lock/lock-redis</module>
 
-        <!-- Migration -->
-        <module>migration/migration-flyway/migration-flyway-order</module>
-        <module>migration/migration-flyway/migration-flyway-product</module>
-        <module>migration/migration-flyway/migration-flyway-user</module>
-
-        <!-- Monitoring -->
-        <module>monitoring</module>
-
         <!-- Notification -->
         <module>notification/notification-core</module>
 
@@ -106,29 +121,26 @@
         <module>notification/template/template-core</module>
         <module>notification/template/template-freemarker</module>
 
-        <!-- Persistence::JDBC -->
-        <module>persistence/persistence-jdbc/persistence-jdbc-core</module>
-        <module>persistence/persistence-jdbc/persistence-jdbc-user</module>
-        <module>persistence/persistence-jdbc/persistence-jdbc-product</module>
-        <module>persistence/persistence-jdbc/persistence-jdbc-order</module>
+        <module>observability-v1</module>
 
-        <!-- Persistence::JPA -->
-        <module>persistence/persistence-jpa/persistence-jpa-core</module>
-        <module>persistence/persistence-jpa/persistence-jpa-user</module>
-        <module>persistence/persistence-jpa/persistence-jpa-product</module>
-        <module>persistence/persistence-jpa/persistence-jpa-order</module>
+        <!-- Observability V1::Logging -->
+        <module>observability-v1/logging/logging-logback</module>
 
-        <!-- Persistence::MyBatis -->
-        <module>persistence/persistence-mybatis/persistence-mybatis-core</module>
-        <module>persistence/persistence-mybatis/persistence-mybatis-user</module>
-        <module>persistence/persistence-mybatis/persistence-mybatis-product</module>
-        <module>persistence/persistence-mybatis/persistence-mybatis-order</module>
+        <!-- Observability V1::Monitoring -->
+        <module>observability-v1/monitoring</module>
+
+        <!-- Observability V1::Tracing -->
+        <module>observability-v1/tracing/tracing-zipkin</module>
+
+        <!-- Observability V2 -->
+        <module>observability-v2</module>
 
         <!-- Realtime -->
         <module>realtime/realtime-core</module>
         <module>realtime/realtime-sse</module>
         <module>realtime/realtime-websocket</module>
 
+        <!-- Redis shared config -->
         <module>redis</module>
 
         <!-- Search -->
@@ -139,9 +151,6 @@
         <module>storage/storage-filesystem</module>
         <module>storage/storage-firebase</module>
         <module>storage/storage-s3</module>
-
-        <!-- Tracing -->
-        <module>tracing/tracing-zipkin</module>
     </modules>
 
     <dependencies>

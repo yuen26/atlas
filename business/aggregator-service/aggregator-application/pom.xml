@@ -26,7 +26,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- API server -->
+        <!-- API::Server -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>rest-server-aggregator</artifactId>
@@ -38,7 +38,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- API client -->
+        <!-- API::Client -->
 <!--        <dependency>-->
 <!--            <groupId>org.atlas.framework</groupId>-->
 <!--            <artifactId>rest-client-apachehttpclient</artifactId>-->
@@ -60,24 +60,17 @@
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
 
-        <!-- Discovery client -->
+        <!-- Discovery::Client -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>eureka-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- Monitoring -->
+        <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>monitoring</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Tracing -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>tracing-zipkin</artifactId>
+            <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

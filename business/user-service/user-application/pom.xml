@@ -26,7 +26,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- API -->
+        <!-- API::Server -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>rest-server-user</artifactId>
@@ -38,15 +38,35 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- DataSource -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>datasource-h2</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
+        <!-- Database -->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>datasource-h2</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>datasource-mysql</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>jdbc-user</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>jpa-user</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>mybatis-user</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>flyway-user</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -74,58 +94,27 @@
         <!--            <version>0.0.1-SNAPSHOT</version>-->
         <!--        </dependency>-->
 
-        <!-- Migration -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>migration-flyway-user</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Monitoring -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>monitoring</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- Notification -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>notification-publisher-activemq</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>notification-publisher-rabbit</artifactId>-->
+<!--            <artifactId>notification-publisher-activemq</artifactId>-->
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>notification-publisher-rabbit</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.atlas.framework</groupId>-->
 <!--            <artifactId>notification-publisher-sqs</artifactId>-->
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
 
-        <!-- Persistence -->
+        <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>persistence-jdbc-user</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>persistence-jpa-user</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>persistence-mybatis-user</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-
-        <!-- Tracing -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>tracing-zipkin</artifactId>
+            <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
