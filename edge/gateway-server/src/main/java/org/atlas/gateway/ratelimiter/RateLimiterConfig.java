@@ -1,6 +1,6 @@
 package org.atlas.gateway.ratelimiter;
 
-import org.atlas.shared.constant.CustomHeaders;
+import org.atlas.commons.constant.CustomHeaders;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.context.annotation.Bean;

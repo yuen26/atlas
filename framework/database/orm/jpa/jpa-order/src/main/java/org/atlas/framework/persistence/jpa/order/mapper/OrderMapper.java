@@ -16,7 +16,6 @@ public class OrderMapper {
         order.setCustomerId(jpaOrder.getCustomerId());
         order.setAmount(jpaOrder.getAmount());
         order.setStatus(jpaOrder.getStatus());
-        order.setCanceledReason(jpaOrder.getCanceledReason());
         order.setCreatedAt(jpaOrder.getCreatedAt());
         order.setUpdatedAt(jpaOrder.getUpdatedAt());
         jpaOrder.getOrderItems().forEach(jpaOrderItem -> {
@@ -35,7 +34,6 @@ public class OrderMapper {
         jpaOrder.setCustomerId(order.getCustomerId());
         jpaOrder.setAmount(order.getAmount());
         jpaOrder.setStatus(order.getStatus());
-        jpaOrder.setCanceledReason(order.getCanceledReason());
         if (!ignoreOrderItems) {
             order.getOrderItems().forEach(orderItem -> {
                 JpaOrderItem jpaOrderItem = new JpaOrderItem();

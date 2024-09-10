@@ -46,11 +46,6 @@ public class RoutingConfig {
                     .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN, Role.CUSTOMER)))
                     .requestRateLimiter(requestRateLimiter()))
                 .uri("lb://ORDER-SERVICE"))
-            .route("aggregator-service", r -> r.path("/aggregator-service/**")
-                .filters(f -> f.rewritePath("/aggregator-service/(?<segment>.*)", "/${segment}")
-                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN, Role.CUSTOMER)))
-                    .requestRateLimiter(requestRateLimiter()))
-                .uri("lb://AGGREGATOR-SERVICE"))
             .build();
     }
 

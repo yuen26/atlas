@@ -16,13 +16,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.atlas</groupId>
-            <artifactId>shared-kernel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.atlas.business</groupId>
             <artifactId>user-domain-shared</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.atlas</groupId>
+            <artifactId>commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

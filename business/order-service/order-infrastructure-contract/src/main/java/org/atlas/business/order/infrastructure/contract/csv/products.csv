@@ -1,0 +1,5 @@
+Order No,Customer ID,Product ID,Quantity,Address,Created At
+ORD001,1,1,10,123 Main St,2024-09-10 10:15:00
+0RD001,1,2,5,123 Main St,2024-09-10 10:15:00
+ORD002,2,1,2,456 Elm St,2024-09-11 06:34:15
+ORD002,2,3,3,456 Elm St,2024-09-11 06:34:15

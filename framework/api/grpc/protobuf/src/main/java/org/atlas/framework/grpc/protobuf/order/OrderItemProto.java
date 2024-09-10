@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private OrderItemProto() {
+    productName_ = "";
   }
 
   @java.lang.Override
@@ -50,10 +51,49 @@ private static final long serialVersionUID = 0L;
     return productId_;
   }
 
-  public static final int PRODUCT_PRICE_FIELD_NUMBER = 2;
+  public static final int PRODUCT_NAME_FIELD_NUMBER = 2;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object productName_ = "";
+  /**
+   * <code>string product_name = 2;</code>
+   * @return The productName.
+   */
+  @java.lang.Override
+  public java.lang.String getProductName() {
+    java.lang.Object ref = productName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      productName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string product_name = 2;</code>
+   * @return The bytes for productName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getProductNameBytes() {
+    java.lang.Object ref = productName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      productName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int PRODUCT_PRICE_FIELD_NUMBER = 3;
   private double productPrice_ = 0D;
   /**
-   * <code>double product_price = 2;</code>
+   * <code>double product_price = 3;</code>
    * @return The productPrice.
    */
   @java.lang.Override
@@ -61,10 +101,10 @@ private static final long serialVersionUID = 0L;
     return productPrice_;
   }
 
-  public static final int QUANTITY_FIELD_NUMBER = 3;
+  public static final int QUANTITY_FIELD_NUMBER = 4;
   private int quantity_ = 0;
   /**
-   * <code>int32 quantity = 3;</code>
+   * <code>int32 quantity = 4;</code>
    * @return The quantity.
    */
   @java.lang.Override
@@ -89,11 +129,14 @@ private static final long serialVersionUID = 0L;
     if (productId_ != 0) {
       output.writeInt32(1, productId_);
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(productName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, productName_);
+    }
     if (java.lang.Double.doubleToRawLongBits(productPrice_) != 0) {
-      output.writeDouble(2, productPrice_);
+      output.writeDouble(3, productPrice_);
     }
     if (quantity_ != 0) {
-      output.writeInt32(3, quantity_);
+      output.writeInt32(4, quantity_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -108,13 +151,16 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, productId_);
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(productName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, productName_);
+    }
     if (java.lang.Double.doubleToRawLongBits(productPrice_) != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(2, productPrice_);
+        .computeDoubleSize(3, productPrice_);
     }
     if (quantity_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, quantity_);
+        .computeInt32Size(4, quantity_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -133,6 +179,8 @@ private static final long serialVersionUID = 0L;
 
     if (getProductId()
         != other.getProductId()) return false;
+    if (!getProductName()
+        .equals(other.getProductName())) return false;
     if (java.lang.Double.doubleToLongBits(getProductPrice())
         != java.lang.Double.doubleToLongBits(
             other.getProductPrice())) return false;
@@ -151,6 +199,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PRODUCT_ID_FIELD_NUMBER;
     hash = (53 * hash) + getProductId();
+    hash = (37 * hash) + PRODUCT_NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getProductName().hashCode();
     hash = (37 * hash) + PRODUCT_PRICE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getProductPrice()));
@@ -288,6 +338,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       productId_ = 0;
+      productName_ = "";
       productPrice_ = 0D;
       quantity_ = 0;
       return this;
@@ -327,9 +378,12 @@ private static final long serialVersionUID = 0L;
         result.productId_ = productId_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.productPrice_ = productPrice_;
+        result.productName_ = productName_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.productPrice_ = productPrice_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
         result.quantity_ = quantity_;
       }
     }
@@ -381,6 +435,11 @@ private static final long serialVersionUID = 0L;
       if (other.getProductId() != 0) {
         setProductId(other.getProductId());
       }
+      if (!other.getProductName().isEmpty()) {
+        productName_ = other.productName_;
+        bitField0_ |= 0x00000002;
+        onChanged();
+      }
       if (other.getProductPrice() != 0D) {
         setProductPrice(other.getProductPrice());
       }
@@ -418,16 +477,21 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
-            case 17: {
-              productPrice_ = input.readDouble();
+            case 18: {
+              productName_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000002;
               break;
-            } // case 17
-            case 24: {
-              quantity_ = input.readInt32();
+            } // case 18
+            case 25: {
+              productPrice_ = input.readDouble();
               bitField0_ |= 0x00000004;
               break;
-            } // case 24
+            } // case 25
+            case 32: {
+              quantity_ = input.readInt32();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 32
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -477,9 +541,81 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private java.lang.Object productName_ = "";
+    /**
+     * <code>string product_name = 2;</code>
+     * @return The productName.
+     */
+    public java.lang.String getProductName() {
+      java.lang.Object ref = productName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        productName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string product_name = 2;</code>
+     * @return The bytes for productName.
+     */
+    public com.google.protobuf.ByteString
+        getProductNameBytes() {
+      java.lang.Object ref = productName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        productName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string product_name = 2;</code>
+     * @param value The productName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setProductName(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      productName_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string product_name = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearProductName() {
+      productName_ = getDefaultInstance().getProductName();
+      bitField0_ = (bitField0_ & ~0x00000002);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string product_name = 2;</code>
+     * @param value The bytes for productName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setProductNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      productName_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+
     private double productPrice_ ;
     /**
-     * <code>double product_price = 2;</code>
+     * <code>double product_price = 3;</code>
      * @return The productPrice.
      */
     @java.lang.Override
@@ -487,23 +623,23 @@ private static final long serialVersionUID = 0L;
       return productPrice_;
     }
     /**
-     * <code>double product_price = 2;</code>
+     * <code>double product_price = 3;</code>
      * @param value The productPrice to set.
      * @return This builder for chaining.
      */
     public Builder setProductPrice(double value) {
 
       productPrice_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
     /**
-     * <code>double product_price = 2;</code>
+     * <code>double product_price = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearProductPrice() {
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000004);
       productPrice_ = 0D;
       onChanged();
       return this;
@@ -511,7 +647,7 @@ private static final long serialVersionUID = 0L;
 
     private int quantity_ ;
     /**
-     * <code>int32 quantity = 3;</code>
+     * <code>int32 quantity = 4;</code>
      * @return The quantity.
      */
     @java.lang.Override
@@ -519,23 +655,23 @@ private static final long serialVersionUID = 0L;
       return quantity_;
     }
     /**
-     * <code>int32 quantity = 3;</code>
+     * <code>int32 quantity = 4;</code>
      * @param value The quantity to set.
      * @return This builder for chaining.
      */
     public Builder setQuantity(int value) {
 
       quantity_ = value;
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 quantity = 3;</code>
+     * <code>int32 quantity = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearQuantity() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000008);
       quantity_ = 0;
       onChanged();
       return this;

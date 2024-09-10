@@ -4,38 +4,7 @@
     <resultMap id="ProductMap" type="org.atlas.business.product.domain.entity.Product">
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
-        <association property="category" column="category_id"
-                     javaType="org.atlas.business.product.domain.entity.Category"
-                     resultMap="CategoryMap"/>
     </resultMap>
-
-    <resultMap id="CategoryMap" type="org.atlas.business.product.domain.entity.Category">
-        <id property="id" column="category_id"/>
-        <result property="name" column="category_name"/>
-    </resultMap>
-
-    <select id="find" parameterType="map" resultMap="ProductMap">
-        SELECT p.*, c.name as category_name
-        FROM product p
-        LEFT JOIN category c ON c.id = p.category_id
-        <include refid="searchWhereClause"/>
-        <if test="condition.sort != null and condition.sort != ''">
-            ORDER BY
-            <choose>
-                <when test="condition.sort.startsWith('-')">
-                    ${condition.sort.substring(1)} DESC
-                </when>
-                <otherwise>
-                    ${condition.sort} ASC
-                </otherwise>
-            </choose>
-        </if>
-        <if test="condition.page != null and condition.size != null">
-            <bind name="offset" value="condition.page * condition.size"/>
-            LIMIT #{condition.page}
-            OFFSET #{offset}
-        </if>
-    </select>
 
     <select id="findByIdIn" parameterType="list" resultMap="ProductMap">
         SELECT *
@@ -45,36 +14,6 @@
             #{id}
         </foreach>
     </select>
-
-    <select id="count" parameterType="map" resultType="long">
-        SELECT COUNT(p.id)
-        FROM product p
-        <include refid="searchWhereClause"/>
-    </select>
-
-    <select id="findById" resultMap="ProductMap">
-        SELECT *
-        FROM product
-        WHERE id = #{id}
-    </select>
-
-    <insert id="insert" parameterType="org.atlas.business.product.domain.entity.Product"
-            useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO product (name, price, quantity, featured, status, category_id)
-        VALUES (#{name}, #{price}, #{quantity}, #{featured}, #{status}, #{category.id})
-    </insert>
-
-    <update id="update" parameterType="org.atlas.business.product.domain.entity.Product">
-        UPDATE product
-        SET
-            name = #{name},
-            price = #{price},
-            quantity = #{quantity},
-            featured = #{featured},
-            status = #{status},
-            category_id = #{category.id}
-        WHERE id = #{id}
-    </update>
 
     <update id="increaseQuantity">
         UPDATE product
@@ -88,43 +27,4 @@
         WHERE id = #{id}
           AND quantity >= #{amount}
     </update>
-
-    <delete id="deleteById">
-        DELETE FROM product WHERE id = #{id}
-    </delete>
-
-    <sql id="searchWhereClause">
-        <where>
-            <if test="condition.id != null">
-                AND p.id = #{condition.id}
-            </if>
-            <if test="condition.name != null and condition.name != ''">
-                AND LOWER(p.name) LIKE CONCAT('%', LOWER(#{condition.name}), '%')
-            </if>
-            <if test="condition.minPrice != null">
-                AND p.price >= #{condition.minPrice}
-            </if>
-            <if test="condition.maxPrice != null">
-                AND p.price &lt;= #{condition.maxPrice}
-            </if>
-            <if test="condition.inStock != null and condition.inStock == true">
-                AND p.quantity > 0
-            </if>
-            <if test="condition.featured != null">
-                AND p.featured = #{condition.featured}
-            </if>
-            <if test="condition.status != null">
-                AND p.status = #{condition.status}
-            </if>
-            <if test="condition.categoryId != null">
-                AND p.category_id = #{categoryId}
-            </if>
-            <if test="condition.startCreatedAt != null">
-                AND p.createdAt >= #{condition.startCreatedAt}
-            </if>
-            <if test="condition.endCreatedAt != null">
-                AND p.createdAt &lt;= #{condition.endCreatedAt}
-            </if>
-        </where>
-    </sql>
 </mapper>

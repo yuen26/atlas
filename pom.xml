@@ -21,26 +21,21 @@
     </properties>
 
     <modules>
-        <module>shared-kernel</module>
+        <module>commons</module>
 
         <module>framework</module>
-
-        <!-- Aggregator Service -->
-        <module>business/aggregator-service/aggregator-application-contract</module>
-        <module>business/aggregator-service/aggregator-application</module>
 
         <!-- Order Service -->
         <module>business/order-service/order-domain</module>
         <module>business/order-service/order-domain-shared</module>
         <module>business/order-service/order-application-contract</module>
         <module>business/order-service/order-application</module>
+        <module>business/order-service/order-infrastructure-contract</module>
 
         <!-- Product Service -->
         <module>business/product-service/product-domain</module>
-        <module>business/product-service/product-domain-shared</module>
         <module>business/product-service/product-application-contract</module>
         <module>business/product-service/product-application</module>
-        <module>business/product-service/product-infrastructure-contract</module>
 
         <!-- User Service -->
         <module>business/user-service/user-domain</module>
@@ -57,6 +52,7 @@
         <module>edge/job-server/job-quartz</module>
     </modules>
 
+    <!-- Dependencies are shared between modules -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,22 +63,6 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.14.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>4.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>33.2.0-jre</version>
         </dependency>
 
         <dependency>

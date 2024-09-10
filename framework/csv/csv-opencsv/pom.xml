@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>org.atlas.business</groupId>
-            <artifactId>product-infrastructure-contract</artifactId>
+            <artifactId>order-infrastructure-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

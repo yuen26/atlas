@@ -32,7 +32,6 @@ public class CancelOverduePendingOrdersJobLogic {
 
         overduePendingOrders.forEach(order -> {
             order.setStatus(OrderStatus.CANCELED);
-            order.setCanceledReason("Overdue pending order");
             orderRepository.update(order);
             log.info("Canceled overdue pending order {}", order.getId());
         });

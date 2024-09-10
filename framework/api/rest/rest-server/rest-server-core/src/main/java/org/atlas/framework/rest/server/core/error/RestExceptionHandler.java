@@ -2,10 +2,10 @@ package org.atlas.framework.rest.server.core.error;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.atlas.commons.exception.AppError;
+import org.atlas.commons.exception.BusinessException;
 import org.atlas.framework.i18n.service.MessageService;
 import org.atlas.framework.rest.server.core.response.RestResponse;
-import org.atlas.shared.exception.AppError;
-import org.atlas.shared.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

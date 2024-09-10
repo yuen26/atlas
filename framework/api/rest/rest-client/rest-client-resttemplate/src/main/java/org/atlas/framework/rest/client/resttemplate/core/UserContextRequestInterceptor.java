@@ -1,8 +1,8 @@
 package org.atlas.framework.rest.client.resttemplate.core;
 
-import org.atlas.shared.constant.CustomHeaders;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.context.UserInfo;
+import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;

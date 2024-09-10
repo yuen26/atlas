@@ -32,16 +32,17 @@ public class JpaOrder extends JpaBaseEntity {
     @Column(name = "customer_id")
     private Integer customerId;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JpaOrderItem> orderItems;
+
     private BigDecimal amount;
+
+    private String address;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<JpaOrderItem> orderItems;
-
-    @Column(name = "canceled_reason")
-    private String canceledReason;
+    private Boolean deleted;
 
     public void addOrderItem(JpaOrderItem orderItem) {
         if (this.orderItems == null) {

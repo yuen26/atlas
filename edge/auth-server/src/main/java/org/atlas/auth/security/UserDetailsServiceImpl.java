@@ -1,8 +1,8 @@
 package org.atlas.auth.security;
 
 import lombok.RequiredArgsConstructor;
-import org.atlas.business.user.application.contract.model.LoginUserDto;
-import org.atlas.framework.api.client.contract.IUserServiceClient;
+import org.atlas.business.user.application.contract.model.UserAuthDto;
+import org.atlas.framework.api.client.contract.user.IUserAuthServiceClient;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,21 +15,21 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final IUserServiceClient userClient;
+    private final IUserAuthServiceClient userClient;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userClient.getLoginUser(email)
+        return userClient.getUserAuth(email)
             .map(this::map)
             .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email %s not found", email)));
     }
 
-    public LoginInfo map(LoginUserDto loginUserDto) {
+    public LoginInfo map(UserAuthDto userAuthDto) {
         LoginInfo loginInfo = new LoginInfo();
-        loginInfo.setUsername(loginUserDto.getEmail());
-        loginInfo.setPassword(loginUserDto.getPassword());
-        loginInfo.setAuthorities(Collections.singletonList(new SimpleGrantedAuthority(loginUserDto.getRole().name())));
-        loginInfo.setUserId(loginUserDto.getId());
+        loginInfo.setUsername(userAuthDto.getEmail());
+        loginInfo.setPassword(userAuthDto.getPassword());
+        loginInfo.setAuthorities(Collections.singletonList(new SimpleGrantedAuthority(userAuthDto.getRole().name())));
+        loginInfo.setUserId(userAuthDto.getId());
         return loginInfo;
     }
 }

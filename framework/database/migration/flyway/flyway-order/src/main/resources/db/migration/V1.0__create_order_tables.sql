@@ -4,14 +4,13 @@ DROP TABLE IF EXISTS outbox_message;
 
 CREATE TABLE orders
 (
-    id              INT            NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    event_id        VARCHAR(50) UNIQUE,
-    customer_id     INT            NOT NULL,
-    amount          DECIMAL(11, 2) NOT NULL,
-    status          VARCHAR(20)    NOT NULL,
-    canceled_reason VARCHAR(255),
-    created_at      DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at      DATETIME                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    id          INT            NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT            NOT NULL,
+    amount      DECIMAL(11, 2) NOT NULL,
+    status      VARCHAR(20)    NOT NULL,
+    address     VARCHAR(500),
+    created_at  DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  DATETIME                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;
 
 CREATE TABLE order_item

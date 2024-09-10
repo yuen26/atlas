@@ -1,7 +1,7 @@
 package org.atlas.framework.storage.filesystem.service;
 
+import org.atlas.commons.util.function.Callback;
 import org.atlas.framework.storage.contract.StorageService;
-import org.atlas.shared.util.function.Callback;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

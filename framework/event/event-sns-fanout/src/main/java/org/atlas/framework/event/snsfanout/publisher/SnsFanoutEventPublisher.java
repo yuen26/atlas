@@ -2,9 +2,9 @@ package org.atlas.framework.event.snsfanout.publisher;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.atlas.commons.util.json.JsonUtil;
 import org.atlas.framework.event.contract.DomainEvent;
 import org.atlas.framework.event.core.publisher.EventPublisher;
-import org.atlas.shared.util.json.JsonUtil;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sns.model.PublishRequest;

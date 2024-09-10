@@ -1,6 +1,6 @@
 package org.atlas.framework.storage.contract;
 
-import org.atlas.shared.util.function.Callback;
+import org.atlas.commons.utils.function.Callback;
 
 import java.util.Map;
 

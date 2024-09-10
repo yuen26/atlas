@@ -21,7 +21,6 @@
         <module>api/rest/rest-server/rest-server-user</module>
         <module>api/rest/rest-server/rest-server-product</module>
         <module>api/rest/rest-server/rest-server-order</module>
-        <module>api/rest/rest-server/rest-server-aggregator</module>
 
         <!-- API::REST::Client -->
         <module>api/rest/rest-client/rest-client-contract</module>
@@ -34,7 +33,6 @@
         <module>api/grpc/grpc-server/grpc-server-user</module>
         <module>api/grpc/grpc-server/grpc-server-product</module>
         <module>api/grpc/grpc-server/grpc-server-order</module>
-        <module>api/grpc/grpc-server/grpc-server-aggregator</module>
 
         <!-- API::gRPC:Client -->
         <module>api/grpc/grpc-client</module>
@@ -116,6 +114,8 @@
         <!-- Notification::Channel -->
         <module>notification/notification-channel/email/email-core</module>
         <module>notification/notification-channel/email/email-spring</module>
+        <module>notification/notification-channel/sse</module>
+        <module>notification/notification-channel/websocket</module>
 
         <!-- Notification::Template -->
         <module>notification/template/template-core</module>
@@ -135,16 +135,8 @@
         <!-- Observability V2 -->
         <module>observability-v2</module>
 
-        <!-- Realtime -->
-        <module>realtime/realtime-core</module>
-        <module>realtime/realtime-sse</module>
-        <module>realtime/realtime-websocket</module>
-
         <!-- Redis shared config -->
         <module>redis</module>
-
-        <!-- Search -->
-        <module>search/search-elasticsearch</module>
 
         <!-- Storage -->
         <module>storage/storage-core</module>
@@ -156,7 +148,7 @@
     <dependencies>
         <dependency>
             <groupId>org.atlas</groupId>
-            <artifactId>shared-kernel</artifactId>
+            <artifactId>commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

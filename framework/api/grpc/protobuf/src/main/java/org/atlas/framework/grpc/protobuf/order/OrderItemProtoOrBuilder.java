@@ -15,13 +15,25 @@ public interface OrderItemProtoOrBuilder extends
   int getProductId();
 
   /**
-   * <code>double product_price = 2;</code>
+   * <code>string product_name = 2;</code>
+   * @return The productName.
+   */
+  java.lang.String getProductName();
+  /**
+   * <code>string product_name = 2;</code>
+   * @return The bytes for productName.
+   */
+  com.google.protobuf.ByteString
+      getProductNameBytes();
+
+  /**
+   * <code>double product_price = 3;</code>
    * @return The productPrice.
    */
   double getProductPrice();
 
   /**
-   * <code>int32 quantity = 3;</code>
+   * <code>int32 quantity = 4;</code>
    * @return The quantity.
    */
   int getQuantity();

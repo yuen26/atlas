@@ -1,7 +1,7 @@
 package org.atlas.framework.notification.publisher.rabbit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.atlas.shared.util.json.JacksonOps;
+import org.atlas.commons.utils.json.JacksonOps;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;

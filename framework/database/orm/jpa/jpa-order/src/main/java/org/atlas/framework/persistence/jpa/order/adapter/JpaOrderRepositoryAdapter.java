@@ -2,15 +2,14 @@ package org.atlas.framework.persistence.jpa.order.adapter;
 
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.domain.entity.Order;
+import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.repository.OrderRepository;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.persistence.jpa.order.entity.JpaOrder;
 import org.atlas.framework.persistence.jpa.order.mapper.OrderMapper;
+import org.atlas.framework.persistence.jpa.order.repository.CustomJpaOrderRepository;
 import org.atlas.framework.persistence.jpa.order.repository.JpaOrderRepository;
-import org.atlas.shared.util.paging.PageDto;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -22,19 +21,19 @@ import java.util.Optional;
 public class JpaOrderRepositoryAdapter implements OrderRepository {
 
     private final JpaOrderRepository jpaOrderRepository;
+    private final CustomJpaOrderRepository customJpaOrderRepository;
 
     @Override
-    public PageDto<Order> find(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<JpaOrder> jpaOrderPage = jpaOrderRepository.findAllAndFetch(pageable);
-        if (jpaOrderPage.isEmpty()) {
+    public PageDto<Order> find(FindOrderCondition condition) {
+        long totalCount = customJpaOrderRepository.count(condition);
+        if (totalCount == 0L) {
             return PageDto.empty();
         }
-        List<JpaOrder> jpaOrders = jpaOrderPage.getContent();
+        List<JpaOrder> jpaOrders = customJpaOrderRepository.find(condition);
         List<Order> orders = jpaOrders.stream()
             .map(OrderMapper::map)
             .toList();
-        return PageDto.of(orders, jpaOrderPage.getTotalElements());
+        return PageDto.of(orders, totalCount);
     }
 
     @Override
@@ -54,6 +53,16 @@ public class JpaOrderRepositoryAdapter implements OrderRepository {
     public void update(Order order) {
         JpaOrder jpaOrder = OrderMapper.map(order, true);
         jpaOrderRepository.save(jpaOrder);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        jpaOrderRepository.deleteById(id);
+    }
+
+    @Override
+    public void softDeleteById(Integer id) {
+        jpaOrderRepository.softDeleteById(id);
     }
 
     @Override

@@ -109,34 +109,158 @@ public final class OrderServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto,
-      com.google.protobuf.Empty> getCreateOrderMethod;
+      org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto> getCreateOrderMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CreateOrder",
       requestType = org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto.class,
-      responseType = com.google.protobuf.Empty.class,
+      responseType = org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto,
-      com.google.protobuf.Empty> getCreateOrderMethod() {
-    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto, com.google.protobuf.Empty> getCreateOrderMethod;
+      org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto> getCreateOrderMethod() {
+    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto, org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto> getCreateOrderMethod;
     if ((getCreateOrderMethod = OrderServiceGrpc.getCreateOrderMethod) == null) {
       synchronized (OrderServiceGrpc.class) {
         if ((getCreateOrderMethod = OrderServiceGrpc.getCreateOrderMethod) == null) {
           OrderServiceGrpc.getCreateOrderMethod = getCreateOrderMethod =
-              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto, org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateOrder"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto.getDefaultInstance()))
               .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("CreateOrder"))
               .build();
         }
       }
     }
     return getCreateOrderMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto,
+      com.google.protobuf.Empty> getUpdateOrderMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateOrder",
+      requestType = org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto,
+      com.google.protobuf.Empty> getUpdateOrderMethod() {
+    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto, com.google.protobuf.Empty> getUpdateOrderMethod;
+    if ((getUpdateOrderMethod = OrderServiceGrpc.getUpdateOrderMethod) == null) {
+      synchronized (OrderServiceGrpc.class) {
+        if ((getUpdateOrderMethod = OrderServiceGrpc.getUpdateOrderMethod) == null) {
+          OrderServiceGrpc.getUpdateOrderMethod = getUpdateOrderMethod =
+              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateOrder"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("UpdateOrder"))
+              .build();
+        }
+      }
+    }
+    return getUpdateOrderMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto,
+      com.google.protobuf.Empty> getDeleteOrderMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "DeleteOrder",
+      requestType = org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto,
+      com.google.protobuf.Empty> getDeleteOrderMethod() {
+    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto, com.google.protobuf.Empty> getDeleteOrderMethod;
+    if ((getDeleteOrderMethod = OrderServiceGrpc.getDeleteOrderMethod) == null) {
+      synchronized (OrderServiceGrpc.class) {
+        if ((getDeleteOrderMethod = OrderServiceGrpc.getDeleteOrderMethod) == null) {
+          OrderServiceGrpc.getDeleteOrderMethod = getDeleteOrderMethod =
+              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteOrder"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("DeleteOrder"))
+              .build();
+        }
+      }
+    }
+    return getDeleteOrderMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto,
+      com.google.protobuf.Empty> getImportOrderMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ImportOrder",
+      requestType = org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto,
+      com.google.protobuf.Empty> getImportOrderMethod() {
+    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto, com.google.protobuf.Empty> getImportOrderMethod;
+    if ((getImportOrderMethod = OrderServiceGrpc.getImportOrderMethod) == null) {
+      synchronized (OrderServiceGrpc.class) {
+        if ((getImportOrderMethod = OrderServiceGrpc.getImportOrderMethod) == null) {
+          OrderServiceGrpc.getImportOrderMethod = getImportOrderMethod =
+              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ImportOrder"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("ImportOrder"))
+              .build();
+        }
+      }
+    }
+    return getImportOrderMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto,
+      org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto> getExportOrderMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ExportOrder",
+      requestType = org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto.class,
+      responseType = org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto,
+      org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto> getExportOrderMethod() {
+    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto, org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto> getExportOrderMethod;
+    if ((getExportOrderMethod = OrderServiceGrpc.getExportOrderMethod) == null) {
+      synchronized (OrderServiceGrpc.class) {
+        if ((getExportOrderMethod = OrderServiceGrpc.getExportOrderMethod) == null) {
+          OrderServiceGrpc.getExportOrderMethod = getExportOrderMethod =
+              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto, org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ExportOrder"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto.getDefaultInstance()))
+              .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("ExportOrder"))
+              .build();
+        }
+      }
+    }
+    return getExportOrderMethod;
   }
 
   /**
@@ -211,8 +335,36 @@ public final class OrderServiceGrpc {
     /**
      */
     default void createOrder(org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+        io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateOrderMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void updateOrder(org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateOrderMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void deleteOrder(org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteOrderMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void importOrder(org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getImportOrderMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void exportOrder(org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto request,
+        io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getExportOrderMethod(), responseObserver);
     }
   }
 
@@ -270,9 +422,41 @@ public final class OrderServiceGrpc {
     /**
      */
     public void createOrder(org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+        io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateOrderMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void updateOrder(org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateOrderMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void deleteOrder(org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDeleteOrderMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void importOrder(org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getImportOrderMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void exportOrder(org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto request,
+        io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getExportOrderMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -315,9 +499,37 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty createOrder(org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto request) {
+    public org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto createOrder(org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateOrderMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty updateOrder(org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateOrderMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty deleteOrder(org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteOrderMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty importOrder(org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getImportOrderMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto exportOrder(org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getExportOrderMethod(), getCallOptions(), request);
     }
   }
 
@@ -363,10 +575,42 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> createOrder(
+    public com.google.common.util.concurrent.ListenableFuture<org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto> createOrder(
         org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateOrderMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> updateOrder(
+        org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateOrderMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteOrder(
+        org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDeleteOrderMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> importOrder(
+        org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getImportOrderMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto> exportOrder(
+        org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getExportOrderMethod(), getCallOptions()), request);
     }
   }
 
@@ -374,6 +618,10 @@ public final class OrderServiceGrpc {
   private static final int METHODID_GET_ORDER = 1;
   private static final int METHODID_GET_ORDER_STATUS = 2;
   private static final int METHODID_CREATE_ORDER = 3;
+  private static final int METHODID_UPDATE_ORDER = 4;
+  private static final int METHODID_DELETE_ORDER = 5;
+  private static final int METHODID_IMPORT_ORDER = 6;
+  private static final int METHODID_EXPORT_ORDER = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -406,7 +654,23 @@ public final class OrderServiceGrpc {
           break;
         case METHODID_CREATE_ORDER:
           serviceImpl.createOrder((org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto) request,
+              (io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto>) responseObserver);
+          break;
+        case METHODID_UPDATE_ORDER:
+          serviceImpl.updateOrder((org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_DELETE_ORDER:
+          serviceImpl.deleteOrder((org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_IMPORT_ORDER:
+          serviceImpl.importOrder((org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_EXPORT_ORDER:
+          serviceImpl.exportOrder((org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto) request,
+              (io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -452,8 +716,36 @@ public final class OrderServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto,
-              com.google.protobuf.Empty>(
+              org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto>(
                 service, METHODID_CREATE_ORDER)))
+        .addMethod(
+          getUpdateOrderMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto,
+              com.google.protobuf.Empty>(
+                service, METHODID_UPDATE_ORDER)))
+        .addMethod(
+          getDeleteOrderMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto,
+              com.google.protobuf.Empty>(
+                service, METHODID_DELETE_ORDER)))
+        .addMethod(
+          getImportOrderMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto,
+              com.google.protobuf.Empty>(
+                service, METHODID_IMPORT_ORDER)))
+        .addMethod(
+          getExportOrderMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto,
+              org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto>(
+                service, METHODID_EXPORT_ORDER)))
         .build();
   }
 
@@ -506,6 +798,10 @@ public final class OrderServiceGrpc {
               .addMethod(getGetOrderMethod())
               .addMethod(getGetOrderStatusMethod())
               .addMethod(getCreateOrderMethod())
+              .addMethod(getUpdateOrderMethod())
+              .addMethod(getDeleteOrderMethod())
+              .addMethod(getImportOrderMethod())
+              .addMethod(getExportOrderMethod())
               .build();
         }
       }

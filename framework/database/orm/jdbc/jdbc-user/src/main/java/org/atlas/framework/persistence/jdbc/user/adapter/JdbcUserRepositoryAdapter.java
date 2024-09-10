@@ -7,6 +7,7 @@ import org.atlas.framework.persistence.jdbc.user.repository.JdbcUserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,18 +17,13 @@ public class JdbcUserRepositoryAdapter implements UserRepository {
     private final JdbcUserRepository jdbcUserRepository;
 
     @Override
-    public Optional<User> findById(Integer id) {
-        return jdbcUserRepository.findById(id);
+    public List<User> findByIdIn(List<Integer> ids) {
+        return jdbcUserRepository.findByIdIn(ids);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
         return jdbcUserRepository.findByEmail(email);
-    }
-
-    @Override
-    public void insert(User user) {
-        jdbcUserRepository.insert(user);
     }
 
     @Override

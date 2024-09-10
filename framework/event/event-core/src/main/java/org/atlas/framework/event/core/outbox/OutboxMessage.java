@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.atlas.shared.model.AuditableEntity;
+import org.atlas.commons.model.AuditableEntity;
 
 @Entity
 @Table(name = "outbox_message")

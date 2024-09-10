@@ -21,7 +21,7 @@ public class ReserveCreditReplyEventHandler implements EventHandler<ReserveCredi
 
     @Override
     public void handle(ReserveCreditReplyEvent reserveCreditReplyEvent) {
-        Order order = orderService.findPendingOrder(reserveCreditReplyEvent.getOrder().getOrderId());
+        Order order = orderService.findPendingOrder(reserveCreditReplyEvent.getOrder().getId());
         if (reserveCreditReplyEvent.isSuccess()) {
             order.setStatus(OrderStatus.CONFIRMED);
             orderRepository.update(order);
@@ -29,9 +29,7 @@ public class ReserveCreditReplyEventHandler implements EventHandler<ReserveCredi
             OrderConfirmedEvent orderConfirmedEvent = new OrderConfirmedEvent(reserveCreditReplyEvent.getOrder());
             applicationEventPublisher.publishEvent(orderConfirmedEvent);
         } else {
-            order.setStatus(OrderStatus.CANCELED);
-            order.setCanceledReason(reserveCreditReplyEvent.getError());
-            orderRepository.update(order);
+            orderRepository.deleteById(order.getId());
         }
     }
 }

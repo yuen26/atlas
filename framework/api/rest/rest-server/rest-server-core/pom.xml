@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>org.atlas.business</groupId>
-            <artifactId>product-domain-shared</artifactId>
+            <artifactId>order-domain-shared</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -1,7 +1,7 @@
 package org.atlas.framework.event.contract;
 
 import lombok.Data;
-import org.atlas.shared.util.IdGenerator;
+import org.atlas.commons.utils.idgenerator.UUIDGenerator;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -13,7 +13,7 @@ public abstract class DomainEvent implements Serializable {
     protected Long timestamp;
 
     protected DomainEvent() {
-        this.eventId = IdGenerator.uuid();
+        this.eventId = UUIDGenerator.generate();
         this.timestamp = Instant.now().toEpochMilli();
     }
 

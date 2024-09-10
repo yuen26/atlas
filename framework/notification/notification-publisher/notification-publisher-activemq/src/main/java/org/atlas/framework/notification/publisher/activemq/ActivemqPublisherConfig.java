@@ -1,7 +1,7 @@
 package org.atlas.framework.notification.publisher.activemq;
 
 import jakarta.jms.ConnectionFactory;
-import org.atlas.shared.util.json.JacksonOps;
+import org.atlas.commons.util.json.JacksonOps;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;

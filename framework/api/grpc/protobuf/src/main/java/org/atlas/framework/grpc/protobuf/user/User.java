@@ -16,35 +16,25 @@ public final class User {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_GetUserRequestProto_descriptor;
+    internal_static_user_GetUserAuthRequestProto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_user_GetUserRequestProto_fieldAccessorTable;
+      internal_static_user_GetUserAuthRequestProto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_UserProto_descriptor;
+    internal_static_user_UserAuthProto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_user_UserProto_fieldAccessorTable;
+      internal_static_user_UserAuthProto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_GetLoginUserRequestProto_descriptor;
+    internal_static_user_ListCustomerRequestProto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_user_GetLoginUserRequestProto_fieldAccessorTable;
+      internal_static_user_ListCustomerRequestProto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_LoginUserProto_descriptor;
+    internal_static_user_CustomerListProto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_user_LoginUserProto_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_CreateCustomerRequestProto_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_user_CreateCustomerRequestProto_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_CreateCustomerResponseProto_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_user_CreateCustomerResponseProto_fieldAccessorTable;
+      internal_static_user_CustomerListProto_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -55,66 +45,51 @@ public final class User {
   static {
     java.lang.String[] descriptorData = {
       "\n\nuser.proto\022\004user\032\033google/protobuf/empt" +
-      "y.proto\"!\n\023GetUserRequestProto\022\n\n\002id\030\001 \001" +
-      "(\005\"F\n\tUserProto\022\n\n\002id\030\001 \001(\005\022\020\n\010username\030" +
-      "\002 \001(\t\022\r\n\005email\030\003 \001(\t\022\014\n\004role\030\004 \001(\t\")\n\030Ge" +
-      "tLoginUserRequestProto\022\r\n\005email\030\001 \001(\t\"K\n" +
-      "\016LoginUserProto\022\n\n\002id\030\001 \001(\005\022\r\n\005email\030\002 \001" +
-      "(\t\022\020\n\010password\030\003 \001(\t\022\014\n\004role\030\004 \001(\t\"O\n\032Cr" +
-      "eateCustomerRequestProto\022\020\n\010username\030\001 \001" +
-      "(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\")\n\033C" +
-      "reateCustomerResponseProto\022\n\n\002id\030\001 \001(\0052\347" +
-      "\001\n\013UserService\0227\n\007GetUser\022\031.user.GetUser" +
-      "RequestProto\032\017.user.UserProto\"\000\022F\n\014GetLo" +
-      "ginUser\022\036.user.GetLoginUserRequestProto\032" +
-      "\024.user.LoginUserProto\"\000\022W\n\016CreateCustome" +
-      "r\022 .user.CreateCustomerRequestProto\032!.us" +
-      "er.CreateCustomerResponseProto\"\000B*\n&org." +
-      "atlas.framework.grpc.protobuf.userP\001b\006pr" +
-      "oto3"
+      "y.proto\032\014common.proto\"(\n\027GetUserAuthRequ" +
+      "estProto\022\r\n\005email\030\001 \001(\t\"J\n\rUserAuthProto" +
+      "\022\n\n\002id\030\001 \001(\005\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030" +
+      "\003 \001(\t\022\014\n\004role\030\004 \001(\t\"&\n\030ListCustomerReque" +
+      "stProto\022\n\n\002id\030\001 \003(\005\"<\n\021CustomerListProto" +
+      "\022\'\n\010customer\030\001 \003(\0132\025.common.CustomerProt" +
+      "o2V\n\017UserAuthService\022C\n\013GetUserAuth\022\035.us" +
+      "er.GetUserAuthRequestProto\032\023.user.UserAu" +
+      "thProto\"\0002\\\n\017CustomerService\022I\n\014ListCust" +
+      "omer\022\036.user.ListCustomerRequestProto\032\027.u" +
+      "ser.CustomerListProto\"\000B*\n&org.atlas.fra" +
+      "mework.grpc.protobuf.userP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.EmptyProto.getDescriptor(),
+          org.atlas.framework.grpc.protobuf.common.Common.getDescriptor(),
         });
-    internal_static_user_GetUserRequestProto_descriptor =
+    internal_static_user_GetUserAuthRequestProto_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_user_GetUserRequestProto_fieldAccessorTable = new
+    internal_static_user_GetUserAuthRequestProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_user_GetUserRequestProto_descriptor,
-        new java.lang.String[] { "Id", });
-    internal_static_user_UserProto_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_user_UserProto_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_user_UserProto_descriptor,
-        new java.lang.String[] { "Id", "Username", "Email", "Role", });
-    internal_static_user_GetLoginUserRequestProto_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_user_GetLoginUserRequestProto_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_user_GetLoginUserRequestProto_descriptor,
+        internal_static_user_GetUserAuthRequestProto_descriptor,
         new java.lang.String[] { "Email", });
-    internal_static_user_LoginUserProto_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_user_LoginUserProto_fieldAccessorTable = new
+    internal_static_user_UserAuthProto_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_user_UserAuthProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_user_LoginUserProto_descriptor,
+        internal_static_user_UserAuthProto_descriptor,
         new java.lang.String[] { "Id", "Email", "Password", "Role", });
-    internal_static_user_CreateCustomerRequestProto_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_user_CreateCustomerRequestProto_fieldAccessorTable = new
+    internal_static_user_ListCustomerRequestProto_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_user_ListCustomerRequestProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_user_CreateCustomerRequestProto_descriptor,
-        new java.lang.String[] { "Username", "Email", "Password", });
-    internal_static_user_CreateCustomerResponseProto_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_user_CreateCustomerResponseProto_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_user_CreateCustomerResponseProto_descriptor,
+        internal_static_user_ListCustomerRequestProto_descriptor,
         new java.lang.String[] { "Id", });
+    internal_static_user_CustomerListProto_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_user_CustomerListProto_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_user_CustomerListProto_descriptor,
+        new java.lang.String[] { "Customer", });
     com.google.protobuf.EmptyProto.getDescriptor();
+    org.atlas.framework.grpc.protobuf.common.Common.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

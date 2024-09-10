@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.application.service.OrderService;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.repository.OrderRepository;
-import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.framework.event.contract.order.orchestration.ReserveCreditRequestEvent;
 import org.atlas.framework.event.contract.order.orchestration.ReserveQuantityReplyEvent;
 import org.atlas.framework.event.core.handler.EventHandler;
@@ -21,15 +20,13 @@ public class ReserveQuantityReplyEventHandler implements EventHandler<ReserveQua
 
     @Override
     public void handle(ReserveQuantityReplyEvent reserveQuantityReplyEvent) {
-        Order order = orderService.findPendingOrder(reserveQuantityReplyEvent.getOrder().getOrderId());
+        Order order = orderService.findPendingOrder(reserveQuantityReplyEvent.getOrder().getId());
         if (reserveQuantityReplyEvent.isSuccess()) {
             ReserveCreditRequestEvent reserveCreditRequestEvent =
                 new ReserveCreditRequestEvent(reserveQuantityReplyEvent.getOrder());
             eventPublisherTemplate.publish(reserveCreditRequestEvent);
         } else {
-            order.setStatus(OrderStatus.CANCELED);
-            order.setCanceledReason(reserveQuantityReplyEvent.getError());
-            orderRepository.update(order);
+            orderRepository.deleteById(order.getId());
         }
     }
 }

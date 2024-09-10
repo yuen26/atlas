@@ -27,71 +27,8 @@ public interface ProductProtoOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>.product.CategoryProto category = 3;</code>
-   * @return Whether the category field is set.
-   */
-  boolean hasCategory();
-  /**
-   * <code>.product.CategoryProto category = 3;</code>
-   * @return The category.
-   */
-  org.atlas.framework.grpc.protobuf.product.CategoryProto getCategory();
-  /**
-   * <code>.product.CategoryProto category = 3;</code>
-   */
-  org.atlas.framework.grpc.protobuf.product.CategoryProtoOrBuilder getCategoryOrBuilder();
-
-  /**
-   * <code>double price = 4;</code>
+   * <code>double price = 3;</code>
    * @return The price.
    */
   double getPrice();
-
-  /**
-   * <code>int32 quantity = 5;</code>
-   * @return The quantity.
-   */
-  int getQuantity();
-
-  /**
-   * <code>string status = 6;</code>
-   * @return The status.
-   */
-  java.lang.String getStatus();
-  /**
-   * <code>string status = 6;</code>
-   * @return The bytes for status.
-   */
-  com.google.protobuf.ByteString
-      getStatusBytes();
-
-  /**
-   * <code>bool featured = 7;</code>
-   * @return The featured.
-   */
-  boolean getFeatured();
-
-  /**
-   * <code>string created_at = 8;</code>
-   * @return The createdAt.
-   */
-  java.lang.String getCreatedAt();
-  /**
-   * <code>string created_at = 8;</code>
-   * @return The bytes for createdAt.
-   */
-  com.google.protobuf.ByteString
-      getCreatedAtBytes();
-
-  /**
-   * <code>string updated_at = 9;</code>
-   * @return The updatedAt.
-   */
-  java.lang.String getUpdatedAt();
-  /**
-   * <code>string updated_at = 9;</code>
-   * @return The bytes for updatedAt.
-   */
-  com.google.protobuf.ByteString
-      getUpdatedAtBytes();
 }

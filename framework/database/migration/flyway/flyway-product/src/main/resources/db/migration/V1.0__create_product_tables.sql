@@ -1,24 +1,12 @@
-DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS outbox_message;
-
-CREATE TABLE category
-(
-    id         INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name       VARCHAR(255) NOT NULL,
-    created_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME              DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=INNODB;
 
 CREATE TABLE product
 (
     id          INT           NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(255)  NOT NULL,
-    category_id INT           NOT NULL,
     price       DECIMAL(9, 2) NOT NULL,
     quantity    INT           NOT NULL,
-    status      VARCHAR(50)   NOT NULL,
-    featured    BOOLEAN       NOT NULL,
     created_at  DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  DATETIME               DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;

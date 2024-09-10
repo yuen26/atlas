@@ -3,10 +3,11 @@ package org.atlas.framework.persistence.mybatis.product.adapter;
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
+import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.repository.OrderRepository;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.persistence.mybatis.product.mapper.OrderMapper;
-import org.atlas.shared.util.paging.PageDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -20,12 +21,12 @@ public class MyBatisOrderRepositoryAdapter implements OrderRepository {
     private final OrderMapper orderMapper;
 
     @Override
-    public PageDto<Order> find(int page, int size) {
-        long totalCount = orderMapper.countAll();
+    public PageDto<Order> find(FindOrderCondition condition) {
+        long totalCount = orderMapper.count(condition);
         if (totalCount == 0L) {
             return PageDto.empty();
         }
-        List<Order> products = orderMapper.findAll(page, size);
+        List<Order> products = orderMapper.find(condition);
         return PageDto.of(products, totalCount);
     }
 
@@ -49,6 +50,16 @@ public class MyBatisOrderRepositoryAdapter implements OrderRepository {
     @Override
     public void update(Order order) {
         orderMapper.update(order);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        orderMapper.deleteById(id);
+    }
+
+    @Override
+    public void softDeleteById(Integer id) {
+        orderMapper.softDeleteById(id);
     }
 
     @Override

@@ -5,9 +5,9 @@ import org.atlas.business.order.application.contract.command.GetOrderStatusComma
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.repository.OrderRepository;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.commons.exception.AppError;
+import org.atlas.commons.exception.BusinessException;
 import org.atlas.framework.command.contract.CommandExecutor;
-import org.atlas.shared.exception.AppError;
-import org.atlas.shared.exception.BusinessException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -5,13 +5,8 @@ eureka:
 
 grpc:
   client:
-    user:
-      address: 'static://127.0.0.1:50051'
-      enableKeepAlive: true
-      keepAliveWithoutCalls: true
-      negotiationType: plaintext
-    aggregator:
-      address: 'static://127.0.0.1:50054'
+    order:
+      address: 'static://127.0.0.1:50053'
       enableKeepAlive: true
       keepAliveWithoutCalls: true
       negotiationType: plaintext
@@ -59,7 +54,5 @@ spring:
 
 app:
   internal:
-    user:
-      base-url: http://localhost:8081
-    aggregator:
-      base-url: http://localhost:8084
+    order:
+      base-url: http://localhost:8083

@@ -2,9 +2,9 @@ package org.atlas.framework.notification.publisher.sqs;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.atlas.commons.util.json.JsonUtil;
 import org.atlas.framework.notification.core.Notification;
 import org.atlas.framework.notification.core.NotificationPublisher;
-import org.atlas.shared.util.json.JsonUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.sqs.SqsClient;

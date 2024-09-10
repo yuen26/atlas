@@ -17,12 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>org.atlas</groupId>
-            <artifactId>shared-kernel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.atlas.business</groupId>
-            <artifactId>product-domain-shared</artifactId>
+            <artifactId>commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

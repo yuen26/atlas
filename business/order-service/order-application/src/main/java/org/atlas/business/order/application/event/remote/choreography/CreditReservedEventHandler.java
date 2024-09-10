@@ -23,7 +23,7 @@ public class CreditReservedEventHandler implements EventHandler<CreditReservedEv
     @Override
     @Transactional
     public void handle(CreditReservedEvent creditReservedEvent) {
-        Order order = orderService.findPendingOrder(creditReservedEvent.getOrder().getOrderId());
+        Order order = orderService.findPendingOrder(creditReservedEvent.getOrder().getId());
         order.setStatus(OrderStatus.CONFIRMED);
         orderRepository.update(order);
 

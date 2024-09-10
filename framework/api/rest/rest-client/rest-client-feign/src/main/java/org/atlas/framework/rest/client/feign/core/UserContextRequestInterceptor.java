@@ -2,9 +2,9 @@ package org.atlas.framework.rest.client.feign.core;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.atlas.shared.constant.CustomHeaders;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.context.UserInfo;
+import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 import org.springframework.stereotype.Component;
 
 @Component

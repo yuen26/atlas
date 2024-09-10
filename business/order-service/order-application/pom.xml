@@ -25,6 +25,11 @@
             <artifactId>order-application-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.atlas.business</groupId>
+            <artifactId>order-infrastructure-contract</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- API::Server -->
         <dependency>
@@ -59,6 +64,30 @@
 <!--            <artifactId>grpc-client</artifactId>-->
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
+
+        <!-- Cache -->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>cache-caffeine</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>cache-ehcache</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>cache-redis</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- CSV -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>csv-opencsv</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- DataSource -->
 <!--        <dependency>-->
@@ -116,6 +145,18 @@
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
 
+        <!-- Excel -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>excel-easyexcel</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.atlas.framework</groupId>-->
+<!--            <artifactId>excel-poi</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
         <!-- Notification -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
@@ -138,12 +179,7 @@
         <!-- Realtime -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>realtime-sse</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>realtime-websocket</artifactId>
+            <artifactId>sse</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

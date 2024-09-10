@@ -2,9 +2,9 @@ package org.atlas.framework.event.core.outbox;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.atlas.commons.utils.json.JsonUtil;
 import org.atlas.framework.event.contract.DomainEvent;
 import org.atlas.framework.event.core.publisher.EventPublisher;
-import org.atlas.shared.util.json.JsonUtil;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

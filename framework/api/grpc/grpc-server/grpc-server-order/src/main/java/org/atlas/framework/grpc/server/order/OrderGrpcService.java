@@ -5,25 +5,40 @@ import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.atlas.business.order.application.contract.command.CreateOrderCommand;
+import org.atlas.business.order.application.contract.command.DeleteOrderCommand;
+import org.atlas.business.order.application.contract.command.ExportOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderStatusCommand;
+import org.atlas.business.order.application.contract.command.ImportOrderCommand;
 import org.atlas.business.order.application.contract.command.ListOrderCommand;
+import org.atlas.business.order.application.contract.command.UpdateOrderCommand;
 import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.order.application.contract.model.OrderItemDto;
+import org.atlas.business.order.domain.shared.enums.FileType;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.business.user.application.contract.model.CustomerDto;
+import org.atlas.commons.constant.Constant;
+import org.atlas.commons.utils.DateUtil;
+import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.command.gateway.CommandGateway;
+import org.atlas.framework.grpc.protobuf.common.CustomerProto;
 import org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto;
+import org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto;
+import org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto;
+import org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto;
+import org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto;
 import org.atlas.framework.grpc.protobuf.order.GetOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto;
+import org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.OrderItemProto;
 import org.atlas.framework.grpc.protobuf.order.OrderPageProto;
 import org.atlas.framework.grpc.protobuf.order.OrderProto;
 import org.atlas.framework.grpc.protobuf.order.OrderServiceGrpc;
 import org.atlas.framework.grpc.protobuf.order.OrderStatusProto;
-import org.atlas.shared.constant.Constant;
-import org.atlas.shared.util.DateUtil;
-import org.atlas.shared.util.paging.PageDto;
+import org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto;
+
+import java.math.BigDecimal;
 
 @GrpcService
 @RequiredArgsConstructor
@@ -64,8 +79,10 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
                                StreamObserver<OrderStatusProto> responseObserver) {
         GetOrderStatusCommand command = map(requestProto);
         try {
-            OrderStatus orderStatus = commandGateway.send(command);
-            OrderStatusProto responseProto = map(orderStatus);
+            OrderStatus status = commandGateway.send(command);
+            OrderStatusProto responseProto = OrderStatusProto.newBuilder()
+                .setStatus(status.name())
+                .build();
             responseObserver.onNext(responseProto);
             responseObserver.onCompleted();
         } catch (Exception e) {
@@ -75,8 +92,24 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
 
     @Override
     public void createOrder(CreateOrderRequestProto requestProto,
-                            StreamObserver<Empty> responseObserver) {
+                            StreamObserver<CreateOrderResponseProto> responseObserver) {
         CreateOrderCommand command = map(requestProto);
+        try {
+            Integer id = commandGateway.send(command);
+            CreateOrderResponseProto responseProto = CreateOrderResponseProto.newBuilder()
+                .setId(id)
+                .build();
+            responseObserver.onNext(responseProto);
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateOrder(UpdateOrderRequestProto requestProto,
+                            StreamObserver<Empty> responseObserver) {
+        UpdateOrderCommand command = map(requestProto);
         try {
             commandGateway.send(command);
             responseObserver.onNext(Empty.getDefaultInstance());
@@ -86,8 +119,61 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
         }
     }
 
+    @Override
+    public void deleteOrder(DeleteOrderRequestProto requestProto,
+                            StreamObserver<Empty> responseObserver) {
+        DeleteOrderCommand command = map(requestProto);
+        try {
+            commandGateway.send(command);
+            responseObserver.onNext(Empty.getDefaultInstance());
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void importOrder(ImportOrderRequestProto requestProto,
+                            StreamObserver<Empty> responseObserver) {
+        ImportOrderCommand command = map(requestProto);
+        try {
+            commandGateway.send(command);
+            responseObserver.onNext(Empty.getDefaultInstance());
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void exportOrder(ExportOrderRequestProto requestProto,
+                            StreamObserver<ExportOrderResponseProto> responseObserver) {
+        ExportOrderCommand command = map(requestProto);
+        try {
+            byte[] fileContent = commandGateway.send(command);
+            ExportOrderResponseProto responseProto = ExportOrderResponseProto.parseFrom(fileContent);
+            responseObserver.onNext(responseProto);
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private ListOrderCommand map(ListOrderRequestProto requestProto) {
-        return new ListOrderCommand(requestProto.getPage(), requestProto.getSize());
+        ListOrderCommand command = new ListOrderCommand();
+        command.setId(requestProto.getId());
+        command.setCustomerId(requestProto.getCustomerId());
+        command.setMinAmount(BigDecimal.valueOf(requestProto.getMinAmount()));
+        command.setMaxAmount(BigDecimal.valueOf(requestProto.getMaxAmount()));
+        command.setAddress(requestProto.getAddress());
+        command.setStatus(OrderStatus.valueOf(requestProto.getStatus()));
+        command.setDeleted(requestProto.getDeleted());
+        command.setStartCreatedAt(DateUtil.parse(requestProto.getStartCreatedAt(), Constant.DATE_TIME_FORMAT));
+        command.setEndCreatedAt(DateUtil.parse(requestProto.getEndCreatedAt(), Constant.DATE_TIME_FORMAT));
+        command.setPage(requestProto.getPage());
+        command.setSize(requestProto.getSize());
+        command.setSort(requestProto.getSort());
+        return command;
     }
 
     private GetOrderCommand map(GetOrderRequestProto requestProto) {
@@ -109,6 +195,39 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
         return request;
     }
 
+    private UpdateOrderCommand map(UpdateOrderRequestProto requestProto) {
+        UpdateOrderCommand command = new UpdateOrderCommand();
+        command.setId(requestProto.getId());
+        command.setAddress(requestProto.getAddress());
+        return command;
+    }
+
+    private DeleteOrderCommand map(DeleteOrderRequestProto requestProto) {
+        return new DeleteOrderCommand(requestProto.getId());
+    }
+
+    private ImportOrderCommand map(ImportOrderRequestProto requestProto) {
+        return new ImportOrderCommand(
+            FileType.of(requestProto.getFileType()),
+            requestProto.getFileContent().toByteArray()
+        );
+    }
+
+    private ExportOrderCommand map(ExportOrderRequestProto requestProto) {
+        ExportOrderCommand command = new ExportOrderCommand();
+        command.setId(requestProto.getId());
+        command.setCustomerId(requestProto.getCustomerId());
+        command.setMinAmount(BigDecimal.valueOf(requestProto.getMinAmount()));
+        command.setMaxAmount(BigDecimal.valueOf(requestProto.getMaxAmount()));
+        command.setAddress(requestProto.getAddress());
+        command.setStatus(OrderStatus.valueOf(requestProto.getStatus()));
+        command.setDeleted(requestProto.getDeleted());
+        command.setStartCreatedAt(DateUtil.parse(requestProto.getStartCreatedAt(), Constant.DATE_TIME_FORMAT));
+        command.setEndCreatedAt(DateUtil.parse(requestProto.getEndCreatedAt(), Constant.DATE_TIME_FORMAT));
+        command.setSort(requestProto.getSort());
+        return command;
+    }
+
     private OrderPageProto map(PageDto<OrderDto> orderDtoPage) {
         if (orderDtoPage.isEmpty()) {
             return OrderPageProto.getDefaultInstance();
@@ -122,25 +241,29 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
     private OrderProto map(OrderDto orderDto) {
         OrderProto.Builder builder = OrderProto.newBuilder();
         builder.setId(orderDto.getId());
-        builder.setCustomerId(orderDto.getCustomerId());
+        builder.setCustomer(map(orderDto.getCustomer()));
         builder.setAmount(orderDto.getAmount().doubleValue());
+        builder.setAddress(orderDto.getAddress());
         builder.setStatus(orderDto.getStatus().name());
         builder.setCreatedAt(DateUtil.format(orderDto.getCreatedAt(), Constant.DATE_TIME_FORMAT));
         orderDto.getOrderItems().forEach(orderItemDto -> builder.addOrderItem(map(orderItemDto)));
         return builder.build();
     }
 
-    private OrderItemProto map(OrderItemDto orderItemDto) {
-        return OrderItemProto.newBuilder()
-            .setProductId(orderItemDto.getProductId())
-            .setProductPrice(orderItemDto.getProductPrice().doubleValue())
-            .setQuantity(orderItemDto.getQuantity())
+    private CustomerProto map(CustomerDto customerDto) {
+        return CustomerProto.newBuilder()
+            .setId(customerDto.getId())
+            .setUsername(customerDto.getUsername())
+            .setEmail(customerDto.getEmail())
             .build();
     }
 
-    private OrderStatusProto map(OrderStatus status) {
-        return OrderStatusProto.newBuilder()
-            .setStatus(status.name())
+    private OrderItemProto map(OrderItemDto orderItemDto) {
+        return OrderItemProto.newBuilder()
+            .setProductId(orderItemDto.getProductId())
+            .setProductName(orderItemDto.getProductName())
+            .setProductPrice(orderItemDto.getProductPrice().doubleValue())
+            .setQuantity(orderItemDto.getQuantity())
             .build();
     }
 }

@@ -16,11 +16,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.atlas.business</groupId>
-            <artifactId>product-domain-shared</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>command-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>

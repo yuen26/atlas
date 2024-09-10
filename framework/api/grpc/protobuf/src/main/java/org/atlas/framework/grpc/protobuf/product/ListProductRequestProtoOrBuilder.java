@@ -9,110 +9,19 @@ public interface ListProductRequestProtoOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 id = 1;</code>
-   * @return The id.
+   * <code>repeated int32 id = 1;</code>
+   * @return A list containing the id.
    */
-  int getId();
-
+  java.util.List<java.lang.Integer> getIdList();
   /**
-   * <code>string name = 2;</code>
-   * @return The name.
+   * <code>repeated int32 id = 1;</code>
+   * @return The count of id.
    */
-  java.lang.String getName();
+  int getIdCount();
   /**
-   * <code>string name = 2;</code>
-   * @return The bytes for name.
+   * <code>repeated int32 id = 1;</code>
+   * @param index The index of the element to return.
+   * @return The id at the given index.
    */
-  com.google.protobuf.ByteString
-      getNameBytes();
-
-  /**
-   * <code>int32 category_id = 3;</code>
-   * @return The categoryId.
-   */
-  int getCategoryId();
-
-  /**
-   * <code>double min_price = 4;</code>
-   * @return The minPrice.
-   */
-  double getMinPrice();
-
-  /**
-   * <code>double max_price = 5;</code>
-   * @return The maxPrice.
-   */
-  double getMaxPrice();
-
-  /**
-   * <code>bool in_stock = 6;</code>
-   * @return The inStock.
-   */
-  boolean getInStock();
-
-  /**
-   * <code>string status = 7;</code>
-   * @return The status.
-   */
-  java.lang.String getStatus();
-  /**
-   * <code>string status = 7;</code>
-   * @return The bytes for status.
-   */
-  com.google.protobuf.ByteString
-      getStatusBytes();
-
-  /**
-   * <code>bool featured = 8;</code>
-   * @return The featured.
-   */
-  boolean getFeatured();
-
-  /**
-   * <code>string start_created_at = 9;</code>
-   * @return The startCreatedAt.
-   */
-  java.lang.String getStartCreatedAt();
-  /**
-   * <code>string start_created_at = 9;</code>
-   * @return The bytes for startCreatedAt.
-   */
-  com.google.protobuf.ByteString
-      getStartCreatedAtBytes();
-
-  /**
-   * <code>string end_created_at = 10;</code>
-   * @return The endCreatedAt.
-   */
-  java.lang.String getEndCreatedAt();
-  /**
-   * <code>string end_created_at = 10;</code>
-   * @return The bytes for endCreatedAt.
-   */
-  com.google.protobuf.ByteString
-      getEndCreatedAtBytes();
-
-  /**
-   * <code>int32 page = 11;</code>
-   * @return The page.
-   */
-  int getPage();
-
-  /**
-   * <code>int32 size = 12;</code>
-   * @return The size.
-   */
-  int getSize();
-
-  /**
-   * <code>string sort = 13;</code>
-   * @return The sort.
-   */
-  java.lang.String getSort();
-  /**
-   * <code>string sort = 13;</code>
-   * @return The bytes for sort.
-   */
-  com.google.protobuf.ByteString
-      getSortBytes();
+  int getId(int index);
 }

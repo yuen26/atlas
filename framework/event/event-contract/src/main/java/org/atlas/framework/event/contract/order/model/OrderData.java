@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class OrderData implements Serializable {
 
-    private Integer orderId;
+    private Integer id;
     private Integer customerId;
     private BigDecimal amount;
     private List<OrderItemData> orderItems;

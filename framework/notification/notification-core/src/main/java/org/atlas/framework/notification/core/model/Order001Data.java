@@ -11,5 +11,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Order001Data implements Serializable {
 
-    private Integer orderId;
+    private Integer id;
 }

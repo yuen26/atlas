@@ -4,6 +4,7 @@ option java_multiple_files = true;
 option java_package = "org.atlas.framework.grpc.protobuf.order";
 
 import "google/protobuf/empty.proto";
+import "common.proto";
 
 package order;
 
@@ -11,22 +12,32 @@ service OrderService {
   rpc ListOrder (ListOrderRequestProto) returns (OrderPageProto) {};
   rpc GetOrder (GetOrderRequestProto) returns (OrderProto) {};
   rpc GetOrderStatus (GetOrderStatusRequestProto) returns (OrderStatusProto) {};
-  rpc CreateOrder (CreateOrderRequestProto) returns (google.protobuf.Empty) {};
+  rpc CreateOrder (CreateOrderRequestProto) returns (CreateOrderResponseProto) {};
+  rpc UpdateOrder (UpdateOrderRequestProto) returns (google.protobuf.Empty) {};
+  rpc DeleteOrder (DeleteOrderRequestProto) returns (google.protobuf.Empty) {};
+  rpc ImportOrder (ImportOrderRequestProto) returns (google.protobuf.Empty) {};
+  rpc ExportOrder (ExportOrderRequestProto) returns (ExportOrderResponseProto) {};
 }
 
 message OrderProto {
   int32 id = 1;
-  int32 customer_id = 2;
-  double amount = 3;
-  string status = 4;
-  repeated OrderItemProto order_item = 5;
-  string created_at = 6;
+  common.CustomerProto customer = 2;
+  repeated OrderItemProto order_item = 3;
+  double amount = 4;
+  string address = 5;
+  string status = 6;
+  string created_at = 7;
 }
 
 message OrderItemProto {
   int32 product_id = 1;
-  double product_price = 2;
-  int32 quantity = 3;
+  string product_name = 2;
+  double product_price = 3;
+  int32 quantity = 4;
+}
+
+message OrderStatusProto {
+  string status = 1;
 }
 
 message OrderPageProto {
@@ -35,8 +46,18 @@ message OrderPageProto {
 }
 
 message ListOrderRequestProto {
-  int32 page = 1;
-  int32 size = 2;
+  int32 id = 1;
+  int32 customer_id = 2;
+  double min_amount = 3;
+  double max_amount = 4;
+  string address = 5;
+  string status = 6;
+  bool deleted = 7;
+  string start_created_at = 8;
+  string end_created_at = 9;
+  int32 page = 10;
+  int32 size = 11;
+  string sort = 12;
 }
 
 message GetOrderRequestProto {
@@ -47,14 +68,42 @@ message GetOrderStatusRequestProto {
   int32 id = 1;
 }
 
-message OrderStatusProto {
-  string status = 1;
-}
-
 message CreateOrderRequestProto {
   repeated OrderItemProto order_item = 1;
 }
 
 message CreateOrderResponseProto {
   int32 id = 1;
+}
+
+message UpdateOrderRequestProto {
+  int32 id = 1;
+  string address = 2;
+}
+
+message DeleteOrderRequestProto {
+  int32 id = 1;
+}
+
+message ImportOrderRequestProto {
+  string file_type = 1;
+  bytes file_content = 2;
+}
+
+message ExportOrderRequestProto {
+  int32 id = 1;
+  int32 customer_id = 2;
+  double min_amount = 3;
+  double max_amount = 4;
+  string address = 5;
+  string status = 6;
+  bool deleted = 7;
+  string start_created_at = 8;
+  string end_created_at = 9;
+  string sort = 10;
+  string file_type = 11;
+}
+
+message ExportOrderResponseProto {
+  bytes file_content = 1;
 }

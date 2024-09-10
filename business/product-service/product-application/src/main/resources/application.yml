@@ -60,6 +60,3 @@ app:
         topics: reserve_quantity_request,order_created,reserve_credit_failed
   outbox:
     enabled: true
-  storage:
-    filesystem:
-      location: D:/storage

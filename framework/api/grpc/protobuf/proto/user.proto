@@ -4,43 +4,33 @@ option java_multiple_files = true;
 option java_package = "org.atlas.framework.grpc.protobuf.user";
 
 import "google/protobuf/empty.proto";
+import "common.proto";
 
 package user;
 
-service UserService {
-  rpc GetUser (GetUserRequestProto) returns (UserProto) {};
-  rpc GetLoginUser (GetLoginUserRequestProto) returns (LoginUserProto) {};
-  rpc CreateCustomer (CreateCustomerRequestProto) returns (CreateCustomerResponseProto) {};
+service UserAuthService {
+  rpc GetUserAuth (GetUserAuthRequestProto) returns (UserAuthProto) {};
 }
 
-message GetUserRequestProto {
-  int32 id = 1;
+service CustomerService {
+  rpc ListCustomer (ListCustomerRequestProto) returns (CustomerListProto) {};
 }
 
-message UserProto {
-  int32 id = 1;
-  string username = 2;
-  string email = 3;
-  string role = 4;
-}
-
-message GetLoginUserRequestProto {
+message GetUserAuthRequestProto {
   string email = 1;
 }
 
-message LoginUserProto {
+message UserAuthProto {
   int32 id = 1;
   string email = 2;
   string password = 3;
   string role = 4;
 }
 
-message CreateCustomerRequestProto {
-  string username = 1;
-  string email = 2;
-  string password = 3;
+message ListCustomerRequestProto {
+  repeated int32 id = 1;
 }
 
-message CreateCustomerResponseProto {
-  int32 id = 1;
+message CustomerListProto {
+  repeated common.CustomerProto customer = 1;
 }

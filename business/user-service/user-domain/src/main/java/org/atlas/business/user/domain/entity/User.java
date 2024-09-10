@@ -3,7 +3,7 @@ package org.atlas.business.user.domain.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.atlas.business.user.domain.shared.enums.Role;
-import org.atlas.shared.model.AuditableEntity;
+import org.atlas.commons.model.AuditableEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.atlas.framework.grpc.protobuf.common";
+
+package common;
+
+message CustomerProto {
+  int32 id = 1;
+  string username = 2;
+  string email = 3;
+}

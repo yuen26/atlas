@@ -2,6 +2,7 @@ package org.atlas.business.order.application.contract.command;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -26,6 +27,9 @@ public class CreateOrderCommand implements Command<Integer> {
 
     @NotEmpty
     private List<@Valid OrderItem> orderItems;
+
+    @NotBlank
+    private String address;
 
     public void addItem(OrderItem orderItem) {
         if (this.orderItems == null) {

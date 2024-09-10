@@ -8,9 +8,9 @@ import io.grpc.ForwardingClientCall;
 import io.grpc.Metadata;
 import io.grpc.MethodDescriptor;
 import net.devh.boot.grpc.client.interceptor.GrpcGlobalClientInterceptor;
-import org.atlas.shared.constant.CustomHeaders;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.context.UserInfo;
+import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 
 @GrpcGlobalClientInterceptor
 public class UserContextInterceptor implements ClientInterceptor {

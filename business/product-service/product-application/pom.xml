@@ -16,11 +16,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.atlas</groupId>
-            <artifactId>shared-kernel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.atlas.business</groupId>
             <artifactId>product-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -28,11 +23,6 @@
         <dependency>
             <groupId>org.atlas.business</groupId>
             <artifactId>product-application-contract</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.atlas.business</groupId>
-            <artifactId>product-infrastructure-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -45,30 +35,6 @@
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>grpc-server-product</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Cache -->
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>cache-caffeine</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>cache-ehcache</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>cache-redis</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- CSV -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>csv-opencsv</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -128,42 +94,11 @@
 <!--            <version>0.0.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
 
-        <!-- Excel -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>excel-easyexcel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>excel-poi</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-
         <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>observability-v1</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <!-- Search -->
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>search-elasticsearch</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-
-        <!-- Storage -->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>storage-filesystem</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>storage-s3</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
     </dependencies>
 </project>

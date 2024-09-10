@@ -9,12 +9,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -38,19 +37,14 @@ public class JdbcUserRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public Optional<User> findById(Integer id) {
-        String sql = "SELECT * FROM users WHERE id = :id";
-        SqlParameterSource params = new MapSqlParameterSource("id", id);
-        try {
-            User user = namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper);
-            return Optional.ofNullable(user);
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
-        }
+    public List<User> findByIdIn(List<Integer> ids) {
+        String sql = "SELECT * FROM users u WHERE u.id IN (:ids)";
+        SqlParameterSource params = new MapSqlParameterSource("ids", ids);
+        return namedParameterJdbcTemplate.query(sql, params, rowMapper);
     }
 
     public Optional<User> findByEmail(String email) {
-        String sql = "SELECT * FROM users WHERE email = :email";
+        String sql = "SELECT * FROM users u WHERE u.email = :email";
         SqlParameterSource params = new MapSqlParameterSource("email", email);
         try {
             User user = namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper);
@@ -60,40 +54,14 @@ public class JdbcUserRepository {
         }
     }
 
-    public int insert(User user) {
-        String sql = "INSERT INTO users (username, email, password, role, credit) " +
-            "VALUES (:username, :email, :password, :role, :credit)";
-        MapSqlParameterSource params = toParams(user);
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(sql, params, keyHolder, new String[]{"id"});
-        Number insertedId = keyHolder.getKey();
-        if (insertedId != null) {
-            user.setId(insertedId.intValue());
-            return 1;
-        } else {
-            throw new RuntimeException("Failed to retrieve the inserted ID");
-        }
-    }
-
     public int decreaseCredit(Integer id, BigDecimal amount) {
-        String sql = "UPDATE users" +
-            " SET credit = credit - :amount" +
-            " WHERE id = :id" +
-            "   AND credit >= :amount";
+        String sql = "UPDATE users u " +
+            "SET u.credit = u.credit - :amount " +
+            "WHERE u.id = :id" +
+            "  AND u.credit >= :amount";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("amount", amount);
         return namedParameterJdbcTemplate.update(sql, params);
-    }
-
-    private MapSqlParameterSource toParams(User user) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", user.getId());
-        params.addValue("username", user.getUsername());
-        params.addValue("email", user.getEmail());
-        params.addValue("password", user.getPassword());
-        params.addValue("role", user.getRole().name());
-        params.addValue("credit", user.getCredit());
-        return params;
     }
 }

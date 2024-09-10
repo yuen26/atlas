@@ -1,7 +1,7 @@
 package org.atlas.framework.rest.server.core.context;
 
-import org.atlas.shared.context.CurrentUser;
-import org.atlas.shared.context.UserContext;
+import org.atlas.commons.context.CurrentUser;
+import org.atlas.commons.context.UserContext;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;

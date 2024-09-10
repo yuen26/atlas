@@ -2,7 +2,6 @@ package org.atlas.business.product.application.event.remote.choreography;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.atlas.business.product.domain.entity.Product;
 import org.atlas.business.product.domain.repository.ProductRepository;
 import org.atlas.framework.event.contract.order.choreography.OrderCreatedEvent;
 import org.atlas.framework.event.contract.order.choreography.QuantityReservedEvent;
@@ -27,16 +26,13 @@ public class OrderCreatedEventHandler implements EventHandler<OrderCreatedEvent>
         OrderData orderData = orderCreatedEvent.getOrder();
         try {
             orderData.getOrderItems().forEach(orderItem -> {
-                Product product = productRepository.findById(orderItem.getProductId())
-                    .orElseThrow(() ->
-                        new RuntimeException(String.format("Product %d not found", orderItem.getProductId())));
-                int updated = productRepository.decreaseQuantity(product.getId(), orderItem.getQuantity());
+                int updated = productRepository.decreaseQuantity(orderItem.getProductId(), orderItem.getQuantity());
                 if (updated == 1) {
                     log.info("Reserved quantity: productId={}, amount={}, eventId={}",
-                        product.getId(), orderItem.getQuantity(), orderCreatedEvent.getEventId());
+                        orderItem.getProductId(), orderItem.getQuantity(), orderCreatedEvent.getEventId());
                 } else {
                     log.error("Failed to reserve quantity: productId={}, amount={}, eventId={}",
-                        product.getId(), orderItem.getQuantity(), orderCreatedEvent.getEventId());
+                        orderItem.getProductId(), orderItem.getQuantity(), orderCreatedEvent.getEventId());
                     throw new RuntimeException(String.format("Product %d has insufficient quantity", orderItem.getProductId()));
                 }
             });

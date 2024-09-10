@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
+import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,23 +30,16 @@ public class JdbcOrderRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public List<Order> findAll(int limit, int offset) {
-        String sql = "SELECT o.id AS order_id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at, " +
-            "oi.id AS order_item_id, oi.product_id, oi.product_price, oi.quantity " +
-            "FROM orders o " +
-            "LEFT JOIN order_item oi ON o.id = oi.order_id " +
-            "LIMIT :limit OFFSET :offset";
-
-        MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("limit", limit);
-        parameters.addValue("offset", offset);
-
-        return namedParameterJdbcTemplate.query(sql, parameters, new OrderWithItemsExtractor());
+    public List<Order> find(FindOrderCondition condition) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        String whereClause = buildWhereClause(condition, params);
+        return doFind(whereClause, condition, params);
     }
 
-    public long countAll() {
-        String sql = "SELECT COUNT(id) FROM orders";
-        return namedParameterJdbcTemplate.queryForObject(sql, new MapSqlParameterSource(), Integer.class);
+    public long count(FindOrderCondition condition) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        String whereClause = buildWhereClause(condition, params);
+        return doCount(whereClause, params);
     }
 
     public Optional<Order> findById(Integer id) {
@@ -63,8 +58,8 @@ public class JdbcOrderRepository {
 
     public int insert(Order order) {
         // Insert order
-        String insertOrderSql = "INSERT INTO orders (customer_id, amount, status, canceled_reason) " +
-            "VALUES (:customerId, :amount, :status, :canceledReason)";
+        String insertOrderSql = "INSERT INTO orders (customer_id, amount, address, status) " +
+            "VALUES (:customerId, :amount, :address, :status)";
         MapSqlParameterSource orderParams = toOrderParams(order);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertOrderSql, orderParams, keyHolder, new String[]{"id"});
@@ -87,14 +82,30 @@ public class JdbcOrderRepository {
     }
 
     public int update(Order order) {
-        String sql = "UPDATE orders" +
-            " SET" +
-            "   customer_id = :customerId," +
-            "   amount = :amount," +
-            "   status = :status," +
-            "   canceled_reason = :canceledReason" +
-            " WHERE id = :id";
+        StringBuilder sqlBuilder = new StringBuilder("UPDATE orders o SET ");
+        if (order.getStatus() != null) {
+            sqlBuilder.append("o.status = :status ");
+        }
+        if (order.getAddress() != null) {
+            sqlBuilder.append("o.address = :address ");
+        }
+        sqlBuilder.append("WHERE o.id = :id");
+        String sql = sqlBuilder.toString();
         MapSqlParameterSource params = toOrderParams(order);
+        return namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public int deleteById(Integer id) {
+        String sql = "DELETE FROM orders o WHERE o.id = :id";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id", id);
+        return namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public int softDeleteById(Integer id) {
+        String sql = "UPDATE orders o SET o.deleted = true WHERE o.id = :id";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id", id);
         return namedParameterJdbcTemplate.update(sql, params);
     }
 
@@ -113,6 +124,79 @@ public class JdbcOrderRepository {
         return namedParameterJdbcTemplate.query(sql, parameters, new OrderWithItemsExtractor());
     }
 
+    private String buildWhereClause(FindOrderCondition condition, MapSqlParameterSource params) {
+        StringBuilder whereClauseBuilder = new StringBuilder("WHERE 1=1 ");
+        if (condition.getId() != null) {
+            whereClauseBuilder.append("AND o.id = :id ");
+            params.addValue("id", condition.getId());
+        }
+        if (condition.getCustomerId() != null) {
+            whereClauseBuilder.append("AND o.customer_id = :customerId ");
+            params.addValue("customerId", condition.getCustomerId());
+        }
+        if (condition.getMinAmount() != null) {
+            whereClauseBuilder.append("AND o.amount >= :minAmount ");
+            params.addValue("minAmount", condition.getMinAmount());
+        }
+        if (condition.getMaxAmount() != null) {
+            whereClauseBuilder.append("AND o.amount <= :maxAmount ");
+            params.addValue("maxAmount", condition.getMaxAmount());
+        }
+        if (StringUtils.hasLength(condition.getAddress())) {
+            whereClauseBuilder.append("AND LOWER(o.address) LIKE :address ");
+            params.addValue("address", "%" + condition.getAddress().toLowerCase() + "%");
+        }
+        if (condition.getStatus() != null) {
+            whereClauseBuilder.append("AND o.status = :status ");
+            params.addValue("status", condition.getStatus());
+        }
+        if (condition.getDeleted() != null) {
+            whereClauseBuilder.append("AND o.deleted = :deleted ");
+            params.addValue("deleted", condition.getDeleted());
+        }
+        if (condition.getStartCreatedAt() != null) {
+            whereClauseBuilder.append("AND o.createdAt >= :startCreatedAt ");
+            params.addValue("startCreatedAt", condition.getStartCreatedAt());
+        }
+        if (condition.getEndCreatedAt() != null) {
+            whereClauseBuilder.append("AND o.createdAt <= :endCreatedAt ");
+            params.addValue("endCreatedAt", condition.getEndCreatedAt());
+        }
+        return whereClauseBuilder.toString();
+    }
+
+    private List<Order> doFind(String whereClause, FindOrderCondition condition, MapSqlParameterSource params) {
+        StringBuilder sqlBuilder = new StringBuilder(
+            "SELECT o.id AS order_id, o.customer_id, o.amount, o.address, o.status, o.created_at, " +
+            "oi.id AS order_item_id, oi.product_id, oi.product_price, oi.quantity " +
+            "FROM orders o " +
+            "LEFT JOIN order_item oi ON o.id = oi.order_id ");
+
+        sqlBuilder.append(whereClause);
+
+        // Sorting
+        if (StringUtils.hasLength(condition.getSortBy())) {
+            sqlBuilder.append(" ORDER BY :sortBy :sortOrder");
+            params.addValue("sortBy", condition.getSortBy())
+                .addValue("sortOrder", condition.getSortOrder());
+        }
+
+        // Paging
+        if (condition.getLimit() != null && condition.getOffset() != null) {
+            sqlBuilder.append(" LIMIT :limit OFFSET :offset");
+            params.addValue("limit", condition.getLimit())
+                .addValue("offset", condition.getOffset());
+        }
+
+        String sql = sqlBuilder.toString();
+        return namedParameterJdbcTemplate.query(sql, params, new OrderWithItemsExtractor());
+    }
+
+    private Long doCount(String whereClause, MapSqlParameterSource params) {
+        String sql = "SELECT COUNT(o.id) FROM orders o " + whereClause;
+        return namedParameterJdbcTemplate.queryForObject(sql, params, Long.class);
+    }
+
     private static class OrderWithItemsExtractor implements ResultSetExtractor<List<Order>> {
         @Override
         public List<Order> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -126,7 +210,6 @@ public class JdbcOrderRepository {
                     currentOrder.setCustomerId(rs.getInt("customer_id"));
                     currentOrder.setAmount(rs.getBigDecimal("amount"));
                     currentOrder.setStatus(OrderStatus.valueOf(rs.getString("status")));
-                    currentOrder.setCanceledReason(rs.getString("canceled_reason"));
                     currentOrder.setCreatedAt(rs.getTimestamp("created_at"));
                     orders.add(currentOrder);
                 }
@@ -147,8 +230,8 @@ public class JdbcOrderRepository {
         params.addValue("id", order.getId());
         params.addValue("customerId", order.getCustomerId());
         params.addValue("amount", order.getAmount());
+        params.addValue("address", order.getAddress());
         params.addValue("status", order.getStatus().name());
-        params.addValue("canceledReason", order.getCanceledReason());
         return params;
     }
 

@@ -3,9 +3,8 @@ package org.atlas.framework.persistence.jpa.user.adapter;
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.user.domain.entity.User;
 import org.atlas.business.user.domain.repository.UserRepository;
-import org.atlas.framework.persistence.jpa.user.entity.JpaUser;
+import org.atlas.commons.utils.mapping.ModelMapperUtil;
 import org.atlas.framework.persistence.jpa.user.repository.JpaUserRepository;
-import org.atlas.shared.util.ModelMapperUtil;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -27,13 +26,6 @@ public class JpaUserRepositoryAdapter implements UserRepository {
     public Optional<User> findByEmail(String email) {
         return jpaUserRepository.findByEmail(email)
             .map(jpaUser -> ModelMapperUtil.map(jpaUser, User.class));
-    }
-
-    @Override
-    public void insert(User user) {
-        JpaUser jpaUser = ModelMapperUtil.map(user, JpaUser.class);
-        jpaUserRepository.insert(jpaUser);
-        user.setId(jpaUser.getId());
     }
 
     @Override

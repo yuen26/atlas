@@ -2,10 +2,10 @@ package org.atlas.framework.event.core.publisher;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.atlas.commons.utils.json.JsonUtil;
 import org.atlas.framework.event.contract.DomainEvent;
 import org.atlas.framework.event.core.outbox.OutboxMessage;
 import org.atlas.framework.event.core.outbox.OutboxMessageRepository;
-import org.atlas.shared.util.json.JsonUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

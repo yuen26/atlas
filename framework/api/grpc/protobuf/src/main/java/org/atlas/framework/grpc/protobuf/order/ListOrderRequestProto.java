@@ -17,6 +17,11 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ListOrderRequestProto() {
+    address_ = "";
+    status_ = "";
+    startCreatedAt_ = "";
+    endCreatedAt_ = "";
+    sort_ = "";
   }
 
   @java.lang.Override
@@ -39,10 +44,221 @@ private static final long serialVersionUID = 0L;
             org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto.class, org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto.Builder.class);
   }
 
-  public static final int PAGE_FIELD_NUMBER = 1;
+  public static final int ID_FIELD_NUMBER = 1;
+  private int id_ = 0;
+  /**
+   * <code>int32 id = 1;</code>
+   * @return The id.
+   */
+  @java.lang.Override
+  public int getId() {
+    return id_;
+  }
+
+  public static final int CUSTOMER_ID_FIELD_NUMBER = 2;
+  private int customerId_ = 0;
+  /**
+   * <code>int32 customer_id = 2;</code>
+   * @return The customerId.
+   */
+  @java.lang.Override
+  public int getCustomerId() {
+    return customerId_;
+  }
+
+  public static final int MIN_AMOUNT_FIELD_NUMBER = 3;
+  private double minAmount_ = 0D;
+  /**
+   * <code>double min_amount = 3;</code>
+   * @return The minAmount.
+   */
+  @java.lang.Override
+  public double getMinAmount() {
+    return minAmount_;
+  }
+
+  public static final int MAX_AMOUNT_FIELD_NUMBER = 4;
+  private double maxAmount_ = 0D;
+  /**
+   * <code>double max_amount = 4;</code>
+   * @return The maxAmount.
+   */
+  @java.lang.Override
+  public double getMaxAmount() {
+    return maxAmount_;
+  }
+
+  public static final int ADDRESS_FIELD_NUMBER = 5;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object address_ = "";
+  /**
+   * <code>string address = 5;</code>
+   * @return The address.
+   */
+  @java.lang.Override
+  public java.lang.String getAddress() {
+    java.lang.Object ref = address_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      address_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string address = 5;</code>
+   * @return The bytes for address.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getAddressBytes() {
+    java.lang.Object ref = address_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      address_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int STATUS_FIELD_NUMBER = 6;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object status_ = "";
+  /**
+   * <code>string status = 6;</code>
+   * @return The status.
+   */
+  @java.lang.Override
+  public java.lang.String getStatus() {
+    java.lang.Object ref = status_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      status_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string status = 6;</code>
+   * @return The bytes for status.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getStatusBytes() {
+    java.lang.Object ref = status_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      status_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int DELETED_FIELD_NUMBER = 7;
+  private boolean deleted_ = false;
+  /**
+   * <code>bool deleted = 7;</code>
+   * @return The deleted.
+   */
+  @java.lang.Override
+  public boolean getDeleted() {
+    return deleted_;
+  }
+
+  public static final int START_CREATED_AT_FIELD_NUMBER = 8;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object startCreatedAt_ = "";
+  /**
+   * <code>string start_created_at = 8;</code>
+   * @return The startCreatedAt.
+   */
+  @java.lang.Override
+  public java.lang.String getStartCreatedAt() {
+    java.lang.Object ref = startCreatedAt_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      startCreatedAt_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string start_created_at = 8;</code>
+   * @return The bytes for startCreatedAt.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getStartCreatedAtBytes() {
+    java.lang.Object ref = startCreatedAt_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      startCreatedAt_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int END_CREATED_AT_FIELD_NUMBER = 9;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object endCreatedAt_ = "";
+  /**
+   * <code>string end_created_at = 9;</code>
+   * @return The endCreatedAt.
+   */
+  @java.lang.Override
+  public java.lang.String getEndCreatedAt() {
+    java.lang.Object ref = endCreatedAt_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      endCreatedAt_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string end_created_at = 9;</code>
+   * @return The bytes for endCreatedAt.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getEndCreatedAtBytes() {
+    java.lang.Object ref = endCreatedAt_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      endCreatedAt_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int PAGE_FIELD_NUMBER = 10;
   private int page_ = 0;
   /**
-   * <code>int32 page = 1;</code>
+   * <code>int32 page = 10;</code>
    * @return The page.
    */
   @java.lang.Override
@@ -50,15 +266,54 @@ private static final long serialVersionUID = 0L;
     return page_;
   }
 
-  public static final int SIZE_FIELD_NUMBER = 2;
+  public static final int SIZE_FIELD_NUMBER = 11;
   private int size_ = 0;
   /**
-   * <code>int32 size = 2;</code>
+   * <code>int32 size = 11;</code>
    * @return The size.
    */
   @java.lang.Override
   public int getSize() {
     return size_;
+  }
+
+  public static final int SORT_FIELD_NUMBER = 12;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object sort_ = "";
+  /**
+   * <code>string sort = 12;</code>
+   * @return The sort.
+   */
+  @java.lang.Override
+  public java.lang.String getSort() {
+    java.lang.Object ref = sort_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      sort_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string sort = 12;</code>
+   * @return The bytes for sort.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getSortBytes() {
+    java.lang.Object ref = sort_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      sort_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -75,11 +330,41 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (id_ != 0) {
+      output.writeInt32(1, id_);
+    }
+    if (customerId_ != 0) {
+      output.writeInt32(2, customerId_);
+    }
+    if (java.lang.Double.doubleToRawLongBits(minAmount_) != 0) {
+      output.writeDouble(3, minAmount_);
+    }
+    if (java.lang.Double.doubleToRawLongBits(maxAmount_) != 0) {
+      output.writeDouble(4, maxAmount_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, address_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, status_);
+    }
+    if (deleted_ != false) {
+      output.writeBool(7, deleted_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(startCreatedAt_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, startCreatedAt_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(endCreatedAt_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 9, endCreatedAt_);
+    }
     if (page_ != 0) {
-      output.writeInt32(1, page_);
+      output.writeInt32(10, page_);
     }
     if (size_ != 0) {
-      output.writeInt32(2, size_);
+      output.writeInt32(11, size_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sort_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 12, sort_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -90,13 +375,48 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (id_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, id_);
+    }
+    if (customerId_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(2, customerId_);
+    }
+    if (java.lang.Double.doubleToRawLongBits(minAmount_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(3, minAmount_);
+    }
+    if (java.lang.Double.doubleToRawLongBits(maxAmount_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(4, maxAmount_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, address_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, status_);
+    }
+    if (deleted_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(7, deleted_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(startCreatedAt_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, startCreatedAt_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(endCreatedAt_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, endCreatedAt_);
+    }
     if (page_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, page_);
+        .computeInt32Size(10, page_);
     }
     if (size_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, size_);
+        .computeInt32Size(11, size_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sort_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, sort_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -113,10 +433,32 @@ private static final long serialVersionUID = 0L;
     }
     org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto other = (org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto) obj;
 
+    if (getId()
+        != other.getId()) return false;
+    if (getCustomerId()
+        != other.getCustomerId()) return false;
+    if (java.lang.Double.doubleToLongBits(getMinAmount())
+        != java.lang.Double.doubleToLongBits(
+            other.getMinAmount())) return false;
+    if (java.lang.Double.doubleToLongBits(getMaxAmount())
+        != java.lang.Double.doubleToLongBits(
+            other.getMaxAmount())) return false;
+    if (!getAddress()
+        .equals(other.getAddress())) return false;
+    if (!getStatus()
+        .equals(other.getStatus())) return false;
+    if (getDeleted()
+        != other.getDeleted()) return false;
+    if (!getStartCreatedAt()
+        .equals(other.getStartCreatedAt())) return false;
+    if (!getEndCreatedAt()
+        .equals(other.getEndCreatedAt())) return false;
     if (getPage()
         != other.getPage()) return false;
     if (getSize()
         != other.getSize()) return false;
+    if (!getSort()
+        .equals(other.getSort())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -128,10 +470,33 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + getId();
+    hash = (37 * hash) + CUSTOMER_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getCustomerId();
+    hash = (37 * hash) + MIN_AMOUNT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMinAmount()));
+    hash = (37 * hash) + MAX_AMOUNT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMaxAmount()));
+    hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+    hash = (53 * hash) + getAddress().hashCode();
+    hash = (37 * hash) + STATUS_FIELD_NUMBER;
+    hash = (53 * hash) + getStatus().hashCode();
+    hash = (37 * hash) + DELETED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getDeleted());
+    hash = (37 * hash) + START_CREATED_AT_FIELD_NUMBER;
+    hash = (53 * hash) + getStartCreatedAt().hashCode();
+    hash = (37 * hash) + END_CREATED_AT_FIELD_NUMBER;
+    hash = (53 * hash) + getEndCreatedAt().hashCode();
     hash = (37 * hash) + PAGE_FIELD_NUMBER;
     hash = (53 * hash) + getPage();
     hash = (37 * hash) + SIZE_FIELD_NUMBER;
     hash = (53 * hash) + getSize();
+    hash = (37 * hash) + SORT_FIELD_NUMBER;
+    hash = (53 * hash) + getSort().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -263,8 +628,18 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
+      id_ = 0;
+      customerId_ = 0;
+      minAmount_ = 0D;
+      maxAmount_ = 0D;
+      address_ = "";
+      status_ = "";
+      deleted_ = false;
+      startCreatedAt_ = "";
+      endCreatedAt_ = "";
       page_ = 0;
       size_ = 0;
+      sort_ = "";
       return this;
     }
 
@@ -299,10 +674,40 @@ private static final long serialVersionUID = 0L;
     private void buildPartial0(org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.page_ = page_;
+        result.id_ = id_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.customerId_ = customerId_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.minAmount_ = minAmount_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.maxAmount_ = maxAmount_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.address_ = address_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.status_ = status_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.deleted_ = deleted_;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        result.startCreatedAt_ = startCreatedAt_;
+      }
+      if (((from_bitField0_ & 0x00000100) != 0)) {
+        result.endCreatedAt_ = endCreatedAt_;
+      }
+      if (((from_bitField0_ & 0x00000200) != 0)) {
+        result.page_ = page_;
+      }
+      if (((from_bitField0_ & 0x00000400) != 0)) {
         result.size_ = size_;
+      }
+      if (((from_bitField0_ & 0x00000800) != 0)) {
+        result.sort_ = sort_;
       }
     }
 
@@ -350,11 +755,51 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto other) {
       if (other == org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto.getDefaultInstance()) return this;
+      if (other.getId() != 0) {
+        setId(other.getId());
+      }
+      if (other.getCustomerId() != 0) {
+        setCustomerId(other.getCustomerId());
+      }
+      if (other.getMinAmount() != 0D) {
+        setMinAmount(other.getMinAmount());
+      }
+      if (other.getMaxAmount() != 0D) {
+        setMaxAmount(other.getMaxAmount());
+      }
+      if (!other.getAddress().isEmpty()) {
+        address_ = other.address_;
+        bitField0_ |= 0x00000010;
+        onChanged();
+      }
+      if (!other.getStatus().isEmpty()) {
+        status_ = other.status_;
+        bitField0_ |= 0x00000020;
+        onChanged();
+      }
+      if (other.getDeleted() != false) {
+        setDeleted(other.getDeleted());
+      }
+      if (!other.getStartCreatedAt().isEmpty()) {
+        startCreatedAt_ = other.startCreatedAt_;
+        bitField0_ |= 0x00000080;
+        onChanged();
+      }
+      if (!other.getEndCreatedAt().isEmpty()) {
+        endCreatedAt_ = other.endCreatedAt_;
+        bitField0_ |= 0x00000100;
+        onChanged();
+      }
       if (other.getPage() != 0) {
         setPage(other.getPage());
       }
       if (other.getSize() != 0) {
         setSize(other.getSize());
+      }
+      if (!other.getSort().isEmpty()) {
+        sort_ = other.sort_;
+        bitField0_ |= 0x00000800;
+        onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -383,15 +828,65 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              page_ = input.readInt32();
+              id_ = input.readInt32();
               bitField0_ |= 0x00000001;
               break;
             } // case 8
             case 16: {
-              size_ = input.readInt32();
+              customerId_ = input.readInt32();
               bitField0_ |= 0x00000002;
               break;
             } // case 16
+            case 25: {
+              minAmount_ = input.readDouble();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 25
+            case 33: {
+              maxAmount_ = input.readDouble();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 33
+            case 42: {
+              address_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 42
+            case 50: {
+              status_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 50
+            case 56: {
+              deleted_ = input.readBool();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 56
+            case 66: {
+              startCreatedAt_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000080;
+              break;
+            } // case 66
+            case 74: {
+              endCreatedAt_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000100;
+              break;
+            } // case 74
+            case 80: {
+              page_ = input.readInt32();
+              bitField0_ |= 0x00000200;
+              break;
+            } // case 80
+            case 88: {
+              size_ = input.readInt32();
+              bitField0_ |= 0x00000400;
+              break;
+            } // case 88
+            case 98: {
+              sort_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000800;
+              break;
+            } // case 98
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -409,9 +904,457 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
+    private int id_ ;
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public int getId() {
+      return id_;
+    }
+    /**
+     * <code>int32 id = 1;</code>
+     * @param value The id to set.
+     * @return This builder for chaining.
+     */
+    public Builder setId(int value) {
+
+      id_ = value;
+      bitField0_ |= 0x00000001;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 id = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      id_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int customerId_ ;
+    /**
+     * <code>int32 customer_id = 2;</code>
+     * @return The customerId.
+     */
+    @java.lang.Override
+    public int getCustomerId() {
+      return customerId_;
+    }
+    /**
+     * <code>int32 customer_id = 2;</code>
+     * @param value The customerId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomerId(int value) {
+
+      customerId_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 customer_id = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCustomerId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      customerId_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private double minAmount_ ;
+    /**
+     * <code>double min_amount = 3;</code>
+     * @return The minAmount.
+     */
+    @java.lang.Override
+    public double getMinAmount() {
+      return minAmount_;
+    }
+    /**
+     * <code>double min_amount = 3;</code>
+     * @param value The minAmount to set.
+     * @return This builder for chaining.
+     */
+    public Builder setMinAmount(double value) {
+
+      minAmount_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>double min_amount = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearMinAmount() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      minAmount_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double maxAmount_ ;
+    /**
+     * <code>double max_amount = 4;</code>
+     * @return The maxAmount.
+     */
+    @java.lang.Override
+    public double getMaxAmount() {
+      return maxAmount_;
+    }
+    /**
+     * <code>double max_amount = 4;</code>
+     * @param value The maxAmount to set.
+     * @return This builder for chaining.
+     */
+    public Builder setMaxAmount(double value) {
+
+      maxAmount_ = value;
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>double max_amount = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearMaxAmount() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      maxAmount_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object address_ = "";
+    /**
+     * <code>string address = 5;</code>
+     * @return The address.
+     */
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @return The bytes for address.
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @param value The address to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAddress(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      address_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAddress() {
+      address_ = getDefaultInstance().getAddress();
+      bitField0_ = (bitField0_ & ~0x00000010);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @param value The bytes for address to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAddressBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      address_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object status_ = "";
+    /**
+     * <code>string status = 6;</code>
+     * @return The status.
+     */
+    public java.lang.String getStatus() {
+      java.lang.Object ref = status_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        status_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @return The bytes for status.
+     */
+    public com.google.protobuf.ByteString
+        getStatusBytes() {
+      java.lang.Object ref = status_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        status_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @param value The status to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStatus(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      status_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearStatus() {
+      status_ = getDefaultInstance().getStatus();
+      bitField0_ = (bitField0_ & ~0x00000020);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @param value The bytes for status to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStatusBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      status_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+
+    private boolean deleted_ ;
+    /**
+     * <code>bool deleted = 7;</code>
+     * @return The deleted.
+     */
+    @java.lang.Override
+    public boolean getDeleted() {
+      return deleted_;
+    }
+    /**
+     * <code>bool deleted = 7;</code>
+     * @param value The deleted to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDeleted(boolean value) {
+
+      deleted_ = value;
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool deleted = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDeleted() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      deleted_ = false;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object startCreatedAt_ = "";
+    /**
+     * <code>string start_created_at = 8;</code>
+     * @return The startCreatedAt.
+     */
+    public java.lang.String getStartCreatedAt() {
+      java.lang.Object ref = startCreatedAt_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        startCreatedAt_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string start_created_at = 8;</code>
+     * @return The bytes for startCreatedAt.
+     */
+    public com.google.protobuf.ByteString
+        getStartCreatedAtBytes() {
+      java.lang.Object ref = startCreatedAt_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        startCreatedAt_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string start_created_at = 8;</code>
+     * @param value The startCreatedAt to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStartCreatedAt(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      startCreatedAt_ = value;
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string start_created_at = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearStartCreatedAt() {
+      startCreatedAt_ = getDefaultInstance().getStartCreatedAt();
+      bitField0_ = (bitField0_ & ~0x00000080);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string start_created_at = 8;</code>
+     * @param value The bytes for startCreatedAt to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStartCreatedAtBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      startCreatedAt_ = value;
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object endCreatedAt_ = "";
+    /**
+     * <code>string end_created_at = 9;</code>
+     * @return The endCreatedAt.
+     */
+    public java.lang.String getEndCreatedAt() {
+      java.lang.Object ref = endCreatedAt_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        endCreatedAt_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string end_created_at = 9;</code>
+     * @return The bytes for endCreatedAt.
+     */
+    public com.google.protobuf.ByteString
+        getEndCreatedAtBytes() {
+      java.lang.Object ref = endCreatedAt_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        endCreatedAt_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string end_created_at = 9;</code>
+     * @param value The endCreatedAt to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEndCreatedAt(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      endCreatedAt_ = value;
+      bitField0_ |= 0x00000100;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string end_created_at = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEndCreatedAt() {
+      endCreatedAt_ = getDefaultInstance().getEndCreatedAt();
+      bitField0_ = (bitField0_ & ~0x00000100);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string end_created_at = 9;</code>
+     * @param value The bytes for endCreatedAt to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEndCreatedAtBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      endCreatedAt_ = value;
+      bitField0_ |= 0x00000100;
+      onChanged();
+      return this;
+    }
+
     private int page_ ;
     /**
-     * <code>int32 page = 1;</code>
+     * <code>int32 page = 10;</code>
      * @return The page.
      */
     @java.lang.Override
@@ -419,23 +1362,23 @@ private static final long serialVersionUID = 0L;
       return page_;
     }
     /**
-     * <code>int32 page = 1;</code>
+     * <code>int32 page = 10;</code>
      * @param value The page to set.
      * @return This builder for chaining.
      */
     public Builder setPage(int value) {
 
       page_ = value;
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000200;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 page = 1;</code>
+     * <code>int32 page = 10;</code>
      * @return This builder for chaining.
      */
     public Builder clearPage() {
-      bitField0_ = (bitField0_ & ~0x00000001);
+      bitField0_ = (bitField0_ & ~0x00000200);
       page_ = 0;
       onChanged();
       return this;
@@ -443,7 +1386,7 @@ private static final long serialVersionUID = 0L;
 
     private int size_ ;
     /**
-     * <code>int32 size = 2;</code>
+     * <code>int32 size = 11;</code>
      * @return The size.
      */
     @java.lang.Override
@@ -451,24 +1394,96 @@ private static final long serialVersionUID = 0L;
       return size_;
     }
     /**
-     * <code>int32 size = 2;</code>
+     * <code>int32 size = 11;</code>
      * @param value The size to set.
      * @return This builder for chaining.
      */
     public Builder setSize(int value) {
 
       size_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000400;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 size = 2;</code>
+     * <code>int32 size = 11;</code>
      * @return This builder for chaining.
      */
     public Builder clearSize() {
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000400);
       size_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object sort_ = "";
+    /**
+     * <code>string sort = 12;</code>
+     * @return The sort.
+     */
+    public java.lang.String getSort() {
+      java.lang.Object ref = sort_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sort_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string sort = 12;</code>
+     * @return The bytes for sort.
+     */
+    public com.google.protobuf.ByteString
+        getSortBytes() {
+      java.lang.Object ref = sort_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sort_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string sort = 12;</code>
+     * @param value The sort to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSort(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      sort_ = value;
+      bitField0_ |= 0x00000800;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string sort = 12;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSort() {
+      sort_ = getDefaultInstance().getSort();
+      bitField0_ = (bitField0_ & ~0x00000800);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string sort = 12;</code>
+     * @param value The bytes for sort to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSortBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      sort_ = value;
+      bitField0_ |= 0x00000800;
       onChanged();
       return this;
     }

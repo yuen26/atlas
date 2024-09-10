@@ -2,10 +2,11 @@ package org.atlas.framework.persistence.jdbc.order.adapter;
 
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.domain.entity.Order;
+import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.repository.OrderRepository;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.persistence.jdbc.order.repository.JdbcOrderRepository;
-import org.atlas.shared.util.paging.PageDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -19,12 +20,12 @@ public class JdbcOrderRepositoryAdapter implements OrderRepository {
     private final JdbcOrderRepository jdbcOrderRepository;
 
     @Override
-    public PageDto<Order> find(int page, int size) {
-        long totalCount = jdbcOrderRepository.countAll();
+    public PageDto<Order> find(FindOrderCondition condition) {
+        long totalCount = jdbcOrderRepository.count(condition);
         if (totalCount == 0L) {
             return PageDto.empty();
         }
-        List<Order> products = jdbcOrderRepository.findAll(size, page * size);
+        List<Order> products = jdbcOrderRepository.find(condition);
         return PageDto.of(products, totalCount);
     }
 
@@ -41,6 +42,16 @@ public class JdbcOrderRepositoryAdapter implements OrderRepository {
     @Override
     public void update(Order order) {
         jdbcOrderRepository.update(order);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        jdbcOrderRepository.deleteById(id);
+    }
+
+    @Override
+    public void softDeleteById(Integer id) {
+        jdbcOrderRepository.softDeleteById(id);
     }
 
     @Override

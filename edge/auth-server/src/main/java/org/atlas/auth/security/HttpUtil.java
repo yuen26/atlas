@@ -3,8 +3,8 @@ package org.atlas.auth.security;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.atlas.commons.util.json.JsonUtil;
 import org.atlas.framework.rest.server.core.response.RestResponse;
-import org.atlas.shared.util.json.JsonUtil;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;

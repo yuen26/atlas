@@ -1,7 +1,7 @@
 package org.atlas.business.product.application.event.remote.choreography;
 
 import lombok.RequiredArgsConstructor;
-import org.atlas.business.product.domain.entity.Product;
+import lombok.extern.slf4j.Slf4j;
 import org.atlas.business.product.domain.repository.ProductRepository;
 import org.atlas.framework.event.contract.order.choreography.ReserveCreditFailedEvent;
 import org.atlas.framework.event.core.handler.EventHandler;
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class ReserveCreditFailedEventHandler implements EventHandler<ReserveCreditFailedEvent> {
 
     private final ProductRepository productRepository;
@@ -20,10 +21,14 @@ public class ReserveCreditFailedEventHandler implements EventHandler<ReserveCred
         event.getOrder()
             .getOrderItems()
             .forEach(orderItem -> {
-                Product product = productRepository.findById(orderItem.getProductId())
-                    .orElseThrow(() ->
-                        new RuntimeException(String.format("Product %d not found", orderItem.getProductId())));
-                productRepository.increaseQuantity(product.getId(), orderItem.getQuantity());
+                int updated = productRepository.increaseQuantity(orderItem.getProductId(), orderItem.getQuantity());
+                if (updated == 1) {
+                    log.info("Rollback reserved quantity: productId={}, amount={}, eventId={}",
+                        orderItem.getProductId(), orderItem.getQuantity(), event.getEventId());
+                } else {
+                    log.error("Failed to rollback reserved quantity: productId={}, amount={}, eventId={}",
+                        orderItem.getProductId(), orderItem.getQuantity(), event.getEventId());
+                }
             });
     }
 }

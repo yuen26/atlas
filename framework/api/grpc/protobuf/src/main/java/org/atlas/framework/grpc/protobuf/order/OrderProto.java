@@ -17,8 +17,9 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private OrderProto() {
-    status_ = "";
     orderItem_ = java.util.Collections.emptyList();
+    address_ = "";
+    status_ = "";
     createdAt_ = "";
   }
 
@@ -42,6 +43,7 @@ private static final long serialVersionUID = 0L;
             org.atlas.framework.grpc.protobuf.order.OrderProto.class, org.atlas.framework.grpc.protobuf.order.OrderProto.Builder.class);
   }
 
+  private int bitField0_;
   public static final int ID_FIELD_NUMBER = 1;
   private int id_ = 0;
   /**
@@ -53,21 +55,77 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int CUSTOMER_ID_FIELD_NUMBER = 2;
-  private int customerId_ = 0;
+  public static final int CUSTOMER_FIELD_NUMBER = 2;
+  private org.atlas.framework.grpc.protobuf.common.CustomerProto customer_;
   /**
-   * <code>int32 customer_id = 2;</code>
-   * @return The customerId.
+   * <code>.common.CustomerProto customer = 2;</code>
+   * @return Whether the customer field is set.
    */
   @java.lang.Override
-  public int getCustomerId() {
-    return customerId_;
+  public boolean hasCustomer() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <code>.common.CustomerProto customer = 2;</code>
+   * @return The customer.
+   */
+  @java.lang.Override
+  public org.atlas.framework.grpc.protobuf.common.CustomerProto getCustomer() {
+    return customer_ == null ? org.atlas.framework.grpc.protobuf.common.CustomerProto.getDefaultInstance() : customer_;
+  }
+  /**
+   * <code>.common.CustomerProto customer = 2;</code>
+   */
+  @java.lang.Override
+  public org.atlas.framework.grpc.protobuf.common.CustomerProtoOrBuilder getCustomerOrBuilder() {
+    return customer_ == null ? org.atlas.framework.grpc.protobuf.common.CustomerProto.getDefaultInstance() : customer_;
   }
 
-  public static final int AMOUNT_FIELD_NUMBER = 3;
+  public static final int ORDER_ITEM_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> orderItem_;
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  @java.lang.Override
+  public java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> getOrderItemList() {
+    return orderItem_;
+  }
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder> 
+      getOrderItemOrBuilderList() {
+    return orderItem_;
+  }
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  @java.lang.Override
+  public int getOrderItemCount() {
+    return orderItem_.size();
+  }
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  @java.lang.Override
+  public org.atlas.framework.grpc.protobuf.order.OrderItemProto getOrderItem(int index) {
+    return orderItem_.get(index);
+  }
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  @java.lang.Override
+  public org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder getOrderItemOrBuilder(
+      int index) {
+    return orderItem_.get(index);
+  }
+
+  public static final int AMOUNT_FIELD_NUMBER = 4;
   private double amount_ = 0D;
   /**
-   * <code>double amount = 3;</code>
+   * <code>double amount = 4;</code>
    * @return The amount.
    */
   @java.lang.Override
@@ -75,11 +133,50 @@ private static final long serialVersionUID = 0L;
     return amount_;
   }
 
-  public static final int STATUS_FIELD_NUMBER = 4;
+  public static final int ADDRESS_FIELD_NUMBER = 5;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object address_ = "";
+  /**
+   * <code>string address = 5;</code>
+   * @return The address.
+   */
+  @java.lang.Override
+  public java.lang.String getAddress() {
+    java.lang.Object ref = address_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      address_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string address = 5;</code>
+   * @return The bytes for address.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getAddressBytes() {
+    java.lang.Object ref = address_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      address_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int STATUS_FIELD_NUMBER = 6;
   @SuppressWarnings("serial")
   private volatile java.lang.Object status_ = "";
   /**
-   * <code>string status = 4;</code>
+   * <code>string status = 6;</code>
    * @return The status.
    */
   @java.lang.Override
@@ -96,7 +193,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string status = 4;</code>
+   * <code>string status = 6;</code>
    * @return The bytes for status.
    */
   @java.lang.Override
@@ -114,52 +211,11 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int ORDER_ITEM_FIELD_NUMBER = 5;
-  @SuppressWarnings("serial")
-  private java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> orderItem_;
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  @java.lang.Override
-  public java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> getOrderItemList() {
-    return orderItem_;
-  }
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  @java.lang.Override
-  public java.util.List<? extends org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder> 
-      getOrderItemOrBuilderList() {
-    return orderItem_;
-  }
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  @java.lang.Override
-  public int getOrderItemCount() {
-    return orderItem_.size();
-  }
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  @java.lang.Override
-  public org.atlas.framework.grpc.protobuf.order.OrderItemProto getOrderItem(int index) {
-    return orderItem_.get(index);
-  }
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  @java.lang.Override
-  public org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder getOrderItemOrBuilder(
-      int index) {
-    return orderItem_.get(index);
-  }
-
-  public static final int CREATED_AT_FIELD_NUMBER = 6;
+  public static final int CREATED_AT_FIELD_NUMBER = 7;
   @SuppressWarnings("serial")
   private volatile java.lang.Object createdAt_ = "";
   /**
-   * <code>string created_at = 6;</code>
+   * <code>string created_at = 7;</code>
    * @return The createdAt.
    */
   @java.lang.Override
@@ -176,7 +232,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string created_at = 6;</code>
+   * <code>string created_at = 7;</code>
    * @return The bytes for createdAt.
    */
   @java.lang.Override
@@ -211,20 +267,23 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0) {
       output.writeInt32(1, id_);
     }
-    if (customerId_ != 0) {
-      output.writeInt32(2, customerId_);
-    }
-    if (java.lang.Double.doubleToRawLongBits(amount_) != 0) {
-      output.writeDouble(3, amount_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, status_);
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(2, getCustomer());
     }
     for (int i = 0; i < orderItem_.size(); i++) {
-      output.writeMessage(5, orderItem_.get(i));
+      output.writeMessage(3, orderItem_.get(i));
+    }
+    if (java.lang.Double.doubleToRawLongBits(amount_) != 0) {
+      output.writeDouble(4, amount_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, address_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, status_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(createdAt_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, createdAt_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, createdAt_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -239,23 +298,26 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, id_);
     }
-    if (customerId_ != 0) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, customerId_);
-    }
-    if (java.lang.Double.doubleToRawLongBits(amount_) != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, amount_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, status_);
+        .computeMessageSize(2, getCustomer());
     }
     for (int i = 0; i < orderItem_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, orderItem_.get(i));
+        .computeMessageSize(3, orderItem_.get(i));
+    }
+    if (java.lang.Double.doubleToRawLongBits(amount_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(4, amount_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, address_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, status_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(createdAt_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, createdAt_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, createdAt_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -274,15 +336,20 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
-    if (getCustomerId()
-        != other.getCustomerId()) return false;
+    if (hasCustomer() != other.hasCustomer()) return false;
+    if (hasCustomer()) {
+      if (!getCustomer()
+          .equals(other.getCustomer())) return false;
+    }
+    if (!getOrderItemList()
+        .equals(other.getOrderItemList())) return false;
     if (java.lang.Double.doubleToLongBits(getAmount())
         != java.lang.Double.doubleToLongBits(
             other.getAmount())) return false;
+    if (!getAddress()
+        .equals(other.getAddress())) return false;
     if (!getStatus()
         .equals(other.getStatus())) return false;
-    if (!getOrderItemList()
-        .equals(other.getOrderItemList())) return false;
     if (!getCreatedAt()
         .equals(other.getCreatedAt())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -298,17 +365,21 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId();
-    hash = (37 * hash) + CUSTOMER_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getCustomerId();
-    hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getAmount()));
-    hash = (37 * hash) + STATUS_FIELD_NUMBER;
-    hash = (53 * hash) + getStatus().hashCode();
+    if (hasCustomer()) {
+      hash = (37 * hash) + CUSTOMER_FIELD_NUMBER;
+      hash = (53 * hash) + getCustomer().hashCode();
+    }
     if (getOrderItemCount() > 0) {
       hash = (37 * hash) + ORDER_ITEM_FIELD_NUMBER;
       hash = (53 * hash) + getOrderItemList().hashCode();
     }
+    hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getAmount()));
+    hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+    hash = (53 * hash) + getAddress().hashCode();
+    hash = (37 * hash) + STATUS_FIELD_NUMBER;
+    hash = (53 * hash) + getStatus().hashCode();
     hash = (37 * hash) + CREATED_AT_FIELD_NUMBER;
     hash = (53 * hash) + getCreatedAt().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -430,29 +501,41 @@ private static final long serialVersionUID = 0L;
 
     // Construct using org.atlas.framework.grpc.protobuf.order.OrderProto.newBuilder()
     private Builder() {
-
+      maybeForceBuilderInitialization();
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-
+      maybeForceBuilderInitialization();
+    }
+    private void maybeForceBuilderInitialization() {
+      if (com.google.protobuf.GeneratedMessageV3
+              .alwaysUseFieldBuilders) {
+        getCustomerFieldBuilder();
+        getOrderItemFieldBuilder();
+      }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
       id_ = 0;
-      customerId_ = 0;
-      amount_ = 0D;
-      status_ = "";
+      customer_ = null;
+      if (customerBuilder_ != null) {
+        customerBuilder_.dispose();
+        customerBuilder_ = null;
+      }
       if (orderItemBuilder_ == null) {
         orderItem_ = java.util.Collections.emptyList();
       } else {
         orderItem_ = null;
         orderItemBuilder_.clear();
       }
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000004);
+      amount_ = 0D;
+      address_ = "";
+      status_ = "";
       createdAt_ = "";
       return this;
     }
@@ -488,9 +571,9 @@ private static final long serialVersionUID = 0L;
 
     private void buildPartialRepeatedFields(org.atlas.framework.grpc.protobuf.order.OrderProto result) {
       if (orderItemBuilder_ == null) {
-        if (((bitField0_ & 0x00000010) != 0)) {
+        if (((bitField0_ & 0x00000004) != 0)) {
           orderItem_ = java.util.Collections.unmodifiableList(orderItem_);
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000004);
         }
         result.orderItem_ = orderItem_;
       } else {
@@ -503,18 +586,26 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.id_ = id_;
       }
+      int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.customerId_ = customerId_;
-      }
-      if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.amount_ = amount_;
+        result.customer_ = customerBuilder_ == null
+            ? customer_
+            : customerBuilder_.build();
+        to_bitField0_ |= 0x00000001;
       }
       if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.status_ = status_;
+        result.amount_ = amount_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.address_ = address_;
       }
       if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.status_ = status_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
         result.createdAt_ = createdAt_;
       }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -564,22 +655,14 @@ private static final long serialVersionUID = 0L;
       if (other.getId() != 0) {
         setId(other.getId());
       }
-      if (other.getCustomerId() != 0) {
-        setCustomerId(other.getCustomerId());
-      }
-      if (other.getAmount() != 0D) {
-        setAmount(other.getAmount());
-      }
-      if (!other.getStatus().isEmpty()) {
-        status_ = other.status_;
-        bitField0_ |= 0x00000008;
-        onChanged();
+      if (other.hasCustomer()) {
+        mergeCustomer(other.getCustomer());
       }
       if (orderItemBuilder_ == null) {
         if (!other.orderItem_.isEmpty()) {
           if (orderItem_.isEmpty()) {
             orderItem_ = other.orderItem_;
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureOrderItemIsMutable();
             orderItem_.addAll(other.orderItem_);
@@ -592,7 +675,7 @@ private static final long serialVersionUID = 0L;
             orderItemBuilder_.dispose();
             orderItemBuilder_ = null;
             orderItem_ = other.orderItem_;
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000004);
             orderItemBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getOrderItemFieldBuilder() : null;
@@ -601,9 +684,22 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
+      if (other.getAmount() != 0D) {
+        setAmount(other.getAmount());
+      }
+      if (!other.getAddress().isEmpty()) {
+        address_ = other.address_;
+        bitField0_ |= 0x00000010;
+        onChanged();
+      }
+      if (!other.getStatus().isEmpty()) {
+        status_ = other.status_;
+        bitField0_ |= 0x00000020;
+        onChanged();
+      }
       if (!other.getCreatedAt().isEmpty()) {
         createdAt_ = other.createdAt_;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -637,22 +733,14 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
-            case 16: {
-              customerId_ = input.readInt32();
+            case 18: {
+              input.readMessage(
+                  getCustomerFieldBuilder().getBuilder(),
+                  extensionRegistry);
               bitField0_ |= 0x00000002;
               break;
-            } // case 16
-            case 25: {
-              amount_ = input.readDouble();
-              bitField0_ |= 0x00000004;
-              break;
-            } // case 25
-            case 34: {
-              status_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000008;
-              break;
-            } // case 34
-            case 42: {
+            } // case 18
+            case 26: {
               org.atlas.framework.grpc.protobuf.order.OrderItemProto m =
                   input.readMessage(
                       org.atlas.framework.grpc.protobuf.order.OrderItemProto.parser(),
@@ -664,12 +752,27 @@ private static final long serialVersionUID = 0L;
                 orderItemBuilder_.addMessage(m);
               }
               break;
+            } // case 26
+            case 33: {
+              amount_ = input.readDouble();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 33
+            case 42: {
+              address_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000010;
+              break;
             } // case 42
             case 50: {
-              createdAt_ = input.readStringRequireUtf8();
+              status_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000020;
               break;
             } // case 50
+            case 58: {
+              createdAt_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 58
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -719,148 +822,133 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int customerId_ ;
+    private org.atlas.framework.grpc.protobuf.common.CustomerProto customer_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.atlas.framework.grpc.protobuf.common.CustomerProto, org.atlas.framework.grpc.protobuf.common.CustomerProto.Builder, org.atlas.framework.grpc.protobuf.common.CustomerProtoOrBuilder> customerBuilder_;
     /**
-     * <code>int32 customer_id = 2;</code>
-     * @return The customerId.
+     * <code>.common.CustomerProto customer = 2;</code>
+     * @return Whether the customer field is set.
      */
-    @java.lang.Override
-    public int getCustomerId() {
-      return customerId_;
+    public boolean hasCustomer() {
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>int32 customer_id = 2;</code>
-     * @param value The customerId to set.
-     * @return This builder for chaining.
+     * <code>.common.CustomerProto customer = 2;</code>
+     * @return The customer.
      */
-    public Builder setCustomerId(int value) {
-
-      customerId_ = value;
+    public org.atlas.framework.grpc.protobuf.common.CustomerProto getCustomer() {
+      if (customerBuilder_ == null) {
+        return customer_ == null ? org.atlas.framework.grpc.protobuf.common.CustomerProto.getDefaultInstance() : customer_;
+      } else {
+        return customerBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.common.CustomerProto customer = 2;</code>
+     */
+    public Builder setCustomer(org.atlas.framework.grpc.protobuf.common.CustomerProto value) {
+      if (customerBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        customer_ = value;
+      } else {
+        customerBuilder_.setMessage(value);
+      }
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 customer_id = 2;</code>
-     * @return This builder for chaining.
+     * <code>.common.CustomerProto customer = 2;</code>
      */
-    public Builder clearCustomerId() {
+    public Builder setCustomer(
+        org.atlas.framework.grpc.protobuf.common.CustomerProto.Builder builderForValue) {
+      if (customerBuilder_ == null) {
+        customer_ = builderForValue.build();
+      } else {
+        customerBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.common.CustomerProto customer = 2;</code>
+     */
+    public Builder mergeCustomer(org.atlas.framework.grpc.protobuf.common.CustomerProto value) {
+      if (customerBuilder_ == null) {
+        if (((bitField0_ & 0x00000002) != 0) &&
+          customer_ != null &&
+          customer_ != org.atlas.framework.grpc.protobuf.common.CustomerProto.getDefaultInstance()) {
+          getCustomerBuilder().mergeFrom(value);
+        } else {
+          customer_ = value;
+        }
+      } else {
+        customerBuilder_.mergeFrom(value);
+      }
+      if (customer_ != null) {
+        bitField0_ |= 0x00000002;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.common.CustomerProto customer = 2;</code>
+     */
+    public Builder clearCustomer() {
       bitField0_ = (bitField0_ & ~0x00000002);
-      customerId_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private double amount_ ;
-    /**
-     * <code>double amount = 3;</code>
-     * @return The amount.
-     */
-    @java.lang.Override
-    public double getAmount() {
-      return amount_;
-    }
-    /**
-     * <code>double amount = 3;</code>
-     * @param value The amount to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAmount(double value) {
-
-      amount_ = value;
-      bitField0_ |= 0x00000004;
+      customer_ = null;
+      if (customerBuilder_ != null) {
+        customerBuilder_.dispose();
+        customerBuilder_ = null;
+      }
       onChanged();
       return this;
     }
     /**
-     * <code>double amount = 3;</code>
-     * @return This builder for chaining.
+     * <code>.common.CustomerProto customer = 2;</code>
      */
-    public Builder clearAmount() {
-      bitField0_ = (bitField0_ & ~0x00000004);
-      amount_ = 0D;
+    public org.atlas.framework.grpc.protobuf.common.CustomerProto.Builder getCustomerBuilder() {
+      bitField0_ |= 0x00000002;
       onChanged();
-      return this;
+      return getCustomerFieldBuilder().getBuilder();
     }
-
-    private java.lang.Object status_ = "";
     /**
-     * <code>string status = 4;</code>
-     * @return The status.
+     * <code>.common.CustomerProto customer = 2;</code>
      */
-    public java.lang.String getStatus() {
-      java.lang.Object ref = status_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        status_ = s;
-        return s;
+    public org.atlas.framework.grpc.protobuf.common.CustomerProtoOrBuilder getCustomerOrBuilder() {
+      if (customerBuilder_ != null) {
+        return customerBuilder_.getMessageOrBuilder();
       } else {
-        return (java.lang.String) ref;
+        return customer_ == null ?
+            org.atlas.framework.grpc.protobuf.common.CustomerProto.getDefaultInstance() : customer_;
       }
     }
     /**
-     * <code>string status = 4;</code>
-     * @return The bytes for status.
+     * <code>.common.CustomerProto customer = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getStatusBytes() {
-      java.lang.Object ref = status_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        status_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.atlas.framework.grpc.protobuf.common.CustomerProto, org.atlas.framework.grpc.protobuf.common.CustomerProto.Builder, org.atlas.framework.grpc.protobuf.common.CustomerProtoOrBuilder> 
+        getCustomerFieldBuilder() {
+      if (customerBuilder_ == null) {
+        customerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.atlas.framework.grpc.protobuf.common.CustomerProto, org.atlas.framework.grpc.protobuf.common.CustomerProto.Builder, org.atlas.framework.grpc.protobuf.common.CustomerProtoOrBuilder>(
+                getCustomer(),
+                getParentForChildren(),
+                isClean());
+        customer_ = null;
       }
-    }
-    /**
-     * <code>string status = 4;</code>
-     * @param value The status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatus(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      status_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string status = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearStatus() {
-      status_ = getDefaultInstance().getStatus();
-      bitField0_ = (bitField0_ & ~0x00000008);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string status = 4;</code>
-     * @param value The bytes for status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatusBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      status_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
+      return customerBuilder_;
     }
 
     private java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> orderItem_ =
       java.util.Collections.emptyList();
     private void ensureOrderItemIsMutable() {
-      if (!((bitField0_ & 0x00000010) != 0)) {
+      if (!((bitField0_ & 0x00000004) != 0)) {
         orderItem_ = new java.util.ArrayList<org.atlas.framework.grpc.protobuf.order.OrderItemProto>(orderItem_);
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000004;
        }
     }
 
@@ -868,7 +956,7 @@ private static final long serialVersionUID = 0L;
         org.atlas.framework.grpc.protobuf.order.OrderItemProto, org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder, org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder> orderItemBuilder_;
 
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> getOrderItemList() {
       if (orderItemBuilder_ == null) {
@@ -878,7 +966,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public int getOrderItemCount() {
       if (orderItemBuilder_ == null) {
@@ -888,7 +976,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public org.atlas.framework.grpc.protobuf.order.OrderItemProto getOrderItem(int index) {
       if (orderItemBuilder_ == null) {
@@ -898,7 +986,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder setOrderItem(
         int index, org.atlas.framework.grpc.protobuf.order.OrderItemProto value) {
@@ -915,7 +1003,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder setOrderItem(
         int index, org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder builderForValue) {
@@ -929,7 +1017,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder addOrderItem(org.atlas.framework.grpc.protobuf.order.OrderItemProto value) {
       if (orderItemBuilder_ == null) {
@@ -945,7 +1033,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder addOrderItem(
         int index, org.atlas.framework.grpc.protobuf.order.OrderItemProto value) {
@@ -962,7 +1050,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder addOrderItem(
         org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder builderForValue) {
@@ -976,7 +1064,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder addOrderItem(
         int index, org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder builderForValue) {
@@ -990,7 +1078,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder addAllOrderItem(
         java.lang.Iterable<? extends org.atlas.framework.grpc.protobuf.order.OrderItemProto> values) {
@@ -1005,12 +1093,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder clearOrderItem() {
       if (orderItemBuilder_ == null) {
         orderItem_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
       } else {
         orderItemBuilder_.clear();
@@ -1018,7 +1106,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public Builder removeOrderItem(int index) {
       if (orderItemBuilder_ == null) {
@@ -1031,14 +1119,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder getOrderItemBuilder(
         int index) {
       return getOrderItemFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder getOrderItemOrBuilder(
         int index) {
@@ -1048,7 +1136,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public java.util.List<? extends org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder> 
          getOrderItemOrBuilderList() {
@@ -1059,14 +1147,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder addOrderItemBuilder() {
       return getOrderItemFieldBuilder().addBuilder(
           org.atlas.framework.grpc.protobuf.order.OrderItemProto.getDefaultInstance());
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder addOrderItemBuilder(
         int index) {
@@ -1074,7 +1162,7 @@ private static final long serialVersionUID = 0L;
           index, org.atlas.framework.grpc.protobuf.order.OrderItemProto.getDefaultInstance());
     }
     /**
-     * <code>repeated .order.OrderItemProto order_item = 5;</code>
+     * <code>repeated .order.OrderItemProto order_item = 3;</code>
      */
     public java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder> 
          getOrderItemBuilderList() {
@@ -1087,7 +1175,7 @@ private static final long serialVersionUID = 0L;
         orderItemBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             org.atlas.framework.grpc.protobuf.order.OrderItemProto, org.atlas.framework.grpc.protobuf.order.OrderItemProto.Builder, org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder>(
                 orderItem_,
-                ((bitField0_ & 0x00000010) != 0),
+                ((bitField0_ & 0x00000004) != 0),
                 getParentForChildren(),
                 isClean());
         orderItem_ = null;
@@ -1095,9 +1183,185 @@ private static final long serialVersionUID = 0L;
       return orderItemBuilder_;
     }
 
+    private double amount_ ;
+    /**
+     * <code>double amount = 4;</code>
+     * @return The amount.
+     */
+    @java.lang.Override
+    public double getAmount() {
+      return amount_;
+    }
+    /**
+     * <code>double amount = 4;</code>
+     * @param value The amount to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAmount(double value) {
+
+      amount_ = value;
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>double amount = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAmount() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      amount_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object address_ = "";
+    /**
+     * <code>string address = 5;</code>
+     * @return The address.
+     */
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @return The bytes for address.
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @param value The address to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAddress(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      address_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAddress() {
+      address_ = getDefaultInstance().getAddress();
+      bitField0_ = (bitField0_ & ~0x00000010);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string address = 5;</code>
+     * @param value The bytes for address to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAddressBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      address_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object status_ = "";
+    /**
+     * <code>string status = 6;</code>
+     * @return The status.
+     */
+    public java.lang.String getStatus() {
+      java.lang.Object ref = status_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        status_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @return The bytes for status.
+     */
+    public com.google.protobuf.ByteString
+        getStatusBytes() {
+      java.lang.Object ref = status_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        status_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @param value The status to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStatus(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      status_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearStatus() {
+      status_ = getDefaultInstance().getStatus();
+      bitField0_ = (bitField0_ & ~0x00000020);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string status = 6;</code>
+     * @param value The bytes for status to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStatusBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      status_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object createdAt_ = "";
     /**
-     * <code>string created_at = 6;</code>
+     * <code>string created_at = 7;</code>
      * @return The createdAt.
      */
     public java.lang.String getCreatedAt() {
@@ -1113,7 +1377,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string created_at = 6;</code>
+     * <code>string created_at = 7;</code>
      * @return The bytes for createdAt.
      */
     public com.google.protobuf.ByteString
@@ -1130,7 +1394,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string created_at = 6;</code>
+     * <code>string created_at = 7;</code>
      * @param value The createdAt to set.
      * @return This builder for chaining.
      */
@@ -1138,22 +1402,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       createdAt_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
     /**
-     * <code>string created_at = 6;</code>
+     * <code>string created_at = 7;</code>
      * @return This builder for chaining.
      */
     public Builder clearCreatedAt() {
       createdAt_ = getDefaultInstance().getCreatedAt();
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000040);
       onChanged();
       return this;
     }
     /**
-     * <code>string created_at = 6;</code>
+     * <code>string created_at = 7;</code>
      * @param value The bytes for createdAt to set.
      * @return This builder for chaining.
      */
@@ -1162,7 +1426,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       createdAt_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }

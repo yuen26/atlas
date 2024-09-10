@@ -3,7 +3,7 @@ package org.atlas.framework.grpc.server.core;
 import io.grpc.Status;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.advice.GrpcAdvice;
-import org.atlas.shared.exception.BusinessException;
+import org.atlas.commons.exception.BusinessException;
 
 @GrpcAdvice
 @Slf4j

@@ -3,23 +3,17 @@ package org.atlas.business.order.application.command;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.atlas.business.order.application.contract.command.CreateOrderCommand;
-import org.atlas.business.order.application.mapper.OrderMapper;
+import org.atlas.business.order.application.service.OrderService;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
 import org.atlas.business.order.domain.repository.OrderRepository;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.business.product.application.contract.model.ProductDto;
-import org.atlas.framework.api.client.contract.IProductServiceClient;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.exception.AppError;
+import org.atlas.commons.exception.BusinessException;
+import org.atlas.framework.api.client.contract.product.IProductServiceClient;
 import org.atlas.framework.command.contract.CommandExecutor;
-import org.atlas.framework.event.contract.order.choreography.OrderCreatedEvent;
-import org.atlas.framework.event.contract.order.model.OrderData;
-import org.atlas.framework.event.contract.order.orchestration.ReserveQuantityRequestEvent;
-import org.atlas.framework.event.core.publisher.EventPublisherTemplate;
-import org.atlas.framework.event.core.saga.SagaMode;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.exception.AppError;
-import org.atlas.shared.exception.BusinessException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,10 +32,7 @@ public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCo
 
     private final OrderRepository orderRepository;
     private final IProductServiceClient productServiceClient;
-    private final EventPublisherTemplate eventPublisherTemplate;
-
-    @Value("${app.saga-mode:orchestration}")
-    private String sagaMode;
+    private final OrderService orderService;
 
     @Override
     @Transactional
@@ -49,16 +40,7 @@ public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCo
         Map<Integer, ProductDto> productDtoMap = fetchProducts(command);
         Order order = newOrder(command, productDtoMap);
         orderRepository.insert(order);
-
-        OrderData orderData = OrderMapper.toOrderData(order);
-        if (SagaMode.ORCHESTRATION.equals(sagaMode)) {
-            ReserveQuantityRequestEvent event = new ReserveQuantityRequestEvent(orderData);
-            eventPublisherTemplate.publish(event);
-        } else {
-            OrderCreatedEvent event = new OrderCreatedEvent(orderData);
-            eventPublisherTemplate.publish(event);
-        }
-
+        orderService.postCreateOrder(order);
         return order.getId();
     }
 
@@ -68,7 +50,7 @@ public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCo
             .map(CreateOrderCommand.OrderItem::getProductId)
             .distinct()
             .toList();
-        List<ProductDto> productDtoList = productServiceClient.listProductByIds(productIds);
+        List<ProductDto> productDtoList = productServiceClient.listProduct(productIds);
         if (CollectionUtils.isEmpty(productDtoList)) {
             throw new BusinessException(AppError.PRODUCT_NOT_FOUND);
         }

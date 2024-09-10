@@ -1,6 +1,6 @@
 package org.atlas.framework.rest.client.feign.client;
 
-import org.atlas.framework.rest.client.contract.product.ListProductByIdsResponse;
+import org.atlas.framework.rest.client.contract.product.ListProductResponse;
 import org.atlas.framework.rest.client.feign.core.FeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,6 @@ import java.util.List;
 )
 public interface ProductFeignClient {
 
-    @GetMapping("/api/products/list-by-ids")
-    ListProductByIdsResponse listProductByIds(@RequestParam List<Integer> ids);
+    @GetMapping("/api/products")
+    ListProductResponse listProduct(@RequestParam List<Integer> ids);
 }

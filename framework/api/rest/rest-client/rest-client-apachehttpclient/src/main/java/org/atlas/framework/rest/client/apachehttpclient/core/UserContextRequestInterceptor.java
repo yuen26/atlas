@@ -5,9 +5,9 @@ import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.HttpRequest;
 import org.apache.hc.core5.http.HttpRequestInterceptor;
 import org.apache.hc.core5.http.protocol.HttpContext;
-import org.atlas.shared.constant.CustomHeaders;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.context.UserInfo;
+import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 
 import java.io.IOException;
 

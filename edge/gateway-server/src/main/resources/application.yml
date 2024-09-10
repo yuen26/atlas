@@ -43,5 +43,3 @@ springdoc:
         url: /product-service/v3/api-docs
       - name: order-service
         url: /order-service/v3/api-docs
-      - name: aggregator-service
-        url: /aggregator-service/v3/api-docs

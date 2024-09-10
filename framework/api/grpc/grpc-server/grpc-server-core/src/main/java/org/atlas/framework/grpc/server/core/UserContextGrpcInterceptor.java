@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.interceptor.GrpcGlobalServerInterceptor;
 import org.apache.commons.lang3.StringUtils;
 import org.atlas.business.user.domain.shared.enums.Role;
-import org.atlas.shared.constant.CustomHeaders;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.context.UserInfo;
+import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 
 @GrpcGlobalServerInterceptor
 @Slf4j

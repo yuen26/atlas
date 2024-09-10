@@ -3,7 +3,7 @@ package org.atlas.business.order.domain.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
-import org.atlas.shared.model.AuditableEntity;
+import org.atlas.commons.model.AuditableEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,10 +17,11 @@ public class Order extends AuditableEntity implements Serializable {
     @EqualsAndHashCode.Include
     private Integer id;
     private Integer customerId;
-    private BigDecimal amount;
-    private OrderStatus status;
     private List<OrderItem> orderItems;
-    private String canceledReason;
+    private BigDecimal amount;
+    private String address;
+    private OrderStatus status;
+    private Boolean deleted;
 
     public void addOrderItem(OrderItem orderItem) {
         if (orderItems == null) {

@@ -15,60 +15,81 @@ public interface OrderProtoOrBuilder extends
   int getId();
 
   /**
-   * <code>int32 customer_id = 2;</code>
-   * @return The customerId.
+   * <code>.common.CustomerProto customer = 2;</code>
+   * @return Whether the customer field is set.
    */
-  int getCustomerId();
+  boolean hasCustomer();
+  /**
+   * <code>.common.CustomerProto customer = 2;</code>
+   * @return The customer.
+   */
+  org.atlas.framework.grpc.protobuf.common.CustomerProto getCustomer();
+  /**
+   * <code>.common.CustomerProto customer = 2;</code>
+   */
+  org.atlas.framework.grpc.protobuf.common.CustomerProtoOrBuilder getCustomerOrBuilder();
 
   /**
-   * <code>double amount = 3;</code>
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> 
+      getOrderItemList();
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  org.atlas.framework.grpc.protobuf.order.OrderItemProto getOrderItem(int index);
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  int getOrderItemCount();
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  java.util.List<? extends org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder> 
+      getOrderItemOrBuilderList();
+  /**
+   * <code>repeated .order.OrderItemProto order_item = 3;</code>
+   */
+  org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder getOrderItemOrBuilder(
+      int index);
+
+  /**
+   * <code>double amount = 4;</code>
    * @return The amount.
    */
   double getAmount();
 
   /**
-   * <code>string status = 4;</code>
+   * <code>string address = 5;</code>
+   * @return The address.
+   */
+  java.lang.String getAddress();
+  /**
+   * <code>string address = 5;</code>
+   * @return The bytes for address.
+   */
+  com.google.protobuf.ByteString
+      getAddressBytes();
+
+  /**
+   * <code>string status = 6;</code>
    * @return The status.
    */
   java.lang.String getStatus();
   /**
-   * <code>string status = 4;</code>
+   * <code>string status = 6;</code>
    * @return The bytes for status.
    */
   com.google.protobuf.ByteString
       getStatusBytes();
 
   /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  java.util.List<org.atlas.framework.grpc.protobuf.order.OrderItemProto> 
-      getOrderItemList();
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  org.atlas.framework.grpc.protobuf.order.OrderItemProto getOrderItem(int index);
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  int getOrderItemCount();
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  java.util.List<? extends org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder> 
-      getOrderItemOrBuilderList();
-  /**
-   * <code>repeated .order.OrderItemProto order_item = 5;</code>
-   */
-  org.atlas.framework.grpc.protobuf.order.OrderItemProtoOrBuilder getOrderItemOrBuilder(
-      int index);
-
-  /**
-   * <code>string created_at = 6;</code>
+   * <code>string created_at = 7;</code>
    * @return The createdAt.
    */
   java.lang.String getCreatedAt();
   /**
-   * <code>string created_at = 6;</code>
+   * <code>string created_at = 7;</code>
    * @return The bytes for createdAt.
    */
   com.google.protobuf.ByteString

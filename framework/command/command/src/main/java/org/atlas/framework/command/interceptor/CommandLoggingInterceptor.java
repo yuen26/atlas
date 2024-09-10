@@ -1,8 +1,8 @@
 package org.atlas.framework.command.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.atlas.shared.context.UserContext;
-import org.atlas.shared.context.UserInfo;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 import org.springframework.stereotype.Component;
 
 @Component
