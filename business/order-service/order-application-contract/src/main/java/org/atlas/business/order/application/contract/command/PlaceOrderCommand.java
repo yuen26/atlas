@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class CreateOrderCommand implements Command<Integer> {
+public class PlaceOrderCommand implements Command<Integer> {
 
     @Data
     public static class OrderItem {

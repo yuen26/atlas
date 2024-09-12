@@ -91,7 +91,9 @@ public class JdbcOrderRepository {
         }
         sqlBuilder.append("WHERE o.id = :id");
         String sql = sqlBuilder.toString();
+
         MapSqlParameterSource params = toOrderParams(order);
+
         return namedParameterJdbcTemplate.update(sql, params);
     }
 
@@ -102,18 +104,8 @@ public class JdbcOrderRepository {
         return namedParameterJdbcTemplate.update(sql, params);
     }
 
-    public int softDeleteById(Integer id) {
-        String sql = "UPDATE orders o SET o.deleted = true WHERE o.id = :id";
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
-        return namedParameterJdbcTemplate.update(sql, params);
-    }
-
-    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
-        String sql = "SELECT o.id AS order_id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at, " +
-            "oi.id AS order_item_id, oi.product_id, oi.product_price, oi.quantity " +
-            "FROM orders o " +
-            "LEFT JOIN order_item oi ON o.id = oi.order_id " +
+    public int softDeleteByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        String sql = "UPDATE orders o SET o.deleted = true " +
             "WHERE o.status = :status " +
             "  AND o.created_at < :date";
 
@@ -121,7 +113,7 @@ public class JdbcOrderRepository {
         parameters.addValue("status", status.name());
         parameters.addValue("date", date);
 
-        return namedParameterJdbcTemplate.query(sql, parameters, new OrderWithItemsExtractor());
+        return namedParameterJdbcTemplate.update(sql, parameters);
     }
 
     private String buildWhereClause(FindOrderCondition condition, MapSqlParameterSource params) {

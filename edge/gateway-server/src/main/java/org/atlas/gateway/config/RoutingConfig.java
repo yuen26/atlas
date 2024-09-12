@@ -13,6 +13,7 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -28,23 +29,47 @@ public class RoutingConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
+            // Auth APIs -> allow any role
             .route("auth-server", r -> r.path("/auth-server/**")
                 .filters(f -> f.rewritePath("/auth-server/(?<segment>.*)", "/${segment}"))
                 .uri("lb://AUTH-SERVER"))
-            .route("user-service", r -> r.path("/user-service/**")
-                .filters(f -> f.rewritePath("/user-service/(?<segment>.*)", "/${segment}")
-                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN, Role.CUSTOMER)))
-                    .requestRateLimiter(requestRateLimiter()))
-                .uri("lb://USER-SERVICE"))
-            .route("product-service", r -> r.path("/product-service/**")
-                .filters(f -> f.rewritePath("/product-service/(?<segment>.*)", "/${segment}")
-                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN)))
-                    .requestRateLimiter(requestRateLimiter()))
-                .uri("lb://PRODUCT-SERVICE"))
-            .route("order-service", r -> r.path("/order-service/**")
+            // List orders -> allow any role
+            .route("list-order", r -> r.path("/order-service/api/orders")
+                .and()
+                .method(HttpMethod.GET)
+                .filters(f -> f.rewritePath("/order-service/(?<segment>.*)", "/${segment}"))
+                .uri("lb://ORDER-SERVICE"))
+            // Get order -> deny any role
+            .route("get-order", r -> r.path("/order-service/api/orders/{id}")
+                .and()
+                .method(HttpMethod.GET)
+                .filters(f -> f.setStatus(403)) // Forbid access to this API
+                .uri("lb://ORDER-SERVICE"))
+            // Get order status -> allow any role
+            .route("get-orders-status", r -> r.path("/order-service/api/orders/{id}/status")
+                .and()
+                .method(HttpMethod.GET)
+                .filters(f -> f.rewritePath("/order-service/(?<segment>.*)", "/${segment}"))
+                .uri("lb://ORDER-SERVICE"))
+            // Place order -> allow only CUSTOMER
+            .route("place-order", r -> r.path("/order-service/api/orders/place")
+                .and()
+                .method(HttpMethod.POST)
                 .filters(f -> f.rewritePath("/order-service/(?<segment>.*)", "/${segment}")
-                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN, Role.CUSTOMER)))
-                    .requestRateLimiter(requestRateLimiter()))
+                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.CUSTOMER))))
+                .uri("lb://ORDER-SERVICE"))
+            // Import order -> allow only ADMIN
+            .route("import-order", r -> r.path("/order-service/api/orders/import")
+                .and().method(HttpMethod.POST)
+                .filters(f -> f.rewritePath("/order-service/(?<segment>.*)", "/${segment}")
+                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN))))
+                .uri("lb://ORDER-SERVICE"))
+            // Export order -> allow only ADMIN
+            .route("export-order", r -> r.path("/order-service/api/orders/export")
+                .and()
+                .method(HttpMethod.GET)
+                .filters(f -> f.rewritePath("/order-service/(?<segment>.*)", "/${segment}")
+                    .filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN))))
                 .uri("lb://ORDER-SERVICE"))
             .build();
     }
@@ -60,7 +85,7 @@ public class RoutingConfig {
         return config -> {
             config.setRateLimiter(redisRateLimiter);
             config.setKeyResolver(userKeyResolver);
-            // Support for openapi endpoints which allow empty userId
+            // Support for unsecured endpoints
             config.setDenyEmptyKey(false);
         };
     }

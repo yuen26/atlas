@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.1
 package org.atlas.framework.grpc.protobuf.order;
 
-public interface CreateOrderRequestProtoOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:order.CreateOrderRequestProto)
+public interface PlaceOrderRequestProtoOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:order.PlaceOrderRequestProto)
     com.google.protobuf.MessageOrBuilder {
 
   /**

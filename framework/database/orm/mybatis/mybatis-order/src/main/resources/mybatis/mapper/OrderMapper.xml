@@ -77,18 +77,12 @@
 		WHERE o.id = #{id}
 	</delete>
 
-	<update id="softDeleteById">
+	<update id="softDeleteByStatusAndCreatedBefore">
 		UPDATE orders o
 		SET o.deleted = true
-		WHERE o.id = #{id}
-	</update>
-
-	<select id="findByStatusAndCreatedAtBefore" resultMap="OrderResultMap">
-		SELECT o.id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at
-		FROM orders o
 		WHERE o.status = #{status}
-			AND o.created_at &lt; #{date}
-	</select>
+		  AND o.created_at &lt; #{date}
+	</update>
 
 	<sql id="searchWhereClause">
 		<where>

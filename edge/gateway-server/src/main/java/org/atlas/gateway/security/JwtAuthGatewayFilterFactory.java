@@ -29,8 +29,6 @@ public class JwtAuthGatewayFilterFactory extends AbstractGatewayFilterFactory<Li
 
     private static final List<String> unsecuredEndpoints = Arrays.asList(
         // Your unsecured endpoints here
-        "/v3/api-docs",
-        "/swagger-ui/index.html"
     );
 
     private final TokenService tokenService;

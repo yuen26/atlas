@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,9 +17,8 @@ public interface JpaOrderRepository extends JpaBaseRepository<JpaOrder, Integer>
     @Query("select o from JpaOrder o left join fetch o.orderItems where o.id = :id")
     Optional<JpaOrder> findByIdAndFetch(@Param("id") Integer id);
 
-    List<JpaOrder> findByStatusAndCreatedAtBefore(OrderStatus status, Date date);
-
     @Modifying
-    @Query("update JpaOrder o set o.deleted = true where o.id = :id")
-    int softDeleteById(@Param("id") Integer id);
+    @Query("update JpaOrder o set o.deleted = true where o.status = :status and o.createdAt < :date")
+    int softDeleteByStatusAndCreatedBefore(@Param("status") OrderStatus status,
+                                           @Param("data") Date date);
 }

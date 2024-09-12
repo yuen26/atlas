@@ -4,14 +4,12 @@ import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.atlas.business.order.application.contract.command.CreateOrderCommand;
-import org.atlas.business.order.application.contract.command.DeleteOrderCommand;
 import org.atlas.business.order.application.contract.command.ExportOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderStatusCommand;
 import org.atlas.business.order.application.contract.command.ImportOrderCommand;
 import org.atlas.business.order.application.contract.command.ListOrderCommand;
-import org.atlas.business.order.application.contract.command.UpdateOrderCommand;
+import org.atlas.business.order.application.contract.command.PlaceOrderCommand;
 import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.order.application.contract.model.OrderItemDto;
 import org.atlas.business.order.domain.shared.enums.FileType;
@@ -22,9 +20,6 @@ import org.atlas.commons.utils.DateUtil;
 import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.command.gateway.CommandGateway;
 import org.atlas.framework.grpc.protobuf.common.CustomerProto;
-import org.atlas.framework.grpc.protobuf.order.CreateOrderRequestProto;
-import org.atlas.framework.grpc.protobuf.order.CreateOrderResponseProto;
-import org.atlas.framework.grpc.protobuf.order.DeleteOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto;
 import org.atlas.framework.grpc.protobuf.order.GetOrderRequestProto;
@@ -36,7 +31,8 @@ import org.atlas.framework.grpc.protobuf.order.OrderPageProto;
 import org.atlas.framework.grpc.protobuf.order.OrderProto;
 import org.atlas.framework.grpc.protobuf.order.OrderServiceGrpc;
 import org.atlas.framework.grpc.protobuf.order.OrderStatusProto;
-import org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto;
+import org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto;
+import org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto;
 
 import java.math.BigDecimal;
 
@@ -91,41 +87,15 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
     }
 
     @Override
-    public void createOrder(CreateOrderRequestProto requestProto,
-                            StreamObserver<CreateOrderResponseProto> responseObserver) {
-        CreateOrderCommand command = map(requestProto);
+    public void placeOrder(PlaceOrderRequestProto requestProto,
+                           StreamObserver<PlaceOrderResponseProto> responseObserver) {
+        PlaceOrderCommand command = map(requestProto);
         try {
             Integer id = commandGateway.send(command);
-            CreateOrderResponseProto responseProto = CreateOrderResponseProto.newBuilder()
+            PlaceOrderResponseProto responseProto = PlaceOrderResponseProto.newBuilder()
                 .setId(id)
                 .build();
             responseObserver.onNext(responseProto);
-            responseObserver.onCompleted();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void updateOrder(UpdateOrderRequestProto requestProto,
-                            StreamObserver<Empty> responseObserver) {
-        UpdateOrderCommand command = map(requestProto);
-        try {
-            commandGateway.send(command);
-            responseObserver.onNext(Empty.getDefaultInstance());
-            responseObserver.onCompleted();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void deleteOrder(DeleteOrderRequestProto requestProto,
-                            StreamObserver<Empty> responseObserver) {
-        DeleteOrderCommand command = map(requestProto);
-        try {
-            commandGateway.send(command);
-            responseObserver.onNext(Empty.getDefaultInstance());
             responseObserver.onCompleted();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -184,26 +154,15 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
         return new GetOrderStatusCommand(requestProto.getId());
     }
 
-    private CreateOrderCommand map(CreateOrderRequestProto requestProto) {
-        CreateOrderCommand request = new CreateOrderCommand();
+    private PlaceOrderCommand map(PlaceOrderRequestProto requestProto) {
+        PlaceOrderCommand request = new PlaceOrderCommand();
         requestProto.getOrderItemList().forEach(orderItemProto -> {
-            CreateOrderCommand.OrderItem orderItem = new CreateOrderCommand.OrderItem();
+            PlaceOrderCommand.OrderItem orderItem = new PlaceOrderCommand.OrderItem();
             orderItem.setProductId(orderItemProto.getProductId());
             orderItem.setQuantity(orderItemProto.getQuantity());
             request.addItem(orderItem);
         });
         return request;
-    }
-
-    private UpdateOrderCommand map(UpdateOrderRequestProto requestProto) {
-        UpdateOrderCommand command = new UpdateOrderCommand();
-        command.setId(requestProto.getId());
-        command.setAddress(requestProto.getAddress());
-        return command;
-    }
-
-    private DeleteOrderCommand map(DeleteOrderRequestProto requestProto) {
-        return new DeleteOrderCommand(requestProto.getId());
     }
 
     private ImportOrderCommand map(ImportOrderRequestProto requestProto) {

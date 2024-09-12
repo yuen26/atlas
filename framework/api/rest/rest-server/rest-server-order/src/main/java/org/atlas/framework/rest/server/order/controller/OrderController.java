@@ -2,14 +2,12 @@ package org.atlas.framework.rest.server.order.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.atlas.business.order.application.contract.command.CreateOrderCommand;
-import org.atlas.business.order.application.contract.command.DeleteOrderCommand;
 import org.atlas.business.order.application.contract.command.ExportOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderStatusCommand;
 import org.atlas.business.order.application.contract.command.ImportOrderCommand;
 import org.atlas.business.order.application.contract.command.ListOrderCommand;
-import org.atlas.business.order.application.contract.command.UpdateOrderCommand;
+import org.atlas.business.order.application.contract.command.PlaceOrderCommand;
 import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.order.domain.shared.enums.FileType;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
@@ -21,11 +19,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,21 +53,10 @@ public class OrderController {
         return commandGateway.send(command);
     }
 
-    @PostMapping
+    @PostMapping("/place")
     @ResponseStatus(HttpStatus.CREATED)
-    public Integer createOrder(@Valid @RequestBody CreateOrderCommand command) throws Exception {
+    public Integer placeOrder(@Valid @RequestBody PlaceOrderCommand command) throws Exception {
         return commandGateway.send(command);
-    }
-
-    @PutMapping
-    public void updateOrder(@Valid @RequestBody UpdateOrderCommand command) throws Exception {
-        commandGateway.send(command);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable("id") Integer id) throws Exception {
-        DeleteOrderCommand command = new DeleteOrderCommand(id);
-        commandGateway.send(command);
     }
 
     @PostMapping("/import")

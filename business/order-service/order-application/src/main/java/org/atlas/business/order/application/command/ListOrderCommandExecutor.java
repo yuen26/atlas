@@ -7,6 +7,8 @@ import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.repository.OrderRepository;
+import org.atlas.commons.context.UserContext;
+import org.atlas.commons.context.UserInfo;
 import org.atlas.commons.utils.mapping.ModelMapperUtil;
 import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.command.contract.CommandExecutor;
@@ -26,6 +28,10 @@ public class ListOrderCommandExecutor implements CommandExecutor<ListOrderComman
     @Transactional(readOnly = true)
     public PageDto<OrderDto> execute(ListOrderCommand command) throws Exception {
         FindOrderCondition condition = ModelMapperUtil.map(command, FindOrderCondition.class);
+        UserInfo userInfo = UserContext.getCurrentUser();
+        if (userInfo.isCustomer()) {
+            condition.setCustomerId(userInfo.getUserId());
+        }
         condition.applyPaging(command.getPage(), command.getSize(), command.getSort());
         PageDto<Order> orderPage = orderRepository.find(condition);
         return toOrderDtoPage(orderPage);

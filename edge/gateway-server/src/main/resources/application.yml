@@ -31,15 +31,3 @@ spring:
       host: localhost
       port: 6379
       password: 123456
-
-springdoc:
-  swagger-ui:
-    urls:
-      - name: auth-server
-        url: /auth-server/v3/api-docs
-      - name: user-service
-        url: /user-service/v3/api-docs
-      - name: product-service
-        url: /product-service/v3/api-docs
-      - name: order-service
-        url: /order-service/v3/api-docs

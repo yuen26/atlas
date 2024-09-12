@@ -51,25 +51,15 @@ public final class Order {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_order_GetOrderStatusRequestProto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_CreateOrderRequestProto_descriptor;
+    internal_static_order_PlaceOrderRequestProto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_order_CreateOrderRequestProto_fieldAccessorTable;
+      internal_static_order_PlaceOrderRequestProto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_CreateOrderResponseProto_descriptor;
+    internal_static_order_PlaceOrderResponseProto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_order_CreateOrderResponseProto_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_UpdateOrderRequestProto_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_order_UpdateOrderRequestProto_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_DeleteOrderRequestProto_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_order_DeleteOrderRequestProto_fieldAccessorTable;
+      internal_static_order_PlaceOrderResponseProto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_order_ImportOrderRequestProto_descriptor;
   static final 
@@ -113,37 +103,31 @@ public final class Order {
       "ted_at\030\t \001(\t\022\014\n\004page\030\n \001(\005\022\014\n\004size\030\013 \001(\005" +
       "\022\014\n\004sort\030\014 \001(\t\"\"\n\024GetOrderRequestProto\022\n" +
       "\n\002id\030\001 \001(\005\"(\n\032GetOrderStatusRequestProto" +
-      "\022\n\n\002id\030\001 \001(\005\"D\n\027CreateOrderRequestProto\022" +
-      ")\n\norder_item\030\001 \003(\0132\025.order.OrderItemPro" +
-      "to\"&\n\030CreateOrderResponseProto\022\n\n\002id\030\001 \001" +
-      "(\005\"6\n\027UpdateOrderRequestProto\022\n\n\002id\030\001 \001(" +
-      "\005\022\017\n\007address\030\002 \001(\t\"%\n\027DeleteOrderRequest" +
-      "Proto\022\n\n\002id\030\001 \001(\005\"B\n\027ImportOrderRequestP" +
-      "roto\022\021\n\tfile_type\030\001 \001(\t\022\024\n\014file_content\030" +
-      "\002 \001(\014\"\347\001\n\027ExportOrderRequestProto\022\n\n\002id\030" +
-      "\001 \001(\005\022\023\n\013customer_id\030\002 \001(\005\022\022\n\nmin_amount" +
-      "\030\003 \001(\001\022\022\n\nmax_amount\030\004 \001(\001\022\017\n\007address\030\005 " +
-      "\001(\t\022\016\n\006status\030\006 \001(\t\022\017\n\007deleted\030\007 \001(\010\022\030\n\020" +
-      "start_created_at\030\010 \001(\t\022\026\n\016end_created_at" +
-      "\030\t \001(\t\022\014\n\004sort\030\n \001(\t\022\021\n\tfile_type\030\013 \001(\t\"" +
-      "0\n\030ExportOrderResponseProto\022\024\n\014file_cont" +
-      "ent\030\001 \001(\0142\337\004\n\014OrderService\022B\n\tListOrder\022" +
-      "\034.order.ListOrderRequestProto\032\025.order.Or" +
-      "derPageProto\"\000\022<\n\010GetOrder\022\033.order.GetOr" +
-      "derRequestProto\032\021.order.OrderProto\"\000\022N\n\016" +
-      "GetOrderStatus\022!.order.GetOrderStatusReq" +
-      "uestProto\032\027.order.OrderStatusProto\"\000\022P\n\013" +
-      "CreateOrder\022\036.order.CreateOrderRequestPr" +
-      "oto\032\037.order.CreateOrderResponseProto\"\000\022G" +
-      "\n\013UpdateOrder\022\036.order.UpdateOrderRequest" +
-      "Proto\032\026.google.protobuf.Empty\"\000\022G\n\013Delet" +
-      "eOrder\022\036.order.DeleteOrderRequestProto\032\026" +
-      ".google.protobuf.Empty\"\000\022G\n\013ImportOrder\022" +
-      "\036.order.ImportOrderRequestProto\032\026.google" +
-      ".protobuf.Empty\"\000\022P\n\013ExportOrder\022\036.order" +
-      ".ExportOrderRequestProto\032\037.order.ExportO" +
-      "rderResponseProto\"\000B+\n\'org.atlas.framewo" +
-      "rk.grpc.protobuf.orderP\001b\006proto3"
+      "\022\n\n\002id\030\001 \001(\005\"C\n\026PlaceOrderRequestProto\022)" +
+      "\n\norder_item\030\001 \003(\0132\025.order.OrderItemProt" +
+      "o\"%\n\027PlaceOrderResponseProto\022\n\n\002id\030\001 \001(\005" +
+      "\"B\n\027ImportOrderRequestProto\022\021\n\tfile_type" +
+      "\030\001 \001(\t\022\024\n\014file_content\030\002 \001(\014\"\347\001\n\027ExportO" +
+      "rderRequestProto\022\n\n\002id\030\001 \001(\005\022\023\n\013customer" +
+      "_id\030\002 \001(\005\022\022\n\nmin_amount\030\003 \001(\001\022\022\n\nmax_amo" +
+      "unt\030\004 \001(\001\022\017\n\007address\030\005 \001(\t\022\016\n\006status\030\006 \001" +
+      "(\t\022\017\n\007deleted\030\007 \001(\010\022\030\n\020start_created_at\030" +
+      "\010 \001(\t\022\026\n\016end_created_at\030\t \001(\t\022\014\n\004sort\030\n " +
+      "\001(\t\022\021\n\tfile_type\030\013 \001(\t\"0\n\030ExportOrderRes" +
+      "ponseProto\022\024\n\014file_content\030\001 \001(\0142\312\003\n\014Ord" +
+      "erService\022B\n\tListOrder\022\034.order.ListOrder" +
+      "RequestProto\032\025.order.OrderPageProto\"\000\022<\n" +
+      "\010GetOrder\022\033.order.GetOrderRequestProto\032\021" +
+      ".order.OrderProto\"\000\022N\n\016GetOrderStatus\022!." +
+      "order.GetOrderStatusRequestProto\032\027.order" +
+      ".OrderStatusProto\"\000\022M\n\nPlaceOrder\022\035.orde" +
+      "r.PlaceOrderRequestProto\032\036.order.PlaceOr" +
+      "derResponseProto\"\000\022G\n\013ImportOrder\022\036.orde" +
+      "r.ImportOrderRequestProto\032\026.google.proto" +
+      "buf.Empty\"\000\022P\n\013ExportOrder\022\036.order.Expor" +
+      "tOrderRequestProto\032\037.order.ExportOrderRe" +
+      "sponseProto\"\000B+\n\'org.atlas.framework.grp" +
+      "c.protobuf.orderP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -193,44 +177,32 @@ public final class Order {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_order_GetOrderStatusRequestProto_descriptor,
         new java.lang.String[] { "Id", });
-    internal_static_order_CreateOrderRequestProto_descriptor =
+    internal_static_order_PlaceOrderRequestProto_descriptor =
       getDescriptor().getMessageTypes().get(7);
-    internal_static_order_CreateOrderRequestProto_fieldAccessorTable = new
+    internal_static_order_PlaceOrderRequestProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_order_CreateOrderRequestProto_descriptor,
+        internal_static_order_PlaceOrderRequestProto_descriptor,
         new java.lang.String[] { "OrderItem", });
-    internal_static_order_CreateOrderResponseProto_descriptor =
+    internal_static_order_PlaceOrderResponseProto_descriptor =
       getDescriptor().getMessageTypes().get(8);
-    internal_static_order_CreateOrderResponseProto_fieldAccessorTable = new
+    internal_static_order_PlaceOrderResponseProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_order_CreateOrderResponseProto_descriptor,
-        new java.lang.String[] { "Id", });
-    internal_static_order_UpdateOrderRequestProto_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_order_UpdateOrderRequestProto_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_order_UpdateOrderRequestProto_descriptor,
-        new java.lang.String[] { "Id", "Address", });
-    internal_static_order_DeleteOrderRequestProto_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_order_DeleteOrderRequestProto_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_order_DeleteOrderRequestProto_descriptor,
+        internal_static_order_PlaceOrderResponseProto_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_order_ImportOrderRequestProto_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_order_ImportOrderRequestProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_order_ImportOrderRequestProto_descriptor,
         new java.lang.String[] { "FileType", "FileContent", });
     internal_static_order_ExportOrderRequestProto_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_order_ExportOrderRequestProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_order_ExportOrderRequestProto_descriptor,
         new java.lang.String[] { "Id", "CustomerId", "MinAmount", "MaxAmount", "Address", "Status", "Deleted", "StartCreatedAt", "EndCreatedAt", "Sort", "FileType", });
     internal_static_order_ExportOrderResponseProto_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_order_ExportOrderResponseProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_order_ExportOrderResponseProto_descriptor,

@@ -50,12 +50,7 @@ public class JdbcOrderRepositoryAdapter implements OrderRepository {
     }
 
     @Override
-    public void softDeleteById(Integer id) {
-        jdbcOrderRepository.softDeleteById(id);
-    }
-
-    @Override
-    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
-        return jdbcOrderRepository.findByStatusAndCreatedBefore(status, date);
+    public int softDeleteByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        return jdbcOrderRepository.softDeleteByStatusAndCreatedBefore(status, date);
     }
 }

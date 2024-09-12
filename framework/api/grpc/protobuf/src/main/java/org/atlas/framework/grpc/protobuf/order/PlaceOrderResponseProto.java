@@ -5,39 +5,38 @@
 package org.atlas.framework.grpc.protobuf.order;
 
 /**
- * Protobuf type {@code order.UpdateOrderRequestProto}
+ * Protobuf type {@code order.PlaceOrderResponseProto}
  */
-public final class UpdateOrderRequestProto extends
+public final class PlaceOrderResponseProto extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:order.UpdateOrderRequestProto)
-    UpdateOrderRequestProtoOrBuilder {
+    // @@protoc_insertion_point(message_implements:order.PlaceOrderResponseProto)
+    PlaceOrderResponseProtoOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use UpdateOrderRequestProto.newBuilder() to construct.
-  private UpdateOrderRequestProto(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use PlaceOrderResponseProto.newBuilder() to construct.
+  private PlaceOrderResponseProto(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private UpdateOrderRequestProto() {
-    address_ = "";
+  private PlaceOrderResponseProto() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new UpdateOrderRequestProto();
+    return new PlaceOrderResponseProto();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_UpdateOrderRequestProto_descriptor;
+    return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_PlaceOrderResponseProto_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_UpdateOrderRequestProto_fieldAccessorTable
+    return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_PlaceOrderResponseProto_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.class, org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.Builder.class);
+            org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.class, org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.Builder.class);
   }
 
   public static final int ID_FIELD_NUMBER = 1;
@@ -49,45 +48,6 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getId() {
     return id_;
-  }
-
-  public static final int ADDRESS_FIELD_NUMBER = 2;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object address_ = "";
-  /**
-   * <code>string address = 2;</code>
-   * @return The address.
-   */
-  @java.lang.Override
-  public java.lang.String getAddress() {
-    java.lang.Object ref = address_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      address_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string address = 2;</code>
-   * @return The bytes for address.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getAddressBytes() {
-    java.lang.Object ref = address_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      address_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -107,9 +67,6 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0) {
       output.writeInt32(1, id_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, address_);
-    }
     getUnknownFields().writeTo(output);
   }
 
@@ -123,9 +80,6 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, id_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, address_);
-    }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -136,15 +90,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto)) {
+    if (!(obj instanceof org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto)) {
       return super.equals(obj);
     }
-    org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto other = (org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto) obj;
+    org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto other = (org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto) obj;
 
     if (getId()
         != other.getId()) return false;
-    if (!getAddress()
-        .equals(other.getAddress())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -158,51 +110,49 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId();
-    hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
-    hash = (53 * hash) + getAddress().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(byte[] data)
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(java.io.InputStream input)
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -210,26 +160,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseDelimitedFrom(java.io.InputStream input)
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseDelimitedFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto parseFrom(
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -242,7 +192,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto prototype) {
+  public static Builder newBuilder(org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -258,26 +208,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code order.UpdateOrderRequestProto}
+   * Protobuf type {@code order.PlaceOrderResponseProto}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:order.UpdateOrderRequestProto)
-      org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProtoOrBuilder {
+      // @@protoc_insertion_point(builder_implements:order.PlaceOrderResponseProto)
+      org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProtoOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_UpdateOrderRequestProto_descriptor;
+      return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_PlaceOrderResponseProto_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_UpdateOrderRequestProto_fieldAccessorTable
+      return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_PlaceOrderResponseProto_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.class, org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.Builder.class);
+              org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.class, org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.Builder.class);
     }
 
-    // Construct using org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.newBuilder()
+    // Construct using org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.newBuilder()
     private Builder() {
 
     }
@@ -292,24 +242,23 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       id_ = 0;
-      address_ = "";
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_UpdateOrderRequestProto_descriptor;
+      return org.atlas.framework.grpc.protobuf.order.Order.internal_static_order_PlaceOrderResponseProto_descriptor;
     }
 
     @java.lang.Override
-    public org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto getDefaultInstanceForType() {
-      return org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.getDefaultInstance();
+    public org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto getDefaultInstanceForType() {
+      return org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.getDefaultInstance();
     }
 
     @java.lang.Override
-    public org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto build() {
-      org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto result = buildPartial();
+    public org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto build() {
+      org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -317,20 +266,17 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto buildPartial() {
-      org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto result = new org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto(this);
+    public org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto buildPartial() {
+      org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto result = new org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto result) {
+    private void buildPartial0(org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.id_ = id_;
-      }
-      if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.address_ = address_;
       }
     }
 
@@ -368,23 +314,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto) {
-        return mergeFrom((org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto)other);
+      if (other instanceof org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto) {
+        return mergeFrom((org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto other) {
-      if (other == org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto.getDefaultInstance()) return this;
+    public Builder mergeFrom(org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto other) {
+      if (other == org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto.getDefaultInstance()) return this;
       if (other.getId() != 0) {
         setId(other.getId());
-      }
-      if (!other.getAddress().isEmpty()) {
-        address_ = other.address_;
-        bitField0_ |= 0x00000002;
-        onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -417,11 +358,6 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
-            case 18: {
-              address_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000002;
-              break;
-            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -470,78 +406,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
-    private java.lang.Object address_ = "";
-    /**
-     * <code>string address = 2;</code>
-     * @return The address.
-     */
-    public java.lang.String getAddress() {
-      java.lang.Object ref = address_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        address_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string address = 2;</code>
-     * @return The bytes for address.
-     */
-    public com.google.protobuf.ByteString
-        getAddressBytes() {
-      java.lang.Object ref = address_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        address_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string address = 2;</code>
-     * @param value The address to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAddress(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      address_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string address = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearAddress() {
-      address_ = getDefaultInstance().getAddress();
-      bitField0_ = (bitField0_ & ~0x00000002);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string address = 2;</code>
-     * @param value The bytes for address to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAddressBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      address_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -555,23 +419,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:order.UpdateOrderRequestProto)
+    // @@protoc_insertion_point(builder_scope:order.PlaceOrderResponseProto)
   }
 
-  // @@protoc_insertion_point(class_scope:order.UpdateOrderRequestProto)
-  private static final org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:order.PlaceOrderResponseProto)
+  private static final org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto();
+    DEFAULT_INSTANCE = new org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto();
   }
 
-  public static org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto getDefaultInstance() {
+  public static org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<UpdateOrderRequestProto>
-      PARSER = new com.google.protobuf.AbstractParser<UpdateOrderRequestProto>() {
+  private static final com.google.protobuf.Parser<PlaceOrderResponseProto>
+      PARSER = new com.google.protobuf.AbstractParser<PlaceOrderResponseProto>() {
     @java.lang.Override
-    public UpdateOrderRequestProto parsePartialFrom(
+    public PlaceOrderResponseProto parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -590,17 +454,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<UpdateOrderRequestProto> parser() {
+  public static com.google.protobuf.Parser<PlaceOrderResponseProto> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<UpdateOrderRequestProto> getParserForType() {
+  public com.google.protobuf.Parser<PlaceOrderResponseProto> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public org.atlas.framework.grpc.protobuf.order.UpdateOrderRequestProto getDefaultInstanceForType() {
+  public org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

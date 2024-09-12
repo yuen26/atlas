@@ -2,7 +2,7 @@ package org.atlas.business.order.application.command;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
-import org.atlas.business.order.application.contract.command.CreateOrderCommand;
+import org.atlas.business.order.application.contract.command.PlaceOrderCommand;
 import org.atlas.business.order.application.service.OrderService;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCommand, Integer> {
+public class PlaceOrderCommandExecutor implements CommandExecutor<PlaceOrderCommand, Integer> {
 
     private final OrderRepository orderRepository;
     private final IProductServiceClient productServiceClient;
@@ -36,7 +36,7 @@ public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCo
 
     @Override
     @Transactional
-    public Integer execute(CreateOrderCommand command) {
+    public Integer execute(PlaceOrderCommand command) {
         Map<Integer, ProductDto> productDtoMap = fetchProducts(command);
         Order order = newOrder(command, productDtoMap);
         orderRepository.insert(order);
@@ -44,10 +44,10 @@ public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCo
         return order.getId();
     }
 
-    private Map<Integer, ProductDto> fetchProducts(CreateOrderCommand command) {
+    private Map<Integer, ProductDto> fetchProducts(PlaceOrderCommand command) {
         List<Integer> productIds = command.getOrderItems()
             .stream()
-            .map(CreateOrderCommand.OrderItem::getProductId)
+            .map(PlaceOrderCommand.OrderItem::getProductId)
             .distinct()
             .toList();
         List<ProductDto> productDtoList = productServiceClient.listProduct(productIds);
@@ -67,13 +67,13 @@ public class CreateOrderCommandExecutor implements CommandExecutor<CreateOrderCo
         return productDtoMap;
     }
 
-    private Order newOrder(CreateOrderCommand request, Map<Integer, ProductDto> productDtoMap) {
+    private Order newOrder(PlaceOrderCommand request, Map<Integer, ProductDto> productDtoMap) {
         Order order = new Order();
         order.setCustomerId(UserContext.getCurrentUser().getUserId());
         order.setStatus(OrderStatus.PENDING);
         order.setCreatedAt(new Date());
         BigDecimal amount = BigDecimal.ZERO;
-        for (CreateOrderCommand.OrderItem orderItemRequest : request.getOrderItems()) {
+        for (PlaceOrderCommand.OrderItem orderItemRequest : request.getOrderItems()) {
             OrderItem orderItem = new OrderItem();
             ProductDto productDto = productDtoMap.get(orderItemRequest.getProductId());
             orderItem.setProductId(orderItemRequest.getProductId());
