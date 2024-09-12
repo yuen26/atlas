@@ -5,6 +5,7 @@ import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.commons.utils.paging.PageDto;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository {
@@ -14,5 +15,5 @@ public interface OrderRepository {
     void insert(Order order);
     void update(Order order);
     void deleteById(Integer id);
-    int softDeleteByStatusAndCreatedBefore(OrderStatus status, Date date);
+    List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date);
 }

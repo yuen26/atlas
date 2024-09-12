@@ -20,5 +20,5 @@ public interface OrderMapper {
     int insertOrderItem(OrderItem orderItem);
     int update(Order order);
     int deleteById(@Param("id") Integer id);
-    int softDeleteByStatusAndCreatedBefore(@Param("status")OrderStatus status, @Param("date") Date date);
+    List<Order> findByStatusAndCreatedAtBefore(@Param("status")OrderStatus status, @Param("date") Date date);
 }

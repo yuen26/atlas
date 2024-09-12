@@ -29,7 +29,8 @@ public class ReserveCreditReplyEventHandler implements EventHandler<ReserveCredi
             OrderConfirmedEvent orderConfirmedEvent = new OrderConfirmedEvent(reserveCreditReplyEvent.getOrder());
             applicationEventPublisher.publishEvent(orderConfirmedEvent);
         } else {
-            orderRepository.deleteById(order.getId());
+            order.setStatus(OrderStatus.CANCELED);
+            orderRepository.update(order);
         }
     }
 }

@@ -61,7 +61,10 @@ public class JpaOrderRepositoryAdapter implements OrderRepository {
     }
 
     @Override
-    public int softDeleteByStatusAndCreatedBefore(OrderStatus status, Date date) {
-        return jpaOrderRepository.softDeleteByStatusAndCreatedBefore(status, date);
+    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        return jpaOrderRepository.findByStatusAndCreatedAtBefore(status, date)
+            .stream()
+            .map(OrderMapper::map)
+            .toList();
     }
 }

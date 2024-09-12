@@ -7,8 +7,8 @@ import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
 import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.atlas.framework.persistence.jdbc.order.supports.OrderRowMapper;
+import org.atlas.framework.persistence.jdbc.order.supports.OrderWithItemsExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,9 +16,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -90,8 +87,8 @@ public class JdbcOrderRepository {
             sqlBuilder.append("o.address = :address ");
         }
         sqlBuilder.append("WHERE o.id = :id");
-        String sql = sqlBuilder.toString();
 
+        String sql = sqlBuilder.toString();
         MapSqlParameterSource params = toOrderParams(order);
 
         return namedParameterJdbcTemplate.update(sql, params);
@@ -99,13 +96,17 @@ public class JdbcOrderRepository {
 
     public int deleteById(Integer id) {
         String sql = "DELETE FROM orders o WHERE o.id = :id";
+
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
+
         return namedParameterJdbcTemplate.update(sql, params);
     }
 
-    public int softDeleteByStatusAndCreatedBefore(OrderStatus status, Date date) {
-        String sql = "UPDATE orders o SET o.deleted = true " +
+    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        String sql =
+            "SELECT o.* " +
+            "FROM orders o " +
             "WHERE o.status = :status " +
             "  AND o.created_at < :date";
 
@@ -113,7 +114,7 @@ public class JdbcOrderRepository {
         parameters.addValue("status", status.name());
         parameters.addValue("date", date);
 
-        return namedParameterJdbcTemplate.update(sql, parameters);
+        return namedParameterJdbcTemplate.query(sql, parameters, new OrderRowMapper());
     }
 
     private String buildWhereClause(FindOrderCondition condition, MapSqlParameterSource params) {
@@ -187,34 +188,6 @@ public class JdbcOrderRepository {
     private Long doCount(String whereClause, MapSqlParameterSource params) {
         String sql = "SELECT COUNT(o.id) FROM orders o " + whereClause;
         return namedParameterJdbcTemplate.queryForObject(sql, params, Long.class);
-    }
-
-    private static class OrderWithItemsExtractor implements ResultSetExtractor<List<Order>> {
-        @Override
-        public List<Order> extractData(ResultSet rs) throws SQLException, DataAccessException {
-            List<Order> orders = new ArrayList<>();
-            Order currentOrder = null;
-            while (rs.next()) {
-                int orderId = rs.getInt("order_id");
-                if (currentOrder == null || currentOrder.getId() != orderId) {
-                    currentOrder = new Order();
-                    currentOrder.setId(orderId);
-                    currentOrder.setCustomerId(rs.getInt("customer_id"));
-                    currentOrder.setAmount(rs.getBigDecimal("amount"));
-                    currentOrder.setStatus(OrderStatus.valueOf(rs.getString("status")));
-                    currentOrder.setCreatedAt(rs.getTimestamp("created_at"));
-                    orders.add(currentOrder);
-                }
-                if (rs.getObject("order_item_id") != null) {
-                    OrderItem orderItem = new OrderItem();
-                    orderItem.setProductId(rs.getInt("product_id"));
-                    orderItem.setProductPrice(rs.getBigDecimal("product_price"));
-                    orderItem.setQuantity(rs.getInt("quantity"));
-                    currentOrder.addOrderItem(orderItem);
-                }
-            }
-            return orders;
-        }
     }
 
     private MapSqlParameterSource toOrderParams(Order order) {

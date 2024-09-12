@@ -58,7 +58,7 @@ public class MyBatisOrderRepositoryAdapter implements OrderRepository {
     }
 
     @Override
-    public int softDeleteByStatusAndCreatedBefore(OrderStatus status, Date date) {
-        return orderMapper.softDeleteByStatusAndCreatedBefore(status, date);
+    public List<Order> findByStatusAndCreatedBefore(OrderStatus status, Date date) {
+        return orderMapper.findByStatusAndCreatedAtBefore(status, date);
     }
 }
