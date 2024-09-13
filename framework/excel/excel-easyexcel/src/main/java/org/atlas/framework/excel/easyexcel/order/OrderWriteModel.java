@@ -25,9 +25,6 @@ public class OrderWriteModel {
     @ExcelProperty(value = "Status", converter = OrderStatusConverter.class)
     private String status;
 
-    @ExcelProperty(value = "Deleted")
-    private Boolean deleted;
-
     @ExcelProperty(value = "Created At")
     @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     private Date createdAt;

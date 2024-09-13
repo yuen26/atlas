@@ -7,7 +7,7 @@
 		<result property="createdAt" column="created_at"/>
 		<result property="updatedAt" column="updated_at"/>
 		<collection property="orderItems" ofType="org.atlas.business.order.domain.entity.OrderItem"
-								column="id" select="selectOrderItemsByOrderId"/>
+					column="id" select="selectOrderItemsByOrderId"/>
 	</resultMap>
 
 	<resultMap id="OrderItemResultMap" type="org.atlas.business.order.domain.entity.OrderItem">
@@ -103,9 +103,6 @@
 			</if>
 			<if test="condition.status != null">
 				AND o.status = #{condition.status}
-			</if>
-			<if test="condition.deleted != null">
-				AND o.deleted = #{condition.deleted}
 			</if>
 			<if test="condition.startCreatedAt != null">
 				AND o.created_at >= #{condition.startCreatedAt}

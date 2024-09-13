@@ -3,9 +3,9 @@ package org.atlas.framework.event.contract.order.choreography;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.framework.event.contract.EventType;
 import org.atlas.framework.event.contract.order.BaseOrderEvent;
-import org.atlas.framework.event.contract.order.model.OrderData;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +14,7 @@ public class ReserveCreditFailedEvent extends BaseOrderEvent {
 
     private String error;
 
-    public ReserveCreditFailedEvent(OrderData order, String error) {
+    public ReserveCreditFailedEvent(OrderDto order, String error) {
         this.order = order;
         this.error = error;
     }
@@ -22,5 +22,15 @@ public class ReserveCreditFailedEvent extends BaseOrderEvent {
     @Override
     public EventType type() {
         return EventType.RESERVE_CREDIT_FAILED;
+    }
+
+    @Override
+    public String toString() {
+        return "ReserveCreditFailedEvent{" +
+            "timestamp=" + timestamp +
+            ", eventId='" + eventId + '\'' +
+            ", order=" + order +
+            ", error='" + error + '\'' +
+            '}';
     }
 }

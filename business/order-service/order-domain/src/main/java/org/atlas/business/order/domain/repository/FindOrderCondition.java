@@ -15,13 +15,12 @@ public class FindOrderCondition {
     private BigDecimal maxAmount;
     private String address;
     private OrderStatus status;
-    private Boolean deleted;
     private Date startCreatedAt;
     private Date endCreatedAt;
     private Integer limit;
     private Integer offset;
     private String sortBy;
-    private String sortOrder;
+    private boolean sortAscending;
 
     public void applyPaging(Integer page, Integer size, String sort) {
         if (page != null) {
@@ -34,10 +33,10 @@ public class FindOrderCondition {
         if (sort != null) {
             if (sort.startsWith("-")) {
                 this.sortBy = sort.substring(1);
-                this.sortOrder = "DESC";
+                this.sortAscending = false;
             } else {
                 this.sortBy = sort;
-                this.sortOrder = "ASC";
+                this.sortAscending = true;
             }
         }
     }

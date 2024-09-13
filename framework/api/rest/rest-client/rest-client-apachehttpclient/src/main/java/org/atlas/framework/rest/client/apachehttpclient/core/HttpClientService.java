@@ -17,7 +17,7 @@ import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
-import org.atlas.commons.util.json.JsonUtil;
+import org.atlas.commons.utils.json.JsonUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

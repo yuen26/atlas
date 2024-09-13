@@ -12,8 +12,4 @@ public class OrderItem implements Serializable {
     private Integer productId;
     private BigDecimal productPrice;
     private Integer quantity;
-
-    public BigDecimal getSubAmount() {
-        return productPrice.multiply(BigDecimal.valueOf(quantity));
-    }
 }

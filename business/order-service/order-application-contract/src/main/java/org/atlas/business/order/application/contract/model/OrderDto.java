@@ -18,7 +18,6 @@ public class OrderDto {
     private BigDecimal amount;
     private String address;
     private OrderStatus status;
-    private Boolean deleted;
     private Date createdAt;
 
     public void addOrderItem(OrderItemDto orderItem) {

@@ -3,7 +3,7 @@ package org.atlas.framework.storage.firebase.service;
 import com.google.cloud.storage.Blob;
 import com.google.firebase.cloud.StorageClient;
 import lombok.RequiredArgsConstructor;
-import org.atlas.commons.util.function.Callback;
+import org.atlas.commons.utils.function.Callback;
 import org.atlas.framework.storage.contract.StorageService;
 import org.springframework.stereotype.Service;
 

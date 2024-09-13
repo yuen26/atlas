@@ -7,8 +7,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.atlas.business.user.application.contract.command.ListCustomerCommand;
 import org.atlas.business.user.application.contract.model.CustomerDto;
 import org.atlas.framework.command.gateway.CommandGateway;
+import org.atlas.framework.grpc.protobuf.common.CustomerProto;
 import org.atlas.framework.grpc.protobuf.user.CustomerListProto;
-import org.atlas.framework.grpc.protobuf.user.CustomerProto;
 import org.atlas.framework.grpc.protobuf.user.CustomerServiceGrpc;
 import org.atlas.framework.grpc.protobuf.user.ListCustomerRequestProto;
 
@@ -38,14 +38,6 @@ public class CustomerGrpcService extends CustomerServiceGrpc.CustomerServiceImpl
         return new ListCustomerCommand(requestProto.getIdList());
     }
 
-    private CustomerProto map(CustomerDto customerDto) {
-        return CustomerProto.newBuilder()
-            .setId(customerDto.getId())
-            .setUsername(customerDto.getUsername())
-            .setEmail(customerDto.getEmail())
-            .build();
-    }
-
     private CustomerListProto map(List<CustomerDto> customerDtoList) {
         if (CollectionUtils.isEmpty(customerDtoList)) {
             return CustomerListProto.getDefaultInstance();
@@ -53,5 +45,13 @@ public class CustomerGrpcService extends CustomerServiceGrpc.CustomerServiceImpl
         CustomerListProto.Builder builder = CustomerListProto.newBuilder();
         customerDtoList.forEach(customerDto -> builder.addCustomer(map(customerDto)));
         return builder.build();
+    }
+
+    private CustomerProto map(CustomerDto customerDto) {
+        return CustomerProto.newBuilder()
+            .setId(customerDto.getId())
+            .setUsername(customerDto.getUsername())
+            .setEmail(customerDto.getEmail())
+            .build();
     }
 }

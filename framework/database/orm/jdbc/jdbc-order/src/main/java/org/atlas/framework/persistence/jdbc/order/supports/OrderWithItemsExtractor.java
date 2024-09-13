@@ -3,6 +3,7 @@ package org.atlas.framework.persistence.jdbc.order.supports;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.entity.OrderItem;
 import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.framework.persistence.jdbc.core.NullSafeRowMapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
@@ -18,23 +19,24 @@ public class OrderWithItemsExtractor implements ResultSetExtractor<List<Order>> 
         List<Order> orders = new ArrayList<>();
         Order currentOrder = null;
         while (rs.next()) {
+            NullSafeRowMapper rowMapper = new NullSafeRowMapper(rs);
             int orderId = rs.getInt("order_id");
             if (currentOrder == null || currentOrder.getId() != orderId) {
                 currentOrder = new Order();
                 currentOrder.setId(orderId);
-                currentOrder.setCustomerId(rs.getInt("customer_id"));
-                currentOrder.setAmount(rs.getBigDecimal("amount"));
-                currentOrder.setAddress(rs.getString("address"));
-                currentOrder.setStatus(OrderStatus.valueOf(rs.getString("status")));
-                currentOrder.setCreatedAt(rs.getTimestamp("created_at"));
-                currentOrder.setUpdatedAt(rs.getTimestamp("updated_at"));
+                currentOrder.setCustomerId(rowMapper.getInt("customer_id"));
+                currentOrder.setAmount(rowMapper.getBigDecimal("amount"));
+                currentOrder.setAddress(rowMapper.getString("address"));
+                currentOrder.setStatus(OrderStatus.valueOf(rowMapper.getString("status")));
+                currentOrder.setCreatedAt(rowMapper.getTimestamp("created_at"));
+                currentOrder.setUpdatedAt(rowMapper.getTimestamp("updated_at"));
                 orders.add(currentOrder);
             }
             if (rs.getObject("order_item_id") != null) {
                 OrderItem orderItem = new OrderItem();
-                orderItem.setProductId(rs.getInt("product_id"));
-                orderItem.setProductPrice(rs.getBigDecimal("product_price"));
-                orderItem.setQuantity(rs.getInt("quantity"));
+                orderItem.setProductId(rowMapper.getInt("product_id"));
+                orderItem.setProductPrice(rowMapper.getBigDecimal("product_price"));
+                orderItem.setQuantity(rowMapper.getInt("quantity"));
                 currentOrder.addOrderItem(orderItem);
             }
         }

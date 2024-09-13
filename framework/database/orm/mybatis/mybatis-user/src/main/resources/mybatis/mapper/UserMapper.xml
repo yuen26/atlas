@@ -6,10 +6,13 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <select id="findById" resultMap="UserMap">
+    <select id="findByIdIn" parameterType="list" resultMap="UserMap">
         SELECT *
         FROM users
-        WHERE id = #{id}
+        WHERE id IN
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 
     <select id="findByEmail" resultMap="UserMap">
@@ -17,12 +20,6 @@
         FROM users
         WHERE email = #{email}
     </select>
-
-    <insert id="insert" parameterType="org.atlas.business.user.domain.entity.User"
-            useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO users (username, email, password, role, credit)
-        VALUES (#{username}, #{email}, #{password}, #{role}, #{credit})
-    </insert>
 
     <update id="decreaseCredit">
         UPDATE users

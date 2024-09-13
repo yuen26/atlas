@@ -3,8 +3,9 @@ package org.atlas.business.product.application.event.remote.choreography;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.atlas.business.product.domain.repository.ProductRepository;
+import org.atlas.framework.event.contract.EventType;
 import org.atlas.framework.event.contract.order.choreography.ReserveCreditFailedEvent;
-import org.atlas.framework.event.core.handler.EventHandler;
+import org.atlas.framework.event.core.consumer.handler.EventHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReserveCreditFailedEventHandler implements EventHandler<ReserveCreditFailedEvent> {
 
     private final ProductRepository productRepository;
+
+    @Override
+    public EventType supports() {
+        return EventType.RESERVE_CREDIT_FAILED;
+    }
 
     @Override
     @Transactional

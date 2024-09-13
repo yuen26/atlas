@@ -27,8 +27,6 @@ public class ExportOrderCommand implements Command<byte[]> {
 
     private OrderStatus status;
 
-    private Boolean deleted;
-
     private Date startCreatedAt;
 
     private Date endCreatedAt;

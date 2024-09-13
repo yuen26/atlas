@@ -63,10 +63,6 @@ public class OrderExcelWriterAdapter implements ExcelWriter {
         headerCell.setCellStyle(headerStyle);
 
         headerCell = header.createCell(5);
-        headerCell.setCellValue("Deleted");
-        headerCell.setCellStyle(headerStyle);
-
-        headerCell = header.createCell(6);
         headerCell.setCellValue("Created At");
         headerCell.setCellStyle(headerStyle);
     }
@@ -100,10 +96,6 @@ public class OrderExcelWriterAdapter implements ExcelWriter {
             cell.setCellStyle(style);
 
             cell = row.createCell(5);
-            cell.setCellValue(order.getDeleted());
-            cell.setCellStyle(style);
-
-            cell = row.createCell(6);
             cell.setCellValue(DateUtil.format(order.getCreatedAt(), Constant.DATE_TIME_FORMAT));
             cell.setCellStyle(style);
 

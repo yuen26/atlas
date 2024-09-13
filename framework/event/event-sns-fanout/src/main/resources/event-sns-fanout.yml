@@ -1,9 +1,0 @@
-app:
-  event:
-    sns-fanout:
-      publisher:
-        topics:
-          - <event-type>: <topic-name>
-      subscriber:
-        queues:
-          - <queue-url>

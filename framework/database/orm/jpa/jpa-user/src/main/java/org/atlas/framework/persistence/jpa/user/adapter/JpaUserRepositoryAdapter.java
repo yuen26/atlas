@@ -8,6 +8,7 @@ import org.atlas.framework.persistence.jpa.user.repository.JpaUserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,9 +18,11 @@ public class JpaUserRepositoryAdapter implements UserRepository {
     private final JpaUserRepository jpaUserRepository;
 
     @Override
-    public Optional<User> findById(Integer id) {
-        return jpaUserRepository.findById(id)
-            .map(jpaUser -> ModelMapperUtil.map(jpaUser, User.class));
+    public List<User> findByIdIn(List<Integer> ids) {
+        return jpaUserRepository.findAllById(ids)
+            .stream()
+            .map(jpaUser -> ModelMapperUtil.map(jpaUser, User.class))
+            .toList();
     }
 
     @Override

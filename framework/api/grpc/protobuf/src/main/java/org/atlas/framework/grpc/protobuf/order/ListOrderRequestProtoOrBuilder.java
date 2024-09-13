@@ -57,54 +57,48 @@ public interface ListOrderRequestProtoOrBuilder extends
       getStatusBytes();
 
   /**
-   * <code>bool deleted = 7;</code>
-   * @return The deleted.
-   */
-  boolean getDeleted();
-
-  /**
-   * <code>string start_created_at = 8;</code>
+   * <code>string start_created_at = 7;</code>
    * @return The startCreatedAt.
    */
   java.lang.String getStartCreatedAt();
   /**
-   * <code>string start_created_at = 8;</code>
+   * <code>string start_created_at = 7;</code>
    * @return The bytes for startCreatedAt.
    */
   com.google.protobuf.ByteString
       getStartCreatedAtBytes();
 
   /**
-   * <code>string end_created_at = 9;</code>
+   * <code>string end_created_at = 8;</code>
    * @return The endCreatedAt.
    */
   java.lang.String getEndCreatedAt();
   /**
-   * <code>string end_created_at = 9;</code>
+   * <code>string end_created_at = 8;</code>
    * @return The bytes for endCreatedAt.
    */
   com.google.protobuf.ByteString
       getEndCreatedAtBytes();
 
   /**
-   * <code>int32 page = 10;</code>
+   * <code>int32 page = 9;</code>
    * @return The page.
    */
   int getPage();
 
   /**
-   * <code>int32 size = 11;</code>
+   * <code>int32 size = 10;</code>
    * @return The size.
    */
   int getSize();
 
   /**
-   * <code>string sort = 12;</code>
+   * <code>string sort = 11;</code>
    * @return The sort.
    */
   java.lang.String getSort();
   /**
-   * <code>string sort = 12;</code>
+   * <code>string sort = 11;</code>
    * @return The bytes for sort.
    */
   com.google.protobuf.ByteString

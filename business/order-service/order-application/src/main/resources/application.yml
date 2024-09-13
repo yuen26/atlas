@@ -58,8 +58,6 @@ spring:
     password: root
   kafka:
     bootstrap-servers: localhost:9092
-    consumer:
-      group-id: order-service
   quartz:
     # Quartz can store job and scheduling information in a relational database or RAM.
     # With RAM option, any information will be deleted with application restart.
@@ -71,11 +69,6 @@ spring:
       org.quartz.threadPool:
         threadNamePrefix: quartz
         threadCount: 10
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
 springdoc:
   packages-to-scan: org.atlas.framework.rest.server.order.controller

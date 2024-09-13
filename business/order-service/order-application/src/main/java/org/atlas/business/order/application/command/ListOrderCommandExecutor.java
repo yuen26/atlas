@@ -1,9 +1,9 @@
 package org.atlas.business.order.application.command;
 
 import lombok.RequiredArgsConstructor;
-import org.atlas.business.order.application.aggregator.OrderAggregator;
 import org.atlas.business.order.application.contract.command.ListOrderCommand;
 import org.atlas.business.order.application.contract.model.OrderDto;
+import org.atlas.business.order.application.service.OrderService;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.repository.FindOrderCondition;
 import org.atlas.business.order.domain.repository.OrderRepository;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ListOrderCommandExecutor implements CommandExecutor<ListOrderCommand, PageDto<OrderDto>> {
 
     private final OrderRepository orderRepository;
-    private final OrderAggregator orderAggregator;
+    private final OrderService orderService;
 
     @Override
     @Transactional(readOnly = true)
@@ -42,7 +42,7 @@ public class ListOrderCommandExecutor implements CommandExecutor<ListOrderComman
             return PageDto.empty();
         }
         List<Order> orderList = orderPage.getRecords();
-        List<OrderDto> orderDtoList = orderAggregator.aggregate(orderList);
+        List<OrderDto> orderDtoList = orderService.aggregate(orderList);
         return PageDto.of(orderDtoList, orderPage.getTotalCount());
     }
 }

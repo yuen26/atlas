@@ -80,41 +80,19 @@
         <!-- Event -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>event-core</artifactId>
+            <artifactId>event-kafka-publisher</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>event-kafka</artifactId>
+            <artifactId>event-kafka-consumer</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.atlas.framework</groupId>-->
-        <!--            <artifactId>event-sns-fanout</artifactId>-->
-        <!--            <version>0.0.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-
-        <!-- Notification -->
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>notification-publisher-activemq</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>notification-publisher-rabbit</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.atlas.framework</groupId>-->
-<!--            <artifactId>notification-publisher-sqs</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
 
         <!-- Observability -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>observability-v1</artifactId>
+            <artifactId>observability</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

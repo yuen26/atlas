@@ -7,8 +7,8 @@ CREATE TABLE orders
     id          INT            NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customer_id INT            NOT NULL,
     amount      DECIMAL(11, 2) NOT NULL,
-    status      VARCHAR(20)    NOT NULL,
     address     VARCHAR(500),
+    status      VARCHAR(20)    NOT NULL,
     created_at  DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  DATETIME                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;

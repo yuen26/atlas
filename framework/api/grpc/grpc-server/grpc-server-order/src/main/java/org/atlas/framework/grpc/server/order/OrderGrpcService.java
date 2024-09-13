@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.atlas.business.order.application.contract.command.ExportOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderCommand;
-import org.atlas.business.order.application.contract.command.GetOrderStatusCommand;
 import org.atlas.business.order.application.contract.command.ImportOrderCommand;
 import org.atlas.business.order.application.contract.command.ListOrderCommand;
 import org.atlas.business.order.application.contract.command.PlaceOrderCommand;
@@ -23,14 +22,12 @@ import org.atlas.framework.grpc.protobuf.common.CustomerProto;
 import org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.ExportOrderResponseProto;
 import org.atlas.framework.grpc.protobuf.order.GetOrderRequestProto;
-import org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto;
 import org.atlas.framework.grpc.protobuf.order.ImportOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.ListOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.OrderItemProto;
 import org.atlas.framework.grpc.protobuf.order.OrderPageProto;
 import org.atlas.framework.grpc.protobuf.order.OrderProto;
 import org.atlas.framework.grpc.protobuf.order.OrderServiceGrpc;
-import org.atlas.framework.grpc.protobuf.order.OrderStatusProto;
 import org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto;
 
@@ -63,22 +60,6 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
         try {
             OrderDto orderDto = commandGateway.send(command);
             OrderProto responseProto = map(orderDto);
-            responseObserver.onNext(responseProto);
-            responseObserver.onCompleted();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void getOrderStatus(GetOrderStatusRequestProto requestProto,
-                               StreamObserver<OrderStatusProto> responseObserver) {
-        GetOrderStatusCommand command = map(requestProto);
-        try {
-            OrderStatus status = commandGateway.send(command);
-            OrderStatusProto responseProto = OrderStatusProto.newBuilder()
-                .setStatus(status.name())
-                .build();
             responseObserver.onNext(responseProto);
             responseObserver.onCompleted();
         } catch (Exception e) {
@@ -137,7 +118,6 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
         command.setMaxAmount(BigDecimal.valueOf(requestProto.getMaxAmount()));
         command.setAddress(requestProto.getAddress());
         command.setStatus(OrderStatus.valueOf(requestProto.getStatus()));
-        command.setDeleted(requestProto.getDeleted());
         command.setStartCreatedAt(DateUtil.parse(requestProto.getStartCreatedAt(), Constant.DATE_TIME_FORMAT));
         command.setEndCreatedAt(DateUtil.parse(requestProto.getEndCreatedAt(), Constant.DATE_TIME_FORMAT));
         command.setPage(requestProto.getPage());
@@ -148,10 +128,6 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
 
     private GetOrderCommand map(GetOrderRequestProto requestProto) {
         return new GetOrderCommand(requestProto.getId());
-    }
-
-    private GetOrderStatusCommand map(GetOrderStatusRequestProto requestProto) {
-        return new GetOrderStatusCommand(requestProto.getId());
     }
 
     private PlaceOrderCommand map(PlaceOrderRequestProto requestProto) {
@@ -180,7 +156,6 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
         command.setMaxAmount(BigDecimal.valueOf(requestProto.getMaxAmount()));
         command.setAddress(requestProto.getAddress());
         command.setStatus(OrderStatus.valueOf(requestProto.getStatus()));
-        command.setDeleted(requestProto.getDeleted());
         command.setStartCreatedAt(DateUtil.parse(requestProto.getStartCreatedAt(), Constant.DATE_TIME_FORMAT));
         command.setEndCreatedAt(DateUtil.parse(requestProto.getEndCreatedAt(), Constant.DATE_TIME_FORMAT));
         command.setSort(requestProto.getSort());

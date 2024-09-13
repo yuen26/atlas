@@ -35,7 +35,7 @@
 		<!-- Observability -->
 		<dependency>
 			<groupId>org.atlas.framework</groupId>
-			<artifactId>observability-v1</artifactId>
+			<artifactId>observability</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

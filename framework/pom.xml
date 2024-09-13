@@ -79,13 +79,12 @@
         <!-- Discovery client -->
         <module>discovery-client/eureka-client</module>
 
-        <!-- Event core -->
-        <module>event/event-core</module>
+        <!-- Event-driven -->
         <module>event/event-contract</module>
-
-        <!-- Event brokers -->
-        <module>event/event-kafka</module>
-        <module>event/event-sns-fanout</module>
+        <module>event/event-core-publisher</module>
+        <module>event/event-core-consumer</module>
+        <module>event/event-kafka-publisher</module>
+        <module>event/event-kafka-consumer</module>
 
         <!-- Excel -->
         <module>excel/excel-easyexcel</module>
@@ -99,41 +98,21 @@
         <module>lock/lock-redis</module>
 
         <!-- Notification -->
-        <module>notification/notification-core</module>
+        <module>notification/email/email-core</module>
+        <module>notification/email/email-spring</module>
+        <module>notification/sse</module>
+        <module>notification/websocket</module>
 
-        <!-- Notification::Publisher -->
-        <module>notification/notification-publisher/notification-publisher-activemq</module>
-        <module>notification/notification-publisher/notification-publisher-rabbit</module>
-        <module>notification/notification-publisher/notification-publisher-sqs</module>
+        <module>observability</module>
 
-        <!-- Notification::Consumer -->
-        <module>notification/notification-consumer/notification-consumer-activemq</module>
-        <module>notification/notification-consumer/notification-consumer-rabbit</module>
-        <module>notification/notification-consumer/notification-consumer-sqs</module>
+        <!-- Observability::Logging -->
+        <module>observability/logging/logging-logback</module>
 
-        <!-- Notification::Channel -->
-        <module>notification/notification-channel/email/email-core</module>
-        <module>notification/notification-channel/email/email-spring</module>
-        <module>notification/notification-channel/sse</module>
-        <module>notification/notification-channel/websocket</module>
+        <!-- Observability::Monitoring -->
+        <module>observability/monitoring</module>
 
-        <!-- Notification::Template -->
-        <module>notification/template/template-core</module>
-        <module>notification/template/template-freemarker</module>
-
-        <module>observability-v1</module>
-
-        <!-- Observability V1::Logging -->
-        <module>observability-v1/logging/logging-logback</module>
-
-        <!-- Observability V1::Monitoring -->
-        <module>observability-v1/monitoring</module>
-
-        <!-- Observability V1::Tracing -->
-        <module>observability-v1/tracing/tracing-zipkin</module>
-
-        <!-- Observability V2 -->
-        <module>observability-v2</module>
+        <!-- Observability::Tracing -->
+        <module>observability/tracing/tracing-zipkin</module>
 
         <!-- Redis shared config -->
         <module>redis</module>
@@ -143,6 +122,10 @@
         <module>storage/storage-filesystem</module>
         <module>storage/storage-firebase</module>
         <module>storage/storage-s3</module>
+
+        <!-- Template -->
+        <module>template/template-core</module>
+        <module>template/template-freemarker</module>
     </modules>
 
     <dependencies>

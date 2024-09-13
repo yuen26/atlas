@@ -47,8 +47,6 @@ spring:
     password: root
   kafka:
     bootstrap-servers: localhost:9092
-    consumer:
-      group-id: product-service
 
 springdoc:
   packages-to-scan: org.atlas.framework.rest.server.product.controller

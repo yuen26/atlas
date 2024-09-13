@@ -1,16 +1,3 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8761/eureka}
-
-grpc:
-  client:
-    order:
-      address: 'static://127.0.0.1:50053'
-      enableKeepAlive: true
-      keepAliveWithoutCalls: true
-      negotiationType: plaintext
-
 management:
   endpoint:
     prometheus:
@@ -37,22 +24,21 @@ server:
   port: 8092
 
 spring:
-  activemq:
-    broker-url: tcp://localhost:61616
-    user: artemis
-    password: artemis
   application:
     name: notification-server
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+  kafka:
+    bootstrap-servers: localhost:9092
   mail:
     host: localhost
     port: 25
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
 app:
-  internal:
-    order:
-      base-url: http://localhost:8083
+  event:
+    kafka:
+      consumer:
+        topics: order_confirmed

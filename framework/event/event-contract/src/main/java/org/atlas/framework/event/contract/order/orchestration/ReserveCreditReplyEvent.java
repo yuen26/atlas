@@ -12,4 +12,13 @@ public class ReserveCreditReplyEvent extends BaseReplyEvent {
     public EventType type() {
         return EventType.RESERVE_CREDIT_REPLY;
     }
+
+    @Override
+    public String toString() {
+        return "ReserveCreditReplyEvent{" +
+            "timestamp=" + timestamp +
+            ", eventId='" + eventId + '\'' +
+            ", order=" + order +
+            '}';
+    }
 }

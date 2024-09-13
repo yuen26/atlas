@@ -24,7 +24,7 @@ public class CustomJpaOrderRepositoryUsingJpql implements CustomJpaOrderReposito
     public List<JpaOrder> find(FindOrderCondition condition) {
         Map<String, Object> params = new HashMap<>();
         String whereClause = buildWhereClause(condition, params);
-        return find(whereClause, condition.getSort(), condition.getPage(), condition.getSize(), params);
+        return find(whereClause, params, condition);
     }
 
     @Override
@@ -36,9 +36,9 @@ public class CustomJpaOrderRepositoryUsingJpql implements CustomJpaOrderReposito
 
     private String buildWhereClause(FindOrderCondition condition, Map<String, Object> params) {
         StringBuilder whereClauseBuilder = new StringBuilder("where 1=1 ");
-        if (condition.getOrderId() != null) {
-            whereClauseBuilder.append(" and o.orderId = :orderId ");
-            params.put("orderId", condition.getOrderId());
+        if (condition.getId() != null) {
+            whereClauseBuilder.append(" and o.id = :id ");
+            params.put("id", condition.getId());
         }
         if (condition.getCustomerId() != null) {
             whereClauseBuilder.append(" and o.customerId = :customerId ");
@@ -60,10 +60,6 @@ public class CustomJpaOrderRepositoryUsingJpql implements CustomJpaOrderReposito
             whereClauseBuilder.append(" and p.status = :status ");
             params.put("status", condition.getStatus());
         }
-        if (condition.getDeleted() != null) {
-            whereClauseBuilder.append(" and o.deleted = :deleted ");
-            params.put("deleted", condition.getDeleted());
-        }
         if (condition.getStartCreatedAt() != null) {
             whereClauseBuilder.append(" and p.createdAt >= :startCreatedAt ");
             params.put("startCreatedAt", condition.getStartCreatedAt());
@@ -82,28 +78,28 @@ public class CustomJpaOrderRepositoryUsingJpql implements CustomJpaOrderReposito
         return query.getSingleResult();
     }
 
-    private List<JpaOrder> find(String whereClause, String sort, Integer pageNumber, Integer pageSize, Map<String, Object> params) {
-        StringBuilder selectBuilder = new StringBuilder("select o from JpaOrder o left join fetch o.orderItems ");
-        selectBuilder.append(whereClause);
+    private List<JpaOrder> find(String whereClause, Map<String, Object> params, FindOrderCondition condition) {
+        StringBuilder sqlBuilder = new StringBuilder("select o from JpaOrder o left join fetch o.orderItems ");
+        sqlBuilder.append(whereClause);
 
         // Sorting
-        if (StringUtils.hasLength(sort)) {
-            selectBuilder.append(" order by ");
-            if (sort.startsWith("-")) {
-                selectBuilder.append(sort.substring(1)).append(" desc");
+        if (StringUtils.hasLength(condition.getSortBy())) {
+            sqlBuilder.append(" order by ");
+            if (condition.isSortAscending()) {
+                sqlBuilder.append(condition.getSortBy());
             } else {
-                selectBuilder.append(sort);
+                sqlBuilder.append(condition.getSortBy()).append(" desc");
             }
         }
 
-        String sql = selectBuilder.toString();
+        String sql = sqlBuilder.toString();
         TypedQuery<JpaOrder> query = entityManager.createQuery(sql, JpaOrder.class);
         params.forEach(query::setParameter);
 
         // Paging
-        if (pageNumber != null && pageSize != null) {
-            query.setFirstResult(pageNumber * pageSize);
-            query.setMaxResults(pageSize);
+        if (condition.getOffset() != null && condition.getLimit() != null) {
+            query.setFirstResult(condition.getOffset());
+            query.setMaxResults(condition.getLimit());
         }
 
         return query.getResultList();

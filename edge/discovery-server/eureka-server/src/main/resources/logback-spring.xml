@@ -28,11 +28,11 @@
     </appender>
 
     <!-- Logger for specific packages -->
-    <logger name="org.atlas" level="DEBUG">
+    <logger name="org.atlas" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </logger>
-    <logger name="org.springframework.cloud.netflix.eureka" level="DEBUG">
+    <logger name="org.springframework.cloud.netflix.eureka" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </logger>

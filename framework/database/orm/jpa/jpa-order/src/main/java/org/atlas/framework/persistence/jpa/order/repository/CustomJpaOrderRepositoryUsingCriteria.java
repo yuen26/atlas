@@ -28,7 +28,7 @@ public class CustomJpaOrderRepositoryUsingCriteria implements CustomJpaOrderRepo
     @Override
     public List<JpaOrder> find(FindOrderCondition condition) {
         Specification<JpaOrder> spec = buildSpec(condition);
-        return find(spec, condition.getSort(), condition.getPage(), condition.getSize());
+        return find(spec, condition);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class CustomJpaOrderRepositoryUsingCriteria implements CustomJpaOrderRepo
 
     private Specification<JpaOrder> buildSpec(FindOrderCondition condition) {
         QuerySpecification<JpaOrder> spec = new QuerySpecification<>();
-        if (condition.getOrderId() != null) {
-            spec.addFilter(QueryFilter.of("orderId", condition.getOrderId(), QueryOperation.EQUAL));
+        if (condition.getId() != null) {
+            spec.addFilter(QueryFilter.of("id", condition.getId(), QueryOperation.EQUAL));
         }
         if (condition.getCustomerId() != null) {
             spec.addFilter(QueryFilter.of("customerId", condition.getCustomerId(), QueryOperation.EQUAL));
@@ -56,9 +56,6 @@ public class CustomJpaOrderRepositoryUsingCriteria implements CustomJpaOrderRepo
         }
         if (condition.getStatus() != null) {
             spec.addFilter(QueryFilter.of("status", condition.getStatus(), QueryOperation.EQUAL));
-        }
-        if (condition.getDeleted() != null) {
-            spec.addFilter(QueryFilter.of("deleted", condition.getDeleted(), QueryOperation.EQUAL));
         }
         if (condition.getStartCreatedAt() != null) {
             spec.addFilter(QueryFilter.of("createdAt", condition.getStartCreatedAt(), QueryOperation.GREATER_THAN_EQUAL));
@@ -79,7 +76,7 @@ public class CustomJpaOrderRepositoryUsingCriteria implements CustomJpaOrderRepo
         return entityManager.createQuery(query).getSingleResult();
     }
 
-    private List<JpaOrder> find(Specification<JpaOrder> spec, String sort, Integer pageNumber, Integer pageSize) {
+    private List<JpaOrder> find(Specification<JpaOrder> spec, FindOrderCondition condition) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<JpaOrder> query = criteriaBuilder.createQuery(JpaOrder.class);
         Root<JpaOrder> root = query.from(JpaOrder.class);
@@ -91,20 +88,20 @@ public class CustomJpaOrderRepositoryUsingCriteria implements CustomJpaOrderRepo
         query.where(predicate);
 
         // Sorting
-        if (StringUtils.hasLength(sort)) {
-            if (sort.startsWith("-")) {
-                query.orderBy(criteriaBuilder.desc(root.get(sort.substring(1))));
+        if (StringUtils.hasLength(condition.getSortBy())) {
+            if (condition.isSortAscending()) {
+                query.orderBy(criteriaBuilder.asc(root.get(condition.getSortBy())));
             } else {
-                query.orderBy(criteriaBuilder.asc(root.get(sort)));
+                query.orderBy(criteriaBuilder.desc(root.get(condition.getSortBy())));
             }
         }
 
         TypedQuery<JpaOrder> typedQuery = entityManager.createQuery(query);
 
         // Paging
-        if (pageNumber != null && pageSize != null) {
-            typedQuery.setFirstResult(pageNumber * pageSize);
-            typedQuery.setMaxResults(pageSize);
+        if (condition.getOffset() != null && condition.getLimit() != null) {
+            typedQuery.setFirstResult(condition.getOffset());
+            typedQuery.setMaxResults(condition.getLimit());
         }
 
         return typedQuery.getResultList();

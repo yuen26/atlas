@@ -2,10 +2,8 @@ package org.atlas.framework.persistence.jdbc.user.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.user.domain.entity.User;
-import org.atlas.business.user.domain.shared.enums.Role;
-import org.atlas.framework.persistence.jdbc.core.NullSafeRowMapper;
+import org.atlas.framework.persistence.jdbc.user.supports.UserRowMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -21,33 +19,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JdbcUserRepository {
 
-    private static final RowMapper<User> rowMapper = (rs, rowNum) -> {
-        NullSafeRowMapper rowMapper = new NullSafeRowMapper(rs);
-        User user = new User();
-        user.setId(rowMapper.getInt("id"));
-        user.setUsername(rowMapper.getString("username"));
-        user.setEmail(rowMapper.getString("email"));
-        user.setPassword(rowMapper.getString("password"));
-        user.setRole(Role.valueOf(rowMapper.getString("role")));
-        user.setCredit(rowMapper.getBigDecimal("credit"));
-        user.setCreatedAt(rowMapper.getTimestamp("created_at"));
-        user.setUpdatedAt(rowMapper.getTimestamp("updated_at"));
-        return user;
-    };
-
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public List<User> findByIdIn(List<Integer> ids) {
         String sql = "SELECT * FROM users u WHERE u.id IN (:ids)";
         SqlParameterSource params = new MapSqlParameterSource("ids", ids);
-        return namedParameterJdbcTemplate.query(sql, params, rowMapper);
+        return namedParameterJdbcTemplate.query(sql, params, new UserRowMapper());
     }
 
     public Optional<User> findByEmail(String email) {
         String sql = "SELECT * FROM users u WHERE u.email = :email";
         SqlParameterSource params = new MapSqlParameterSource("email", email);
         try {
-            User user = namedParameterJdbcTemplate.queryForObject(sql, params, rowMapper);
+            User user = namedParameterJdbcTemplate.queryForObject(sql, params, new UserRowMapper());
             return Optional.ofNullable(user);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();

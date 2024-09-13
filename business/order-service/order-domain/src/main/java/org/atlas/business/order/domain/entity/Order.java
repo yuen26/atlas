@@ -21,7 +21,6 @@ public class Order extends AuditableEntity implements Serializable {
     private BigDecimal amount;
     private String address;
     private OrderStatus status;
-    private Boolean deleted;
 
     public void addOrderItem(OrderItem orderItem) {
         if (orderItems == null) {

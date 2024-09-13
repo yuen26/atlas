@@ -166,22 +166,11 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DELETED_FIELD_NUMBER = 7;
-  private boolean deleted_ = false;
-  /**
-   * <code>bool deleted = 7;</code>
-   * @return The deleted.
-   */
-  @java.lang.Override
-  public boolean getDeleted() {
-    return deleted_;
-  }
-
-  public static final int START_CREATED_AT_FIELD_NUMBER = 8;
+  public static final int START_CREATED_AT_FIELD_NUMBER = 7;
   @SuppressWarnings("serial")
   private volatile java.lang.Object startCreatedAt_ = "";
   /**
-   * <code>string start_created_at = 8;</code>
+   * <code>string start_created_at = 7;</code>
    * @return The startCreatedAt.
    */
   @java.lang.Override
@@ -198,7 +187,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string start_created_at = 8;</code>
+   * <code>string start_created_at = 7;</code>
    * @return The bytes for startCreatedAt.
    */
   @java.lang.Override
@@ -216,11 +205,11 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int END_CREATED_AT_FIELD_NUMBER = 9;
+  public static final int END_CREATED_AT_FIELD_NUMBER = 8;
   @SuppressWarnings("serial")
   private volatile java.lang.Object endCreatedAt_ = "";
   /**
-   * <code>string end_created_at = 9;</code>
+   * <code>string end_created_at = 8;</code>
    * @return The endCreatedAt.
    */
   @java.lang.Override
@@ -237,7 +226,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string end_created_at = 9;</code>
+   * <code>string end_created_at = 8;</code>
    * @return The bytes for endCreatedAt.
    */
   @java.lang.Override
@@ -255,10 +244,10 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int PAGE_FIELD_NUMBER = 10;
+  public static final int PAGE_FIELD_NUMBER = 9;
   private int page_ = 0;
   /**
-   * <code>int32 page = 10;</code>
+   * <code>int32 page = 9;</code>
    * @return The page.
    */
   @java.lang.Override
@@ -266,10 +255,10 @@ private static final long serialVersionUID = 0L;
     return page_;
   }
 
-  public static final int SIZE_FIELD_NUMBER = 11;
+  public static final int SIZE_FIELD_NUMBER = 10;
   private int size_ = 0;
   /**
-   * <code>int32 size = 11;</code>
+   * <code>int32 size = 10;</code>
    * @return The size.
    */
   @java.lang.Override
@@ -277,11 +266,11 @@ private static final long serialVersionUID = 0L;
     return size_;
   }
 
-  public static final int SORT_FIELD_NUMBER = 12;
+  public static final int SORT_FIELD_NUMBER = 11;
   @SuppressWarnings("serial")
   private volatile java.lang.Object sort_ = "";
   /**
-   * <code>string sort = 12;</code>
+   * <code>string sort = 11;</code>
    * @return The sort.
    */
   @java.lang.Override
@@ -298,7 +287,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string sort = 12;</code>
+   * <code>string sort = 11;</code>
    * @return The bytes for sort.
    */
   @java.lang.Override
@@ -348,23 +337,20 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, status_);
     }
-    if (deleted_ != false) {
-      output.writeBool(7, deleted_);
-    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(startCreatedAt_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, startCreatedAt_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, startCreatedAt_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(endCreatedAt_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 9, endCreatedAt_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, endCreatedAt_);
     }
     if (page_ != 0) {
-      output.writeInt32(10, page_);
+      output.writeInt32(9, page_);
     }
     if (size_ != 0) {
-      output.writeInt32(11, size_);
+      output.writeInt32(10, size_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sort_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 12, sort_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 11, sort_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -397,26 +383,22 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, status_);
     }
-    if (deleted_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(7, deleted_);
-    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(startCreatedAt_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, startCreatedAt_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, startCreatedAt_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(endCreatedAt_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, endCreatedAt_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, endCreatedAt_);
     }
     if (page_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(10, page_);
+        .computeInt32Size(9, page_);
     }
     if (size_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(11, size_);
+        .computeInt32Size(10, size_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sort_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, sort_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, sort_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -447,8 +429,6 @@ private static final long serialVersionUID = 0L;
         .equals(other.getAddress())) return false;
     if (!getStatus()
         .equals(other.getStatus())) return false;
-    if (getDeleted()
-        != other.getDeleted()) return false;
     if (!getStartCreatedAt()
         .equals(other.getStartCreatedAt())) return false;
     if (!getEndCreatedAt()
@@ -484,9 +464,6 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getAddress().hashCode();
     hash = (37 * hash) + STATUS_FIELD_NUMBER;
     hash = (53 * hash) + getStatus().hashCode();
-    hash = (37 * hash) + DELETED_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getDeleted());
     hash = (37 * hash) + START_CREATED_AT_FIELD_NUMBER;
     hash = (53 * hash) + getStartCreatedAt().hashCode();
     hash = (37 * hash) + END_CREATED_AT_FIELD_NUMBER;
@@ -634,7 +611,6 @@ private static final long serialVersionUID = 0L;
       maxAmount_ = 0D;
       address_ = "";
       status_ = "";
-      deleted_ = false;
       startCreatedAt_ = "";
       endCreatedAt_ = "";
       page_ = 0;
@@ -692,21 +668,18 @@ private static final long serialVersionUID = 0L;
         result.status_ = status_;
       }
       if (((from_bitField0_ & 0x00000040) != 0)) {
-        result.deleted_ = deleted_;
-      }
-      if (((from_bitField0_ & 0x00000080) != 0)) {
         result.startCreatedAt_ = startCreatedAt_;
       }
-      if (((from_bitField0_ & 0x00000100) != 0)) {
+      if (((from_bitField0_ & 0x00000080) != 0)) {
         result.endCreatedAt_ = endCreatedAt_;
       }
-      if (((from_bitField0_ & 0x00000200) != 0)) {
+      if (((from_bitField0_ & 0x00000100) != 0)) {
         result.page_ = page_;
       }
-      if (((from_bitField0_ & 0x00000400) != 0)) {
+      if (((from_bitField0_ & 0x00000200) != 0)) {
         result.size_ = size_;
       }
-      if (((from_bitField0_ & 0x00000800) != 0)) {
+      if (((from_bitField0_ & 0x00000400) != 0)) {
         result.sort_ = sort_;
       }
     }
@@ -777,17 +750,14 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000020;
         onChanged();
       }
-      if (other.getDeleted() != false) {
-        setDeleted(other.getDeleted());
-      }
       if (!other.getStartCreatedAt().isEmpty()) {
         startCreatedAt_ = other.startCreatedAt_;
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000040;
         onChanged();
       }
       if (!other.getEndCreatedAt().isEmpty()) {
         endCreatedAt_ = other.endCreatedAt_;
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000080;
         onChanged();
       }
       if (other.getPage() != 0) {
@@ -798,7 +768,7 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getSort().isEmpty()) {
         sort_ = other.sort_;
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00000400;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -857,36 +827,31 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000020;
               break;
             } // case 50
-            case 56: {
-              deleted_ = input.readBool();
+            case 58: {
+              startCreatedAt_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000040;
               break;
-            } // case 56
+            } // case 58
             case 66: {
-              startCreatedAt_ = input.readStringRequireUtf8();
+              endCreatedAt_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000080;
               break;
             } // case 66
-            case 74: {
-              endCreatedAt_ = input.readStringRequireUtf8();
+            case 72: {
+              page_ = input.readInt32();
               bitField0_ |= 0x00000100;
               break;
-            } // case 74
+            } // case 72
             case 80: {
-              page_ = input.readInt32();
+              size_ = input.readInt32();
               bitField0_ |= 0x00000200;
               break;
             } // case 80
-            case 88: {
-              size_ = input.readInt32();
+            case 90: {
+              sort_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000400;
               break;
-            } // case 88
-            case 98: {
-              sort_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000800;
-              break;
-            } // case 98
+            } // case 90
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1176,41 +1141,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private boolean deleted_ ;
-    /**
-     * <code>bool deleted = 7;</code>
-     * @return The deleted.
-     */
-    @java.lang.Override
-    public boolean getDeleted() {
-      return deleted_;
-    }
-    /**
-     * <code>bool deleted = 7;</code>
-     * @param value The deleted to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDeleted(boolean value) {
-
-      deleted_ = value;
-      bitField0_ |= 0x00000040;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool deleted = 7;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearDeleted() {
-      bitField0_ = (bitField0_ & ~0x00000040);
-      deleted_ = false;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object startCreatedAt_ = "";
     /**
-     * <code>string start_created_at = 8;</code>
+     * <code>string start_created_at = 7;</code>
      * @return The startCreatedAt.
      */
     public java.lang.String getStartCreatedAt() {
@@ -1226,7 +1159,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string start_created_at = 8;</code>
+     * <code>string start_created_at = 7;</code>
      * @return The bytes for startCreatedAt.
      */
     public com.google.protobuf.ByteString
@@ -1243,7 +1176,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string start_created_at = 8;</code>
+     * <code>string start_created_at = 7;</code>
      * @param value The startCreatedAt to set.
      * @return This builder for chaining.
      */
@@ -1251,22 +1184,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       startCreatedAt_ = value;
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
     /**
-     * <code>string start_created_at = 8;</code>
+     * <code>string start_created_at = 7;</code>
      * @return This builder for chaining.
      */
     public Builder clearStartCreatedAt() {
       startCreatedAt_ = getDefaultInstance().getStartCreatedAt();
-      bitField0_ = (bitField0_ & ~0x00000080);
+      bitField0_ = (bitField0_ & ~0x00000040);
       onChanged();
       return this;
     }
     /**
-     * <code>string start_created_at = 8;</code>
+     * <code>string start_created_at = 7;</code>
      * @param value The bytes for startCreatedAt to set.
      * @return This builder for chaining.
      */
@@ -1275,14 +1208,14 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       startCreatedAt_ = value;
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
 
     private java.lang.Object endCreatedAt_ = "";
     /**
-     * <code>string end_created_at = 9;</code>
+     * <code>string end_created_at = 8;</code>
      * @return The endCreatedAt.
      */
     public java.lang.String getEndCreatedAt() {
@@ -1298,7 +1231,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string end_created_at = 9;</code>
+     * <code>string end_created_at = 8;</code>
      * @return The bytes for endCreatedAt.
      */
     public com.google.protobuf.ByteString
@@ -1315,7 +1248,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string end_created_at = 9;</code>
+     * <code>string end_created_at = 8;</code>
      * @param value The endCreatedAt to set.
      * @return This builder for chaining.
      */
@@ -1323,22 +1256,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       endCreatedAt_ = value;
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
     /**
-     * <code>string end_created_at = 9;</code>
+     * <code>string end_created_at = 8;</code>
      * @return This builder for chaining.
      */
     public Builder clearEndCreatedAt() {
       endCreatedAt_ = getDefaultInstance().getEndCreatedAt();
-      bitField0_ = (bitField0_ & ~0x00000100);
+      bitField0_ = (bitField0_ & ~0x00000080);
       onChanged();
       return this;
     }
     /**
-     * <code>string end_created_at = 9;</code>
+     * <code>string end_created_at = 8;</code>
      * @param value The bytes for endCreatedAt to set.
      * @return This builder for chaining.
      */
@@ -1347,14 +1280,14 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       endCreatedAt_ = value;
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
 
     private int page_ ;
     /**
-     * <code>int32 page = 10;</code>
+     * <code>int32 page = 9;</code>
      * @return The page.
      */
     @java.lang.Override
@@ -1362,23 +1295,23 @@ private static final long serialVersionUID = 0L;
       return page_;
     }
     /**
-     * <code>int32 page = 10;</code>
+     * <code>int32 page = 9;</code>
      * @param value The page to set.
      * @return This builder for chaining.
      */
     public Builder setPage(int value) {
 
       page_ = value;
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000100;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 page = 10;</code>
+     * <code>int32 page = 9;</code>
      * @return This builder for chaining.
      */
     public Builder clearPage() {
-      bitField0_ = (bitField0_ & ~0x00000200);
+      bitField0_ = (bitField0_ & ~0x00000100);
       page_ = 0;
       onChanged();
       return this;
@@ -1386,7 +1319,7 @@ private static final long serialVersionUID = 0L;
 
     private int size_ ;
     /**
-     * <code>int32 size = 11;</code>
+     * <code>int32 size = 10;</code>
      * @return The size.
      */
     @java.lang.Override
@@ -1394,23 +1327,23 @@ private static final long serialVersionUID = 0L;
       return size_;
     }
     /**
-     * <code>int32 size = 11;</code>
+     * <code>int32 size = 10;</code>
      * @param value The size to set.
      * @return This builder for chaining.
      */
     public Builder setSize(int value) {
 
       size_ = value;
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000200;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 size = 11;</code>
+     * <code>int32 size = 10;</code>
      * @return This builder for chaining.
      */
     public Builder clearSize() {
-      bitField0_ = (bitField0_ & ~0x00000400);
+      bitField0_ = (bitField0_ & ~0x00000200);
       size_ = 0;
       onChanged();
       return this;
@@ -1418,7 +1351,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object sort_ = "";
     /**
-     * <code>string sort = 12;</code>
+     * <code>string sort = 11;</code>
      * @return The sort.
      */
     public java.lang.String getSort() {
@@ -1434,7 +1367,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string sort = 12;</code>
+     * <code>string sort = 11;</code>
      * @return The bytes for sort.
      */
     public com.google.protobuf.ByteString
@@ -1451,7 +1384,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string sort = 12;</code>
+     * <code>string sort = 11;</code>
      * @param value The sort to set.
      * @return This builder for chaining.
      */
@@ -1459,22 +1392,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       sort_ = value;
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00000400;
       onChanged();
       return this;
     }
     /**
-     * <code>string sort = 12;</code>
+     * <code>string sort = 11;</code>
      * @return This builder for chaining.
      */
     public Builder clearSort() {
       sort_ = getDefaultInstance().getSort();
-      bitField0_ = (bitField0_ & ~0x00000800);
+      bitField0_ = (bitField0_ & ~0x00000400);
       onChanged();
       return this;
     }
     /**
-     * <code>string sort = 12;</code>
+     * <code>string sort = 11;</code>
      * @param value The bytes for sort to set.
      * @return This builder for chaining.
      */
@@ -1483,7 +1416,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       sort_ = value;
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00000400;
       onChanged();
       return this;
     }

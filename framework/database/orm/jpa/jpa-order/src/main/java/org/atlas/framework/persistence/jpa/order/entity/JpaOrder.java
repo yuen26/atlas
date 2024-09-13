@@ -42,8 +42,6 @@ public class JpaOrder extends JpaBaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    private Boolean deleted;
-
     public void addOrderItem(JpaOrderItem orderItem) {
         if (this.orderItems == null) {
             this.orderItems = new ArrayList<>();

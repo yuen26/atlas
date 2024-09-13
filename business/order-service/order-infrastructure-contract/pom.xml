@@ -20,10 +20,5 @@
             <artifactId>order-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>event-contract</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

@@ -21,23 +21,19 @@ public class OrderWriteModel {
     private Integer customerId;
 
     @CsvBindByName(column = "Amount")
-    @CsvBindByPosition(position = 5)
+    @CsvBindByPosition(position = 2)
     private BigDecimal amount;
 
     @CsvBindByName(column = "Address")
-    @CsvBindByPosition(position = 6)
+    @CsvBindByPosition(position = 3)
     private String address;
 
     @CsvBindByName(column = "Status")
-    @CsvBindByPosition(position = 7)
+    @CsvBindByPosition(position = 4)
     private OrderStatus status;
 
-    @CsvBindByName(column = "Deleted")
-    @CsvBindByPosition(position = 8)
-    private Boolean deleted;
-
     @CsvBindByName(column = "Created At")
-    @CsvBindByPosition(position = 6)
+    @CsvBindByPosition(position = 5)
     @CsvDate("yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
 }

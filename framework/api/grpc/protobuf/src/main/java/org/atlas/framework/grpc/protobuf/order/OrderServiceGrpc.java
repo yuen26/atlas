@@ -77,37 +77,6 @@ public final class OrderServiceGrpc {
     return getGetOrderMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto,
-      org.atlas.framework.grpc.protobuf.order.OrderStatusProto> getGetOrderStatusMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetOrderStatus",
-      requestType = org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto.class,
-      responseType = org.atlas.framework.grpc.protobuf.order.OrderStatusProto.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto,
-      org.atlas.framework.grpc.protobuf.order.OrderStatusProto> getGetOrderStatusMethod() {
-    io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto, org.atlas.framework.grpc.protobuf.order.OrderStatusProto> getGetOrderStatusMethod;
-    if ((getGetOrderStatusMethod = OrderServiceGrpc.getGetOrderStatusMethod) == null) {
-      synchronized (OrderServiceGrpc.class) {
-        if ((getGetOrderStatusMethod = OrderServiceGrpc.getGetOrderStatusMethod) == null) {
-          OrderServiceGrpc.getGetOrderStatusMethod = getGetOrderStatusMethod =
-              io.grpc.MethodDescriptor.<org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto, org.atlas.framework.grpc.protobuf.order.OrderStatusProto>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetOrderStatus"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.atlas.framework.grpc.protobuf.order.OrderStatusProto.getDefaultInstance()))
-              .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("GetOrderStatus"))
-              .build();
-        }
-      }
-    }
-    return getGetOrderStatusMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto,
       org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto> getPlaceOrderMethod;
 
@@ -265,13 +234,6 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    default void getOrderStatus(org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto request,
-        io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.OrderStatusProto> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetOrderStatusMethod(), responseObserver);
-    }
-
-    /**
-     */
     default void placeOrder(org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto request,
         io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPlaceOrderMethod(), responseObserver);
@@ -337,14 +299,6 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public void getOrderStatus(org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto request,
-        io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.OrderStatusProto> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetOrderStatusMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
     public void placeOrder(org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto request,
         io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -396,13 +350,6 @@ public final class OrderServiceGrpc {
     public org.atlas.framework.grpc.protobuf.order.OrderProto getOrder(org.atlas.framework.grpc.protobuf.order.GetOrderRequestProto request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetOrderMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public org.atlas.framework.grpc.protobuf.order.OrderStatusProto getOrderStatus(org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetOrderStatusMethod(), getCallOptions(), request);
     }
 
     /**
@@ -461,14 +408,6 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.atlas.framework.grpc.protobuf.order.OrderStatusProto> getOrderStatus(
-        org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetOrderStatusMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto> placeOrder(
         org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -494,10 +433,9 @@ public final class OrderServiceGrpc {
 
   private static final int METHODID_LIST_ORDER = 0;
   private static final int METHODID_GET_ORDER = 1;
-  private static final int METHODID_GET_ORDER_STATUS = 2;
-  private static final int METHODID_PLACE_ORDER = 3;
-  private static final int METHODID_IMPORT_ORDER = 4;
-  private static final int METHODID_EXPORT_ORDER = 5;
+  private static final int METHODID_PLACE_ORDER = 2;
+  private static final int METHODID_IMPORT_ORDER = 3;
+  private static final int METHODID_EXPORT_ORDER = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -523,10 +461,6 @@ public final class OrderServiceGrpc {
         case METHODID_GET_ORDER:
           serviceImpl.getOrder((org.atlas.framework.grpc.protobuf.order.GetOrderRequestProto) request,
               (io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.OrderProto>) responseObserver);
-          break;
-        case METHODID_GET_ORDER_STATUS:
-          serviceImpl.getOrderStatus((org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto) request,
-              (io.grpc.stub.StreamObserver<org.atlas.framework.grpc.protobuf.order.OrderStatusProto>) responseObserver);
           break;
         case METHODID_PLACE_ORDER:
           serviceImpl.placeOrder((org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto) request,
@@ -572,13 +506,6 @@ public final class OrderServiceGrpc {
               org.atlas.framework.grpc.protobuf.order.GetOrderRequestProto,
               org.atlas.framework.grpc.protobuf.order.OrderProto>(
                 service, METHODID_GET_ORDER)))
-        .addMethod(
-          getGetOrderStatusMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              org.atlas.framework.grpc.protobuf.order.GetOrderStatusRequestProto,
-              org.atlas.framework.grpc.protobuf.order.OrderStatusProto>(
-                service, METHODID_GET_ORDER_STATUS)))
         .addMethod(
           getPlaceOrderMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -650,7 +577,6 @@ public final class OrderServiceGrpc {
               .setSchemaDescriptor(new OrderServiceFileDescriptorSupplier())
               .addMethod(getListOrderMethod())
               .addMethod(getGetOrderMethod())
-              .addMethod(getGetOrderStatusMethod())
               .addMethod(getPlaceOrderMethod())
               .addMethod(getImportOrderMethod())
               .addMethod(getExportOrderMethod())

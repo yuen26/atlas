@@ -57,54 +57,48 @@ public interface ExportOrderRequestProtoOrBuilder extends
       getStatusBytes();
 
   /**
-   * <code>bool deleted = 7;</code>
-   * @return The deleted.
-   */
-  boolean getDeleted();
-
-  /**
-   * <code>string start_created_at = 8;</code>
+   * <code>string start_created_at = 7;</code>
    * @return The startCreatedAt.
    */
   java.lang.String getStartCreatedAt();
   /**
-   * <code>string start_created_at = 8;</code>
+   * <code>string start_created_at = 7;</code>
    * @return The bytes for startCreatedAt.
    */
   com.google.protobuf.ByteString
       getStartCreatedAtBytes();
 
   /**
-   * <code>string end_created_at = 9;</code>
+   * <code>string end_created_at = 8;</code>
    * @return The endCreatedAt.
    */
   java.lang.String getEndCreatedAt();
   /**
-   * <code>string end_created_at = 9;</code>
+   * <code>string end_created_at = 8;</code>
    * @return The bytes for endCreatedAt.
    */
   com.google.protobuf.ByteString
       getEndCreatedAtBytes();
 
   /**
-   * <code>string sort = 10;</code>
+   * <code>string sort = 9;</code>
    * @return The sort.
    */
   java.lang.String getSort();
   /**
-   * <code>string sort = 10;</code>
+   * <code>string sort = 9;</code>
    * @return The bytes for sort.
    */
   com.google.protobuf.ByteString
       getSortBytes();
 
   /**
-   * <code>string file_type = 11;</code>
+   * <code>string file_type = 10;</code>
    * @return The fileType.
    */
   java.lang.String getFileType();
   /**
-   * <code>string file_type = 11;</code>
+   * <code>string file_type = 10;</code>
    * @return The bytes for fileType.
    */
   com.google.protobuf.ByteString

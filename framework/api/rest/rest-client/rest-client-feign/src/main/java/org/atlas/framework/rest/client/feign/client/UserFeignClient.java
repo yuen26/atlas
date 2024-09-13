@@ -19,6 +19,6 @@ public interface UserFeignClient {
     @GetMapping("/api/users/auth")
     GetUserAuthResponse getUserAuth(@RequestParam("email") String email);
 
-    @GetMapping("/api/customers}")
+    @GetMapping("/api/customers")
     ListCustomerResponse listCustomer(@RequestParam("ids") List<Integer> ids);
 }

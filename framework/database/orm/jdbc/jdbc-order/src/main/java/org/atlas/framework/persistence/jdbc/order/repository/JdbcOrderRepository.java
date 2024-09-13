@@ -40,7 +40,7 @@ public class JdbcOrderRepository {
     }
 
     public Optional<Order> findById(Integer id) {
-        String sql = "SELECT o.id AS order_id, o.customer_id, o.amount, o.status, o.canceled_reason, o.created_at, " +
+        String sql = "SELECT o.id AS order_id, o.customer_id, o.amount, o.address, o.status, o.created_at, " +
             "oi.id AS order_item_id, oi.product_id, oi.product_price, oi.quantity " +
             "FROM orders o " +
             "LEFT JOIN order_item oi ON o.id = oi.order_id " +
@@ -79,16 +79,11 @@ public class JdbcOrderRepository {
     }
 
     public int update(Order order) {
-        StringBuilder sqlBuilder = new StringBuilder("UPDATE orders o SET ");
-        if (order.getStatus() != null) {
-            sqlBuilder.append("o.status = :status ");
-        }
-        if (order.getAddress() != null) {
-            sqlBuilder.append("o.address = :address ");
-        }
-        sqlBuilder.append("WHERE o.id = :id");
+        String sql =
+            "UPDATE orders o " +
+            "SET o.status = :status " +
+            "WHERE o.id = :id";
 
-        String sql = sqlBuilder.toString();
         MapSqlParameterSource params = toOrderParams(order);
 
         return namedParameterJdbcTemplate.update(sql, params);
@@ -143,10 +138,6 @@ public class JdbcOrderRepository {
             whereClauseBuilder.append("AND o.status = :status ");
             params.addValue("status", condition.getStatus());
         }
-        if (condition.getDeleted() != null) {
-            whereClauseBuilder.append("AND o.deleted = :deleted ");
-            params.addValue("deleted", condition.getDeleted());
-        }
         if (condition.getStartCreatedAt() != null) {
             whereClauseBuilder.append("AND o.createdAt >= :startCreatedAt ");
             params.addValue("startCreatedAt", condition.getStartCreatedAt());
@@ -169,9 +160,12 @@ public class JdbcOrderRepository {
 
         // Sorting
         if (StringUtils.hasLength(condition.getSortBy())) {
-            sqlBuilder.append(" ORDER BY :sortBy :sortOrder");
-            params.addValue("sortBy", condition.getSortBy())
-                .addValue("sortOrder", condition.getSortOrder());
+            if (condition.isSortAscending()) {
+                sqlBuilder.append(" ORDER BY :sortBy");
+            } else {
+                sqlBuilder.append(" ORDER BY :sortBy DESC");
+            }
+            params.addValue("sortBy", condition.getSortBy());
         }
 
         // Paging
