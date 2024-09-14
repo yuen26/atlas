@@ -1,4 +1,4 @@
-package org.atlas.edge.job.quartz.job;
+package org.atlas.framework.job.quartz.job;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

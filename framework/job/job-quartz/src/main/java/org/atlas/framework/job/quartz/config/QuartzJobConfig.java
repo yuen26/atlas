@@ -1,6 +1,6 @@
-package org.atlas.edge.job.quartz.config;
+package org.atlas.framework.job.quartz.config;
 
-import org.atlas.edge.job.quartz.job.CancelOverduePendingOrdersJob;
+import org.atlas.framework.job.quartz.job.CancelOverduePendingOrdersJob;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
