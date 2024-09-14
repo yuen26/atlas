@@ -4,11 +4,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.order.application.contract.command.ExportOrderCommand;
 import org.atlas.business.order.application.contract.command.GetOrderCommand;
+import org.atlas.business.order.application.contract.command.GetOrderStatusCommand;
 import org.atlas.business.order.application.contract.command.ImportOrderCommand;
 import org.atlas.business.order.application.contract.command.ListOrderCommand;
 import org.atlas.business.order.application.contract.command.PlaceOrderCommand;
 import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.order.domain.shared.enums.FileType;
+import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.commons.utils.DateUtil;
 import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.command.gateway.CommandGateway;
@@ -42,6 +44,12 @@ public class OrderController {
     @GetMapping("/{id}")
     public OrderDto getOrder(@PathVariable("id") Integer id) throws Exception {
         GetOrderCommand command = new GetOrderCommand(id);
+        return commandGateway.send(command);
+    }
+
+    @GetMapping("/{id}/status")
+    public OrderStatus getOrderStatus(@PathVariable("id") Integer id) throws Exception {
+        GetOrderStatusCommand command = new GetOrderStatusCommand(id);
         return commandGateway.send(command);
     }
 

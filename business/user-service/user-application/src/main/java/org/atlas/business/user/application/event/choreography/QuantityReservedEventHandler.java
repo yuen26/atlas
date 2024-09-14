@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.user.domain.repository.UserRepository;
+import org.atlas.commons.utils.ConcurrencyUtil;
 import org.atlas.framework.event.contract.EventType;
 import org.atlas.framework.event.contract.order.choreography.CreditReservedEvent;
 import org.atlas.framework.event.contract.order.choreography.QuantityReservedEvent;
@@ -29,6 +30,7 @@ public class QuantityReservedEventHandler implements EventHandler<QuantityReserv
     @Override
     @Transactional
     public void handle(QuantityReservedEvent quantityReservedEvent) {
+        ConcurrencyUtil.sleep(3, 5);
         OrderDto order = quantityReservedEvent.getOrder();
         int reserveCreditResult = userRepository.decreaseCredit(order.getCustomer().getId(), order.getAmount());
         if (reserveCreditResult == 1) {

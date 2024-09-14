@@ -1,4 +1,4 @@
-package org.atlas.edge.gateway.config;
+package org.atlas.edge.gateway.routing;
 
 import lombok.RequiredArgsConstructor;
 import org.atlas.business.user.domain.shared.enums.Role;
@@ -39,7 +39,7 @@ public class RoutingConfig {
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.CUSTOMER, Role.ADMIN))))
                 .uri("lb://ORDER-SERVICE"))
             // Get order status -> allow both of CUSTOMER and ADMIN
-            .route("get-orders", r -> r.path("/api/orders/{id}")
+            .route("get-orders", r -> r.path("/api/orders/{id}/**")
                 .and()
                 .method(HttpMethod.GET)
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.CUSTOMER, Role.ADMIN))))

@@ -41,4 +41,4 @@ app:
   event:
     kafka:
       consumer:
-        topics: order_confirmed
+        topics: order_confirmed,order_canceled

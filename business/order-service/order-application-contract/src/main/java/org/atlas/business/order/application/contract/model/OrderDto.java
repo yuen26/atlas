@@ -19,6 +19,7 @@ public class OrderDto {
     private String address;
     private OrderStatus status;
     private Date createdAt;
+    private String canceledReason;
 
     public void addOrderItem(OrderItemDto orderItem) {
         if (orderItems == null) {

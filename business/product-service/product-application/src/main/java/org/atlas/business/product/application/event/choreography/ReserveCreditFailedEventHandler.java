@@ -1,8 +1,9 @@
-package org.atlas.business.product.application.event.remote.choreography;
+package org.atlas.business.product.application.event.choreography;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.atlas.business.product.domain.repository.ProductRepository;
+import org.atlas.commons.utils.ConcurrencyUtil;
 import org.atlas.framework.event.contract.EventType;
 import org.atlas.framework.event.contract.order.choreography.ReserveCreditFailedEvent;
 import org.atlas.framework.event.core.consumer.handler.EventHandler;
@@ -27,6 +28,7 @@ public class ReserveCreditFailedEventHandler implements EventHandler<ReserveCred
         event.getOrder()
             .getOrderItems()
             .forEach(orderItem -> {
+                ConcurrencyUtil.sleep(3, 5);
                 int updated = productRepository.increaseQuantity(orderItem.getProductId(), orderItem.getQuantity());
                 if (updated == 1) {
                     log.info("Rollback reserved quantity: productId={}, amount={}, eventId={}",

@@ -19,4 +19,5 @@ public enum EventType {
     RESERVE_CREDIT_REPLY,
 
     ORDER_CONFIRMED,
+    ORDER_CANCELED,
 }

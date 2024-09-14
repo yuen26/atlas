@@ -1,6 +1,7 @@
 package org.atlas.business.order.application.event.choreography;
 
 import lombok.RequiredArgsConstructor;
+import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.order.application.service.OrderService;
 import org.atlas.business.order.domain.entity.Order;
 import org.atlas.business.order.domain.repository.OrderRepository;
@@ -29,11 +30,13 @@ public class CreditReservedEventHandler implements EventHandler<CreditReservedEv
     @Override
     @Transactional
     public void handle(CreditReservedEvent creditReservedEvent) {
-        Order order = orderService.findPendingOrder(creditReservedEvent.getOrder().getId());
+        OrderDto orderDto = creditReservedEvent.getOrder();
+        Order order = orderService.findPendingOrder(orderDto.getId());
         order.setStatus(OrderStatus.CONFIRMED);
         orderRepository.update(order);
 
-        OrderConfirmedEvent orderConfirmedEvent = new OrderConfirmedEvent(creditReservedEvent.getOrder());
+        orderDto.setStatus(OrderStatus.CONFIRMED);
+        OrderConfirmedEvent orderConfirmedEvent = new OrderConfirmedEvent(orderDto);
         eventPublisherTemplate.publish(orderConfirmedEvent);
     }
 }

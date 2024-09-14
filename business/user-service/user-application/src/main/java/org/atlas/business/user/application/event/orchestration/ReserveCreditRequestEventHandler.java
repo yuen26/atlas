@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.atlas.business.order.application.contract.model.OrderDto;
 import org.atlas.business.user.domain.repository.UserRepository;
+import org.atlas.commons.utils.ConcurrencyUtil;
 import org.atlas.framework.event.contract.EventType;
 import org.atlas.framework.event.contract.order.orchestration.ReserveCreditReplyEvent;
 import org.atlas.framework.event.contract.order.orchestration.ReserveCreditRequestEvent;
@@ -28,6 +29,7 @@ public class ReserveCreditRequestEventHandler implements EventHandler<ReserveCre
     @Override
     @Transactional
     public void handle(ReserveCreditRequestEvent requestEvent) {
+        ConcurrencyUtil.sleep(3, 5);
         OrderDto order = requestEvent.getOrder();
         ReserveCreditReplyEvent replyEvent = new ReserveCreditReplyEvent();
         replyEvent.setOrder(order);

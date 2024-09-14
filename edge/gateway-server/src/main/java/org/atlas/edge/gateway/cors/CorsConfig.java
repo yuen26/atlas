@@ -6,21 +6,19 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
-
 @Configuration
-public class CorsConfig extends CorsConfiguration {
+public class CorsConfig {
 
     @Bean
-    public CorsWebFilter corsFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("*"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
-        config.setAllowedHeaders(List.of("origin", "content-type", "accept", "authorization", "cookie"));
+    public CorsWebFilter corsWebFilter() {
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.addAllowedOrigin("http://localhost:3000"); // Allow specific origin
+        corsConfig.addAllowedMethod("*");  // Allow all HTTP methods (GET, POST, etc.)
+        corsConfig.addAllowedHeader("*");  // Allow all headers
+        corsConfig.setAllowCredentials(true); // Allow credentials (e.g., cookies)
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+        source.registerCorsConfiguration("/**", corsConfig); // Apply CORS configuration to all endpoints
 
         return new CorsWebFilter(source);
     }
