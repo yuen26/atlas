@@ -6,15 +6,15 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
@@ -102,27 +102,29 @@ public class TokenService {
     }
 
     private RSAPublicKey loadPublicKey(KeyFactory keyFactory) throws IOException, InvalidKeySpecException {
-        byte[] publicKeyBytes = Files.readAllBytes(
-                ResourceUtils.getFile("classpath:secret/token.pub").toPath());
-        String publicKeyContent = new String(publicKeyBytes)
+        try (InputStream inputStream = new ClassPathResource("secret/token.pub").getInputStream()) {
+            byte[] publicKeyBytes = inputStream.readAllBytes();
+            String publicKeyContent = new String(publicKeyBytes)
                 .replace("-----BEGIN PUBLIC KEY-----", "")
                 .replace("-----END PUBLIC KEY-----", "")
-                .replaceAll("\r", "")
-                .replaceAll("\n", "");
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyContent));
-        return (RSAPublicKey) keyFactory.generatePublic(keySpec);
+                .replaceAll("\\r", "")
+                .replaceAll("\\n", "");
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyContent));
+            return (RSAPublicKey) keyFactory.generatePublic(keySpec);
+        }
     }
 
     private RSAPrivateKey loadPrivateKey(KeyFactory keyFactory) throws IOException, InvalidKeySpecException {
-        byte[] privateKeyBytes = Files.readAllBytes(
-                ResourceUtils.getFile("classpath:secret/token.key").toPath());
-        String privateKeyContent = new String(privateKeyBytes)
+        try (InputStream inputStream = new ClassPathResource("secret/token.key").getInputStream()) {
+            byte[] privateKeyBytes = inputStream.readAllBytes();
+            String privateKeyContent = new String(privateKeyBytes)
                 .replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\r", "")
-                .replaceAll("\n", "");
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
-        return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+                .replaceAll("\\r", "")
+                .replaceAll("\\n", "");
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
+            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+        }
     }
 
     private String extractTokenFromHeader(String authorizationHeader) {

@@ -18,7 +18,7 @@ import java.util.Optional;
 @Slf4j
 public class UserAuthServiceClient implements IUserAuthServiceClient {
 
-    @Value("${app.internal.user.base-url:http://localhost:8081}")
+    @Value("${app.rest.user.base-url:http://localhost:8081}")
     private String baseUrl;
 
     private final RestTemplateService service;

@@ -10,7 +10,7 @@ import java.util.List;
 
 @FeignClient(
     name = "product-service",
-    url = "${app.internal.product.base-url:http://localhost:8082}",
+    url = "${app.rest.product.base-url:http://localhost:8082}",
     configuration = FeignConfig.class
 )
 public interface ProductFeignClient {

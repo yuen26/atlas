@@ -8,6 +8,9 @@ grpc:
     port: 50051
 
 management:
+  endpoint:
+    prometheus:
+      enabled: true
   endpoints:
     web:
       exposure:
@@ -16,15 +19,14 @@ management:
     mail:
       # Turn off health check mail server
       enabled: false
-  otlp:
-    metrics:
-      export:
-        url: http://localhost:4318/v1/metrics
-        step: 10s
+  zipkin:
     tracing:
-      endpoint: http://localhost:4318/v1/traces
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411}
+      connect-timeout: 30s
+      read-timeout: 10s
   tracing:
     sampling:
+      # 1.0 represents 100%, meaning all requests will be traced.
       probability: 1.0
 
 server:
@@ -35,16 +37,16 @@ spring:
     name: user-service
   data:
     redis:
-      host: localhost
+      host: ${REDIS_HOST:localhost}
       port: 6379
-      password: 123456
+      password: ${REDIS_PASSWORD:123456}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/users?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: root
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/users?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
 springdoc:
   packages-to-scan: org.atlas.framework.rest.server.user.controller

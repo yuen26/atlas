@@ -19,7 +19,7 @@ import java.util.Map;
 @Slf4j
 public class ProductServiceClient implements IProductServiceClient {
 
-    @Value("${app.internal.product.base-url:http://localhost:8082}")
+    @Value("${app.rest.product.base-url:http://localhost:8082}")
     private String baseUrl;
 
     private final RestTemplateService service;

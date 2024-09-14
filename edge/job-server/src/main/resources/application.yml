@@ -12,7 +12,7 @@ management:
       enabled: false
   zipkin:
     tracing:
-      endpoint: http://localhost:9411
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411}
       connect-timeout: 30s
       read-timeout: 10s
   tracing:
@@ -28,9 +28,9 @@ spring:
     name: job
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: root
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
   quartz:
     # Quartz can store job and scheduling information in a relational database or RAM.
     # With RAM option, any information will be deleted with application restart.

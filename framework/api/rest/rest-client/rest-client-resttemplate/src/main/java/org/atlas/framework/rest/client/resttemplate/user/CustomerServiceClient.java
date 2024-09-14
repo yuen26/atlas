@@ -19,7 +19,7 @@ import java.util.Map;
 @Slf4j
 public class CustomerServiceClient implements ICustomerServiceClient {
 
-    @Value("${app.internal.user.base-url:http://localhost:8081}")
+    @Value("${app.rest.user.base-url:http://localhost:8081}")
     private String baseUrl;
 
     private final RestTemplateService service;

@@ -6,12 +6,12 @@ eureka:
 grpc:
   client:
     user:
-      address: 'static://127.0.0.1:50051'
+      address: ${GRPC_CLIENT_USER_ADDRESS:'static://127.0.0.1:50051'}
       enableKeepAlive: true
       keepAliveWithoutCalls: true
       negotiationType: plaintext
     product:
-      address: 'static://127.0.0.1:50052'
+      address: ${GRPC_CLIENT_PRODUCT_ADDRESS:'static://127.0.0.1:50052'}
       enableKeepAlive: true
       keepAliveWithoutCalls: true
       negotiationType: plaintext
@@ -32,7 +32,7 @@ management:
       enabled: false
   zipkin:
     tracing:
-      endpoint: http://localhost:9411
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411}
       connect-timeout: 30s
       read-timeout: 10s
   tracing:
@@ -48,27 +48,16 @@ spring:
     name: order-service
   data:
     redis:
-      host: localhost
+      host: ${REDIS_HOST:localhost}
       port: 6379
-      password: 123456
+      password: ${REDIS_PASSWORD:123456}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: root
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
   kafka:
-    bootstrap-servers: localhost:9092
-  quartz:
-    # Quartz can store job and scheduling information in a relational database or RAM.
-    # With RAM option, any information will be deleted with application restart.
-    job-store-type: memory
-    properties:
-      org.quartz.scheduler:
-        instanceName: DefaultScheduler
-        instanceId: AUTO
-      org.quartz.threadPool:
-        threadNamePrefix: quartz
-        threadCount: 10
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
 springdoc:
   packages-to-scan: org.atlas.framework.rest.server.order.controller
@@ -78,11 +67,11 @@ app:
     kafka:
       consumer:
         topics: reserve_quantity_reply,reserve_credit_reply,reserve_quantity_failed,credit_reserved,reserve_credit_failed
-  internal:
+  rest:
     user:
-      base-url: http://localhost:8081
+      base-url: ${REST_USER_BASE_URL:http://localhost:8081}
     product:
-      base-url: http://localhost:8082
+      base-url: ${REST_PRODUCT_BASE_URL:http://localhost:8082}
   outbox:
     enabled: true
   saga-mode: orchestration

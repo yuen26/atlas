@@ -1,0 +1,357 @@
+version: "3"
+
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
+  redis:
+    container_name: redis
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/var/lib/redis
+    command: redis-server --requirepass 123456
+
+  zookeeper:
+    container_name: zookeeper
+    image: confluentinc/cp-zookeeper:7.0.1
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+      - KAFKA_HEAP_OPTS=-Xmx64m
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-log:/var/lib/zookeeper/log
+
+  kafka:
+    container_name: kafka
+    image: confluentinc/cp-kafka:7.0.1
+    ports:
+      - "29092:29092"
+      - "9092:9092"
+      - "9101:9101"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0
+      - KAFKA_JMX_PORT=9101
+      - KAFKA_JMX_HOSTNAME=kafka
+      - KAFKA_HEAP_OPTS=-Xmx192m
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    depends_on:
+      - zookeeper
+
+  loki:
+    container_name: loki
+    image: grafana/loki:main
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:main
+    command: -config.file=/etc/promtail/config.yml
+    volumes:
+      - ./promtail/promtail-config.yml:/etc/promtail/config.yml
+      - D:/logs:/opt/app/logs # Mount local log to loki filesystem
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-oss
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin-slim
+    ports:
+      - "9411:9411"
+    environment:
+      STORAGE_TYPE: mem
+
+  smtp4dev:
+    container_name: smtp4dev
+    image: rnwood/smtp4dev
+    ports:
+      - "5000:80" # Web interface
+      - "25:25"   # SMTP server
+      - "143:143" # IMAP server
+    volumes:
+      - smtp4dev-data:/smtp4dev
+
+  discovery-server:
+    container_name: discovery-server
+    image: atlas-discovery-server:latest
+    build:
+      context: ../edge/discovery-server/eureka-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8761:8761"
+    volumes:
+      - discovery-server-log:/opt/app/logs/discovery-server
+
+  user-service:
+    container_name: user-service
+    image: atlas-user-service:latest
+    build:
+      context: ../business/user-service/user-application
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_DEFAULT_ZONE=http://discovery-server:8761/eureka
+      - MYSQL_URL=jdbc:mysql://mysql:3306/users?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=123456
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+    volumes:
+      - user-service-log:/opt/app/logs/user-service
+    depends_on:
+      - discovery-server
+      - mysql
+      - redis
+      - kafka
+
+  product-service:
+    container_name: product-service
+    image: atlas-product-service:latest
+    build:
+      context: ../business/product-service/product-application
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_DEFAULT_ZONE=http://discovery-server:8761/eureka
+      - MYSQL_URL=jdbc:mysql://mysql:3306/product?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=123456
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+    volumes:
+      - product-service-log:/opt/app/logs/product-service
+    depends_on:
+      - discovery-server
+      - mysql
+      - redis
+      - kafka
+
+  order-service:
+    container_name: order-service
+    image: atlas-order-service:latest
+    build:
+      context: ../business/order-service/order-application
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_DEFAULT_ZONE=http://discovery-server:8761/eureka
+      - GRPC_CLIENT_USER_ADDRESS=static://user-service:50051
+      - GRPC_CLIENT_PRODUCT_ADDRESS=static://product-service:50052
+      - REST_USER_BASE_URL=http://user-service:8081
+      - REST_PRODUCT_BASE_URL=http://product-service:8082
+      - MYSQL_URL=jdbc:mysql://mysql:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=123456
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+    volumes:
+      - order-service-log:/opt/app/logs/order-service
+    depends_on:
+      - discovery-server
+      - mysql
+      - redis
+      - kafka
+
+  gateway-server:
+    container_name: gateway-server
+    image: atlas-gateway-server:latest
+    build:
+      context: ../edge/gateway-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_DEFAULT_ZONE=http://discovery-server:8761/eureka
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=123456
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+    volumes:
+      - gateway-server-log:/opt/app/logs/gateway-server
+    depends_on:
+      - discovery-server
+
+  auth-server:
+    container_name: auth-server
+    image: atlas-auth-server:latest
+    build:
+      context: ../edge/auth-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8091:8091"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_DEFAULT_ZONE=http://discovery-server:8761/eureka
+      - GRPC_CLIENT_USER_ADDRESS=static://user-service:50051
+      - REST_USER_BASE_URL=http://user-service:8081
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=123456
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+    volumes:
+      - auth-server-log:/opt/app/logs/auth-server
+    depends_on:
+      - discovery-server
+
+  notification-server:
+    container_name: notification-server
+    image: atlas-notification-server:latest
+    build:
+      context: ../edge/notification-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8092:8092"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+      - MAIL_SERVER_HOST=smtp4dev
+    volumes:
+      - notification-server-log:/opt/app/logs/notification-server
+    depends_on:
+      - kafka
+
+  job-server:
+    container_name: job-server
+    image: atlas-job-server:latest
+    build:
+      context: ../edge/job-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ports:
+      - "8093:8093"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - MYSQL_URL=jdbc:mysql://mysql:3306/orders?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - ZIPKIN_ENDPOINT=http://zipkin:9411
+    volumes:
+      - job-server-log:/opt/app/logs/job-server
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data:
+  redis-data:
+  zookeeper-data:
+  zookeeper-log:
+  kafka-data:
+  grafana-data:
+  smtp4dev-data:
+  discovery-server-log:
+  user-service-log:
+  product-service-log:
+  order-service-log:
+  gateway-server-log:
+  auth-server-log:
+  notification-server-log:
+  job-server-log:

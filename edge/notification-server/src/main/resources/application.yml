@@ -12,7 +12,7 @@ management:
       enabled: false
   zipkin:
     tracing:
-      endpoint: http://localhost:9411
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411}
       connect-timeout: 30s
       read-timeout: 10s
   tracing:
@@ -28,13 +28,13 @@ spring:
     name: notification-server
   data:
     redis:
-      host: localhost
+      host: ${REDIS_HOST:localhost}
       port: 6379
-      password: 123456
+      password: ${REDIS_PASSWORD:123456}
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
   mail:
-    host: localhost
+    host: ${MAIL_SERVER_HOST:localhost}
     port: 25
 
 app:

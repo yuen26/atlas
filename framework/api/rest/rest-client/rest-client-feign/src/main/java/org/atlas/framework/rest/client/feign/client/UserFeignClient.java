@@ -11,7 +11,7 @@ import java.util.List;
 
 @FeignClient(
     name = "user-service",
-    url = "${app.internal.user.base-url:http://localhost:8081}",
+    url = "${app.rest.user.base-url:http://localhost:8081}",
     configuration = FeignConfig.class
 )
 public interface UserFeignClient {
