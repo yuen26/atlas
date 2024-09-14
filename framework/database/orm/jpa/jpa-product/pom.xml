@@ -11,7 +11,7 @@
     <groupId>org.atlas.framework</groupId>
     <artifactId>jpa-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>persistence-jpa-product</name>
+    <name>jpa-product</name>
     <packaging>jar</packaging>
 
     <dependencies>

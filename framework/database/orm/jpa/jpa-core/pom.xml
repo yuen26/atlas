@@ -11,7 +11,7 @@
     <groupId>org.atlas.framework</groupId>
     <artifactId>jpa-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>persistence-jpa-core</name>
+    <name>jpa-core</name>
     <packaging>jar</packaging>
 
     <dependencies>

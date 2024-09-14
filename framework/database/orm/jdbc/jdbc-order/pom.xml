@@ -11,7 +11,7 @@
     <groupId>org.atlas.framework</groupId>
     <artifactId>jdbc-order</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>persistence-jdbc-order</name>
+    <name>jdbc-order</name>
     <packaging>jar</packaging>
 
     <dependencies>

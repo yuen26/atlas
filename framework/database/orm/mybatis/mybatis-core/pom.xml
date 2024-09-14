@@ -11,7 +11,7 @@
     <groupId>org.atlas.framework</groupId>
     <artifactId>mybatis-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>repository-mybatis-core</name>
+    <name>mybatis-core</name>
     <packaging>jar</packaging>
 
     <dependencies>

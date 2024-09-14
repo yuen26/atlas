@@ -14,6 +14,19 @@
     <packaging>pom</packaging>
 
     <modules>
+        <!-- Observability -->
+        <module>observability</module>
+
+        <!-- Observability::Logging -->
+        <module>observability/logging/logging-logback</module>
+
+        <!-- Observability::Monitoring -->
+        <module>observability/monitoring</module>
+
+        <!-- Observability::Tracing -->
+        <module>observability/tracing/tracing-zipkin</module>
+
+        <!-- API::Client contract -->
         <module>api/api-client-contract</module>
 
         <!-- API::REST::Server -->
@@ -93,10 +106,6 @@
         <!-- i18n -->
         <module>i18n</module>
 
-        <!-- Job -->
-        <module>job/job-logic</module>
-        <module>job/job-quartz</module>
-
         <!-- Lock -->
         <module>lock/lock-core</module>
         <module>lock/lock-redis</module>
@@ -106,17 +115,6 @@
         <module>notification/email/email-spring</module>
         <module>notification/sse</module>
         <module>notification/websocket</module>
-
-        <module>observability</module>
-
-        <!-- Observability::Logging -->
-        <module>observability/logging/logging-logback</module>
-
-        <!-- Observability::Monitoring -->
-        <module>observability/monitoring</module>
-
-        <!-- Observability::Tracing -->
-        <module>observability/tracing/tracing-zipkin</module>
 
         <!-- Redis shared config -->
         <module>redis</module>
@@ -130,6 +128,10 @@
         <!-- Template -->
         <module>template/template-core</module>
         <module>template/template-freemarker</module>
+
+        <!-- Job -->
+        <module>job/job-logic</module>
+        <module>job/job-quartz</module>
     </modules>
 
     <dependencies>

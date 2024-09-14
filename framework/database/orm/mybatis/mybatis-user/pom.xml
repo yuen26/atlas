@@ -11,7 +11,7 @@
     <groupId>org.atlas.framework</groupId>
     <artifactId>mybatis-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>repository-mybatis-user</name>
+    <name>mybatis-user</name>
     <packaging>jar</packaging>
 
     <dependencies>
