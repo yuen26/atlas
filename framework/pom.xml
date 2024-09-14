@@ -93,6 +93,10 @@
         <!-- i18n -->
         <module>i18n</module>
 
+        <!-- Job -->
+        <module>job/job-logic</module>
+        <module>job/job-quartz</module>
+
         <!-- Lock -->
         <module>lock/lock-core</module>
         <module>lock/lock-redis</module>

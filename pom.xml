@@ -48,8 +48,7 @@
         <module>edge/gateway-server</module>
         <module>edge/auth-server</module>
         <module>edge/notification-server</module>
-        <module>edge/job-server/job-core</module>
-        <module>edge/job-server/job-quartz</module>
+        <module>edge/job-server</module>
     </modules>
 
     <!-- Dependencies are shared between modules -->
