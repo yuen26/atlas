@@ -40,7 +40,7 @@ public class SecurityConfig {
                 // Fix cannot login H2 console due to forbidden error
                 .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/login", "/actuator/**").permitAll()
                         .anyRequest().authenticated())
                 // No session should be created
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

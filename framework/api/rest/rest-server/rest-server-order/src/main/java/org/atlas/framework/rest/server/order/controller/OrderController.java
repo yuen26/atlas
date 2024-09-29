@@ -14,7 +14,7 @@ import org.atlas.business.order.domain.shared.enums.OrderStatus;
 import org.atlas.commons.utils.DateUtil;
 import org.atlas.commons.utils.paging.PageDto;
 import org.atlas.framework.command.gateway.CommandGateway;
-import org.atlas.framework.rest.server.core.response.SkipRestResponseHandler;
+import org.atlas.framework.rest.server.core.response.RestResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,38 +37,38 @@ public class OrderController {
     private final CommandGateway commandGateway;
 
     @GetMapping
-    public PageDto<OrderDto> listOrder(@Valid ListOrderCommand command) throws Exception {
-        return commandGateway.send(command);
+    public RestResponse<PageDto<OrderDto>> listOrder(@Valid ListOrderCommand command) throws Exception {
+        return RestResponse.success(commandGateway.send(command));
     }
 
     @GetMapping("/{id}")
-    public OrderDto getOrder(@PathVariable("id") Integer id) throws Exception {
+    public RestResponse<OrderDto> getOrder(@PathVariable("id") Integer id) throws Exception {
         GetOrderCommand command = new GetOrderCommand(id);
-        return commandGateway.send(command);
+        return RestResponse.success(commandGateway.send(command));
     }
 
     @GetMapping("/{id}/status")
-    public OrderStatus getOrderStatus(@PathVariable("id") Integer id) throws Exception {
+    public RestResponse<OrderStatus> getOrderStatus(@PathVariable("id") Integer id) throws Exception {
         GetOrderStatusCommand command = new GetOrderStatusCommand(id);
-        return commandGateway.send(command);
+        return RestResponse.success(commandGateway.send(command));
     }
 
     @PostMapping("/place")
     @ResponseStatus(HttpStatus.CREATED)
-    public Integer placeOrder(@Valid @RequestBody PlaceOrderCommand command) throws Exception {
-        return commandGateway.send(command);
+    public RestResponse<Integer> placeOrder(@Valid @RequestBody PlaceOrderCommand command) throws Exception {
+        return RestResponse.success(commandGateway.send(command));
     }
 
     @PostMapping("/import")
-    public void importOrder(@RequestParam("file") MultipartFile file,
-                            @RequestParam("fileType") FileType fileType) throws Exception {
+    public RestResponse<Object> importOrder(@RequestParam("file") MultipartFile file,
+                                            @RequestParam("fileType") FileType fileType) throws Exception {
         byte[] fileContent = file.getBytes();
         ImportOrderCommand command = new ImportOrderCommand(fileType, fileContent);
         commandGateway.send(command);
+        return RestResponse.success();
     }
 
     @GetMapping("/export")
-    @SkipRestResponseHandler
     public ResponseEntity<byte[]> export(@Valid ExportOrderCommand command) throws Exception {
         byte[] bytes = commandGateway.send(command);
         HttpHeaders headers = new HttpHeaders();

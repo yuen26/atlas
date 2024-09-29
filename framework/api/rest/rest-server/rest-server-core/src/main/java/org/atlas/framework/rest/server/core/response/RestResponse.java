@@ -10,6 +10,10 @@ public class RestResponse<T> {
     private Integer code;
     private String message;
 
+    public static <T> RestResponse<T> success() {
+        return success(null);
+    }
+
     public static <T> RestResponse<T> success(T data) {
         RestResponse<T> instance = new RestResponse<>();
         instance.setSuccess(true);

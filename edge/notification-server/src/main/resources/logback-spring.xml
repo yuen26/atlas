@@ -3,7 +3,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <springProperty scope="context" name="SERVICE_NAME" source="spring.application.name"/>
-    <property name="LOG_DIR" value="/logs/${SERVICE_NAME}"/>
+    <property name="LOG_DIR" value="/var/log/${SERVICE_NAME}"/>
 
     <!-- Console Appender using default pattern -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">

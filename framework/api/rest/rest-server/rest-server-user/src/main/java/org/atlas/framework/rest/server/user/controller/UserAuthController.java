@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.atlas.business.user.application.contract.command.GetUserAuthCommand;
 import org.atlas.business.user.application.contract.model.UserAuthDto;
 import org.atlas.framework.command.gateway.CommandGateway;
+import org.atlas.framework.rest.server.core.response.RestResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +18,8 @@ public class UserAuthController {
     private final CommandGateway commandGateway;
 
     @GetMapping
-    public UserAuthDto getUserAuth(@RequestParam("email") String email) throws Exception {
+    public RestResponse<UserAuthDto> getUserAuth(@RequestParam("email") String email) throws Exception {
         GetUserAuthCommand command = new GetUserAuthCommand(email);
-        return commandGateway.send(command);
+        return RestResponse.success(commandGateway.send(command));
     }
 }
