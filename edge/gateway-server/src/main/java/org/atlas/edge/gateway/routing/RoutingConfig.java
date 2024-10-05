@@ -31,36 +31,36 @@ public class RoutingConfig {
         return builder.routes()
             // Auth APIs -> allow any role
             .route("auth-server", r -> r.path("/api/auth/**")
-                .uri("lb://AUTH-SERVER"))
+                .uri("lb://auth-server"))
             // List order -> allow both of CUSTOMER and ADMIN
             .route("list-order", r -> r.path("/api/orders")
                 .and()
                 .method(HttpMethod.GET)
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.CUSTOMER, Role.ADMIN))))
-                .uri("lb://ORDER-SERVICE"))
-            // Get order status -> allow both of CUSTOMER and ADMIN
-            .route("get-orders", r -> r.path("/api/orders/{id}/**")
+                .uri("lb://order-service"))
+            // Get order (status) -> allow both of CUSTOMER and ADMIN
+            .route("get-order", r -> r.path("/api/orders/{id}/**")
                 .and()
                 .method(HttpMethod.GET)
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.CUSTOMER, Role.ADMIN))))
-                .uri("lb://ORDER-SERVICE"))
+                .uri("lb://order-service"))
             // Place order -> allow only CUSTOMER
             .route("place-order", r -> r.path("/api/orders/place")
                 .and()
                 .method(HttpMethod.POST)
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.CUSTOMER))))
-                .uri("lb://ORDER-SERVICE"))
+                .uri("lb://order-service"))
             // Import order -> allow only ADMIN
             .route("import-order", r -> r.path("/api/orders/import")
                 .and().method(HttpMethod.POST)
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN))))
-                .uri("lb://ORDER-SERVICE"))
+                .uri("lb://order-service"))
             // Export order -> allow only ADMIN
             .route("export-order", r -> r.path("/api/orders/export")
                 .and()
                 .method(HttpMethod.GET)
                 .filters(f -> f.filter(jwtAuthGatewayFilterFactory.apply(List.of(Role.ADMIN))))
-                .uri("lb://ORDER-SERVICE"))
+                .uri("lb://order-service"))
             .build();
     }
 

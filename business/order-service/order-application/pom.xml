@@ -121,10 +121,16 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- Discovery::Client -->
+        <!-- Discovery client::Eureka -->
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>eureka-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- Discovery client::Kubernetes -->
+        <dependency>
+            <groupId>org.atlas.framework</groupId>
+            <artifactId>kubernetes-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

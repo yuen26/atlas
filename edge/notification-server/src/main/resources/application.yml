@@ -1,5 +1,8 @@
 management:
   endpoint:
+    health:
+      probes:
+        enabled: true # Enable liveness and readiness probe endpoints
     prometheus:
       enabled: true
   endpoints:
@@ -7,8 +10,11 @@ management:
       exposure:
         include: health,info,prometheus
   health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
     mail:
-      # Turn off health check mail server
       enabled: false
   zipkin:
     tracing:

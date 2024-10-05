@@ -91,6 +91,7 @@
 
         <!-- Discovery client -->
         <module>discovery-client/eureka-client</module>
+        <module>discovery-client/kubernetes-client</module>
 
         <!-- Event-driven -->
         <module>event/event-contract</module>
