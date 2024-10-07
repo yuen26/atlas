@@ -4,19 +4,10 @@ import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.atlas.business.order.application.contract.command.ExportOrderCommand;
-import org.atlas.business.order.application.contract.command.GetOrderCommand;
-import org.atlas.business.order.application.contract.command.ImportOrderCommand;
-import org.atlas.business.order.application.contract.command.ListOrderCommand;
-import org.atlas.business.order.application.contract.command.PlaceOrderCommand;
-import org.atlas.business.order.application.contract.model.OrderDto;
-import org.atlas.business.order.application.contract.model.OrderItemDto;
-import org.atlas.business.order.domain.shared.enums.FileType;
-import org.atlas.business.order.domain.shared.enums.OrderStatus;
-import org.atlas.business.user.application.contract.model.CustomerDto;
 import org.atlas.commons.constant.Constant;
 import org.atlas.commons.utils.DateUtil;
 import org.atlas.commons.utils.paging.PageDto;
+import org.atlas.customer.application.contract.model.CustomerDto;
 import org.atlas.framework.command.gateway.CommandGateway;
 import org.atlas.framework.grpc.protobuf.common.CustomerProto;
 import org.atlas.framework.grpc.protobuf.order.ExportOrderRequestProto;
@@ -30,6 +21,15 @@ import org.atlas.framework.grpc.protobuf.order.OrderProto;
 import org.atlas.framework.grpc.protobuf.order.OrderServiceGrpc;
 import org.atlas.framework.grpc.protobuf.order.PlaceOrderRequestProto;
 import org.atlas.framework.grpc.protobuf.order.PlaceOrderResponseProto;
+import org.atlas.order.application.contract.command.ExportOrderCommand;
+import org.atlas.order.application.contract.command.GetOrderCommand;
+import org.atlas.order.application.contract.command.ImportOrderCommand;
+import org.atlas.order.application.contract.command.ListOrderCommand;
+import org.atlas.order.application.contract.command.PlaceOrderCommand;
+import org.atlas.order.application.contract.model.OrderDto;
+import org.atlas.order.application.contract.model.OrderItemDto;
+import org.atlas.order.domain.shared.enums.FileType;
+import org.atlas.order.domain.shared.enums.OrderStatus;
 
 import java.math.BigDecimal;
 
@@ -113,7 +113,7 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
     private ListOrderCommand map(ListOrderRequestProto requestProto) {
         ListOrderCommand command = new ListOrderCommand();
         command.setId(requestProto.getId());
-        command.setCustomerId(requestProto.getCustomerId());
+        command.setUserId(requestProto.getUserId());
         command.setMinAmount(BigDecimal.valueOf(requestProto.getMinAmount()));
         command.setMaxAmount(BigDecimal.valueOf(requestProto.getMaxAmount()));
         command.setAddress(requestProto.getAddress());
@@ -151,7 +151,7 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
     private ExportOrderCommand map(ExportOrderRequestProto requestProto) {
         ExportOrderCommand command = new ExportOrderCommand();
         command.setId(requestProto.getId());
-        command.setCustomerId(requestProto.getCustomerId());
+        command.setUserId(requestProto.getUserId());
         command.setMinAmount(BigDecimal.valueOf(requestProto.getMinAmount()));
         command.setMaxAmount(BigDecimal.valueOf(requestProto.getMaxAmount()));
         command.setAddress(requestProto.getAddress());
@@ -186,9 +186,11 @@ public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
 
     private CustomerProto map(CustomerDto customerDto) {
         return CustomerProto.newBuilder()
-            .setId(customerDto.getId())
-            .setUsername(customerDto.getUsername())
+            .setUserId(customerDto.getUserId())
+            .setFirstName(customerDto.getFirstName())
+            .setLastName(customerDto.getLastName())
             .setEmail(customerDto.getEmail())
+            .setPhoneNumber(customerDto.getPhoneNumber())
             .build();
     }
 

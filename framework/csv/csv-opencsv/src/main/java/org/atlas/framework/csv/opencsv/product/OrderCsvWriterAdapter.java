@@ -1,9 +1,9 @@
 package org.atlas.framework.csv.opencsv.product;
 
-import org.atlas.business.order.domain.entity.Order;
-import org.atlas.business.order.infrastructure.contract.csv.CsvWriter;
 import org.atlas.commons.utils.mapping.ModelMapperUtil;
 import org.atlas.framework.csv.opencsv.core.OpenCsvWriter;
+import org.atlas.order.domain.entity.Order;
+import org.atlas.order.infrastructure.contract.csv.CsvWriter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

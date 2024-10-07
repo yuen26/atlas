@@ -25,30 +25,41 @@
 
         <module>framework</module>
 
+        <!-- Auth Service -->
+        <module>auth-service/auth-domain</module>
+        <module>auth-service/auth-domain-shared</module>
+        <module>auth-service/auth-application-contract</module>
+        <module>auth-service/auth-application</module>
+
+        <!-- Customer Service -->
+        <module>customer-service/customer-domain</module>
+        <module>customer-service/customer-application-contract</module>
+        <module>customer-service/customer-application</module>
+
+        <!-- Job Service -->
+        <module>job-service/job-application-contract</module>
+        <module>job-service/job-application</module>
+
+        <!-- Notification Service -->
+        <module>notification-service</module>
+
         <!-- Order Service -->
-        <module>business/order-service/order-domain</module>
-        <module>business/order-service/order-domain-shared</module>
-        <module>business/order-service/order-application-contract</module>
-        <module>business/order-service/order-application</module>
-        <module>business/order-service/order-infrastructure-contract</module>
+        <module>order-service/order-domain</module>
+        <module>order-service/order-domain-shared</module>
+        <module>order-service/order-application-contract</module>
+        <module>order-service/order-application</module>
+        <module>order-service/order-infrastructure-contract</module>
 
         <!-- Product Service -->
-        <module>business/product-service/product-domain</module>
-        <module>business/product-service/product-application-contract</module>
-        <module>business/product-service/product-application</module>
+        <module>product-service/product-domain</module>
+        <module>product-service/product-application-contract</module>
+        <module>product-service/product-application</module>
 
-        <!-- User Service -->
-        <module>business/user-service/user-domain</module>
-        <module>business/user-service/user-domain-shared</module>
-        <module>business/user-service/user-application-contract</module>
-        <module>business/user-service/user-application</module>
+        <!-- Discovery Server -->
+        <module>discovery-server/eureka-server</module>
 
-        <!-- Edge Servers -->
-        <module>edge/discovery-server/eureka-server</module>
-        <module>edge/gateway-server</module>
-        <module>edge/auth-server</module>
-        <module>edge/notification-server</module>
-        <module>edge/job-server</module>
+        <!-- Gateway Server -->
+        <module>gateway-server</module>
     </modules>
 
     <!-- Dependencies are shared between modules -->

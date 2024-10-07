@@ -1,6 +1,6 @@
 package org.atlas.framework.rest.server.core.converter;
 
-import org.atlas.business.order.domain.shared.enums.FileType;
+import org.atlas.order.domain.shared.enums.FileType;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

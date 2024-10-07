@@ -6,7 +6,9 @@ option java_package = "org.atlas.framework.grpc.protobuf.common";
 package common;
 
 message CustomerProto {
-  int32 id = 1;
-  string username = 2;
-  string email = 3;
+  int32 user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string phone_number = 5;
 }

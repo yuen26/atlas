@@ -1,10 +1,10 @@
 package org.atlas.framework.rest.server.product.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.atlas.business.product.application.contract.command.ListProductCommand;
-import org.atlas.business.product.application.contract.model.ProductDto;
 import org.atlas.framework.command.gateway.CommandGateway;
 import org.atlas.framework.rest.server.core.response.RestResponse;
+import org.atlas.product.application.contract.command.ListProductCommand;
+import org.atlas.product.application.contract.model.ProductDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

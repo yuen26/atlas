@@ -16,7 +16,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.atlas.business</groupId>
+            <groupId>org.atlas</groupId>
             <artifactId>order-application-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -24,11 +24,6 @@
         <dependency>
             <groupId>org.atlas.framework</groupId>
             <artifactId>rest-server-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>command-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -2,10 +2,10 @@ package org.atlas.framework.rest.client.feign.product;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.atlas.business.product.application.contract.model.ProductDto;
 import org.atlas.framework.api.client.contract.product.IProductServiceClient;
 import org.atlas.framework.rest.client.contract.product.ListProductResponse;
 import org.atlas.framework.rest.client.feign.client.ProductFeignClient;
+import org.atlas.product.application.contract.model.ProductDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

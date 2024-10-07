@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.atlas.framework.grpc.protobuf.customer";
+
+import "google/protobuf/empty.proto";
+import "common.proto";
+
+package user;
+
+service CustomerService {
+  rpc ListCustomer (ListCustomerRequestProto) returns (CustomerListProto) {};
+  rpc GetProfile (google.protobuf.Empty) returns (common.CustomerProto) {};
+}
+
+message ListCustomerRequestProto {
+  repeated int32 user_id = 1;
+}
+
+message CustomerListProto {
+  repeated common.CustomerProto customer = 1;
+}

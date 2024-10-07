@@ -1,6 +1,6 @@
 package org.atlas.framework.job.quartz.config;
 
-import org.atlas.framework.job.quartz.job.CancelOverduePendingOrdersJob;
+import org.atlas.framework.job.quartz.job.StatsOrderJob;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -13,21 +13,21 @@ import org.springframework.context.annotation.Configuration;
 public class QuartzJobConfig {
 
     @Bean
-    public JobDetail cancelOverduePendingOrdersJobDetail() {
+    public JobDetail statsOrderJobDetail() {
         return JobBuilder.newJob()
-            .ofType(CancelOverduePendingOrdersJob.class)
-            .withIdentity(CancelOverduePendingOrdersJob.class.getSimpleName())
+            .ofType(StatsOrderJob.class)
+            .withIdentity(StatsOrderJob.class.getSimpleName())
             .storeDurably()
             .build();
     }
 
     @Bean
-    public Trigger cancelOverduePendingOrdersTrigger(JobDetail cancelOverduePendingOrdersJobDetail) {
+    public Trigger statsOrderTrigger(JobDetail statsOrderJobDetail) {
         return TriggerBuilder.newTrigger()
-            .forJob(cancelOverduePendingOrdersJobDetail)
-            .withIdentity(CancelOverduePendingOrdersJob.class.getSimpleName())
-            // Run every 15 minutes
-            .withSchedule(CronScheduleBuilder.cronSchedule("0 0/15 * * * ?"))
+            .forJob(statsOrderJobDetail)
+            .withIdentity(StatsOrderJob.class.getSimpleName())
+            // Run at midnight
+            .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?"))
             .build();
     }
 }

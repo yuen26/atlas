@@ -40,7 +40,7 @@ message OrderPageProto {
 
 message ListOrderRequestProto {
   int32 id = 1;
-  int32 customer_id = 2;
+  int32 user_id = 2;
   double min_amount = 3;
   double max_amount = 4;
   string address = 5;
@@ -71,7 +71,7 @@ message ImportOrderRequestProto {
 
 message ExportOrderRequestProto {
   int32 id = 1;
-  int32 customer_id = 2;
+  int32 user_id = 2;
   double min_amount = 3;
   double max_amount = 4;
   string address = 5;

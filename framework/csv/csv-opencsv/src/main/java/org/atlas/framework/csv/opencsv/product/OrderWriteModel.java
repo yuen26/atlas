@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 import lombok.Data;
-import org.atlas.business.order.domain.shared.enums.OrderStatus;
+import org.atlas.order.domain.shared.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,9 +16,9 @@ public class OrderWriteModel {
     @CsvBindByPosition(position = 0)
     private Integer id;
 
-    @CsvBindByName(column = "Customer ID")
+    @CsvBindByName(column = "User ID")
     @CsvBindByPosition(position = 1)
-    private Integer customerId;
+    private Integer userId;
 
     @CsvBindByName(column = "Amount")
     @CsvBindByPosition(position = 2)

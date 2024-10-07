@@ -78,9 +78,9 @@ services:
       - product-service-log:/var/log/product-service
       - order-service-log:/var/log/order-service
       - gateway-server-log:/var/log/gateway-server
-      - auth-server-log:/var/log/auth-server
-      - notification-server-log:/var/log/notification-server
-      - job-server-log:/var/log/job-server
+      - auth-service-log:/var/log/auth-service
+      - notification-service-log:/var/log/notification-service
+      - job-service-log:/var/log/job-service
     depends_on:
       - loki
 
@@ -147,7 +147,7 @@ services:
     container_name: user-service
     image: user-service:latest
     build:
-      context: ../business/user-service/user-application
+      context: ../services/user-service/user-application
     deploy:
       resources:
         limits:
@@ -180,7 +180,7 @@ services:
     container_name: product-service
     image: product-service:latest
     build:
-      context: ../business/product-service/product-application
+      context: ../services/product-service/product-application
     deploy:
       resources:
         limits:
@@ -213,7 +213,7 @@ services:
     container_name: order-service
     image: order-service:latest
     build:
-      context: ../business/order-service/order-application
+      context: ../services/order-service/order-application
     deploy:
       resources:
         limits:
@@ -227,9 +227,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - EUREKA_DEFAULT_ZONE=http://eureka-server:8761/eureka
-      - GRPC_CLIENT_USER_ADDRESS=static://user-service:50051
+      - GRPC_CLIENT_CUSTOMER_ADDRESS=static://customer-service:50051
       - GRPC_CLIENT_PRODUCT_ADDRESS=static://product-service:50052
-      - REST_USER_BASE_URL=http://user-service:8081
+      - REST_CUSTOMER_BASE_URL=http://customer-service:8081
       - REST_PRODUCT_BASE_URL=http://product-service:8082
       - MYSQL_URL=jdbc:mysql://mysql:3306/db_order?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
       - MYSQL_USERNAME=root
@@ -272,11 +272,11 @@ services:
     depends_on:
       - eureka-server
 
-  auth-server:
-    container_name: auth-server
-    image: auth-server:latest
+  auth-service:
+    container_name: auth-service
+    image: auth-service:latest
     build:
-      context: ../edge/auth-server
+      context: ../edge/auth-service
     deploy:
       resources:
         limits:
@@ -290,21 +290,21 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - EUREKA_DEFAULT_ZONE=http://eureka-server:8761/eureka
-      - GRPC_CLIENT_USER_ADDRESS=static://user-service:50051
-      - REST_USER_BASE_URL=http://user-service:8081
+      - GRPC_CLIENT_CUSTOMER_ADDRESS=static://customer-service:50051
+      - REST_CUSTOMER_BASE_URL=http://customer-service:8081
       - REDIS_HOST=redis
       - REDIS_PASSWORD=123456
       - ZIPKIN_ENDPOINT=http://zipkin:9411/api/v2/spans
     volumes:
-      - auth-server-log:/var/log/auth-server
+      - auth-service-log:/var/log/auth-service
     depends_on:
       - eureka-server
 
-  notification-server:
-    container_name: notification-server
-    image: notification-server:latest
+  notification-service:
+    container_name: notification-service
+    image: notification-service:latest
     build:
-      context: ../edge/notification-server
+      context: ../edge/notification-service
     deploy:
       resources:
         limits:
@@ -321,15 +321,15 @@ services:
       - ZIPKIN_ENDPOINT=http://zipkin:9411/api/v2/spans
       - MAIL_SERVER_HOST=smtp4dev
     volumes:
-      - notification-server-log:/var/log/notification-server
+      - notification-service-log:/var/log/notification-service
     depends_on:
       - kafka
 
-  job-server:
-    container_name: job-server
-    image: job-server:latest
+  job-service:
+    container_name: job-service
+    image: job-service:latest
     build:
-      context: ../edge/job-server
+      context: ../edge/job-service
     deploy:
       resources:
         limits:
@@ -347,7 +347,7 @@ services:
       - MYSQL_PASSWORD=root
       - ZIPKIN_ENDPOINT=http://zipkin:9411/api/v2/spans
     volumes:
-      - job-server-log:/var/log/job-server
+      - job-service-log:/var/log/job-service
     depends_on:
       - mysql
 
@@ -364,6 +364,6 @@ volumes:
   product-service-log:
   order-service-log:
   gateway-server-log:
-  auth-server-log:
-  notification-server-log:
-  job-server-log:
+  auth-service-log:
+  notification-service-log:
+  job-service-log:

@@ -31,7 +31,8 @@
 
         <!-- API::REST::Server -->
         <module>api/rest/rest-server/rest-server-core</module>
-        <module>api/rest/rest-server/rest-server-user</module>
+        <module>api/rest/rest-server/rest-server-auth</module>
+        <module>api/rest/rest-server/rest-server-customer</module>
         <module>api/rest/rest-server/rest-server-product</module>
         <module>api/rest/rest-server/rest-server-order</module>
 
@@ -43,7 +44,7 @@
 
         <!-- API::gRPC::Server -->
         <module>api/grpc/grpc-server/grpc-server-core</module>
-        <module>api/grpc/grpc-server/grpc-server-user</module>
+        <module>api/grpc/grpc-server/grpc-server-customer</module>
         <module>api/grpc/grpc-server/grpc-server-product</module>
         <module>api/grpc/grpc-server/grpc-server-order</module>
 
@@ -51,8 +52,7 @@
         <module>api/grpc/grpc-client</module>
 
         <!-- Command -->
-        <module>command/command-contract</module>
-        <module>command/command</module>
+        <module>command</module>
 
         <!-- Cache -->
         <module>cache/cache-caffeine</module>
@@ -62,43 +62,13 @@
         <!-- CSV -->
         <module>csv/csv-opencsv</module>
 
-        <!-- Database::DataSource -->
-        <module>database/datasource/datasource-h2</module>
-        <module>database/datasource/datasource-mysql</module>
-
-        <!-- Database::Migration -->
-        <module>database/migration/flyway/flyway-order</module>
-        <module>database/migration/flyway/flyway-product</module>
-        <module>database/migration/flyway/flyway-user</module>
-
-        <!-- Database::ORM:JDBC -->
-        <module>database/orm/jdbc/jdbc-core</module>
-        <module>database/orm/jdbc/jdbc-order</module>
-        <module>database/orm/jdbc/jdbc-product</module>
-        <module>database/orm/jdbc/jdbc-user</module>
-
-        <!-- Database::ORM::JPA -->
-        <module>database/orm/jpa/jpa-core</module>
-        <module>database/orm/jpa/jpa-order</module>
-        <module>database/orm/jpa/jpa-product</module>
-        <module>database/orm/jpa/jpa-user</module>
-
-        <!-- Database::ORM::MyBatis -->
-        <module>database/orm/mybatis/mybatis-core</module>
-        <module>database/orm/mybatis/mybatis-order</module>
-        <module>database/orm/mybatis/mybatis-product</module>
-        <module>database/orm/mybatis/mybatis-user</module>
-
         <!-- Discovery client -->
         <module>discovery-client/eureka-client</module>
         <module>discovery-client/kubernetes-client</module>
 
         <!-- Event-driven -->
-        <module>event/event-contract</module>
-        <module>event/event-core-publisher</module>
-        <module>event/event-core-consumer</module>
-        <module>event/event-kafka-publisher</module>
-        <module>event/event-kafka-consumer</module>
+        <module>event/event-core</module>
+        <module>event/event-kafka</module>
 
         <!-- Excel -->
         <module>excel/excel-easyexcel</module>
@@ -117,6 +87,27 @@
         <module>notification/sse</module>
         <module>notification/websocket</module>
 
+        <!-- Persistence:JDBC -->
+        <module>persistence/jdbc/jdbc-core</module>
+        <module>persistence/jdbc/jdbc-auth</module>
+        <module>persistence/jdbc/jdbc-customer</module>
+        <module>persistence/jdbc/jdbc-order</module>
+        <module>persistence/jdbc/jdbc-product</module>
+
+        <!-- Persistence::JPA -->
+        <module>persistence/jpa/jpa-core</module>
+        <module>persistence/jpa/jpa-auth</module>
+        <module>persistence/jpa/jpa-customer</module>
+        <module>persistence/jpa/jpa-order</module>
+        <module>persistence/jpa/jpa-product</module>
+
+        <!-- Persistence::MyBatis -->
+        <module>persistence/mybatis/mybatis-core</module>
+        <module>persistence/mybatis/mybatis-auth</module>
+        <module>persistence/mybatis/mybatis-customer</module>
+        <module>persistence/mybatis/mybatis-order</module>
+        <module>persistence/mybatis/mybatis-product</module>
+
         <!-- Redis shared config -->
         <module>redis</module>
 
@@ -131,7 +122,6 @@
         <module>template/template-freemarker</module>
 
         <!-- Job -->
-        <module>job/job-logic</module>
         <module>job/job-quartz</module>
     </modules>
 

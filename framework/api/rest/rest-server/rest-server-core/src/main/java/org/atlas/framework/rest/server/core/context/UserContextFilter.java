@@ -5,10 +5,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
-import org.atlas.business.user.domain.shared.enums.Role;
+import org.atlas.auth.domain.shared.enums.Role;
 import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.CurrentUser;
 import org.atlas.commons.context.UserContext;
-import org.atlas.commons.context.UserInfo;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -22,10 +22,10 @@ public class UserContextFilter extends OncePerRequestFilter {
         String userRole = request.getHeader(CustomHeaders.USER_ROLE);
 
         if (StringUtils.isNotBlank(userId) && StringUtils.isNotBlank(userRole)) {
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUserId(Integer.valueOf(userId));
-            userInfo.setRole(Role.valueOf(userRole));
-            UserContext.setCurrentUser(userInfo);
+            CurrentUser currentUser = new CurrentUser();
+            currentUser.setUserId(Integer.valueOf(userId));
+            currentUser.setRole(Role.valueOf(userRole));
+            UserContext.setCurrentUser(currentUser);
         }
 
         try {

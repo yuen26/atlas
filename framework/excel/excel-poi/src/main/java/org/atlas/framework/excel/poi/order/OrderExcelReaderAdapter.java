@@ -5,11 +5,11 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.atlas.business.order.domain.entity.Order;
-import org.atlas.business.order.domain.entity.OrderItem;
-import org.atlas.business.order.infrastructure.contract.excel.ExcelReader;
 import org.atlas.commons.constant.Constant;
 import org.atlas.commons.utils.DateUtil;
+import org.atlas.order.domain.entity.Order;
+import org.atlas.order.domain.entity.OrderItem;
+import org.atlas.order.infrastructure.contract.excel.ExcelReader;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -41,7 +41,7 @@ public class OrderExcelReaderAdapter implements ExcelReader {
 
                         Order order = orderMap.computeIfAbsent(excelOrder.getOrderNo(), orderNo -> {
                             Order newOrder = new Order();
-                            newOrder.setCustomerId(excelOrder.getCustomerId());
+                            newOrder.setUserId(excelOrder.getUserId());
                             newOrder.setAddress(excelOrder.getAddress());
                             newOrder.setCreatedAt(excelOrder.getCreatedAt());
                             return newOrder;
@@ -71,7 +71,7 @@ public class OrderExcelReaderAdapter implements ExcelReader {
     private OrderReadModel readRow(Row row) {
         OrderReadModel product = new OrderReadModel();
         product.setOrderNo(row.getCell(0).getStringCellValue());
-        product.setCustomerId((int) row.getCell(1).getNumericCellValue());
+        product.setUserId((int) row.getCell(1).getNumericCellValue());
         product.setProductId((int) (row.getCell(2).getNumericCellValue()));
         product.setQuantity((int) row.getCell(3).getNumericCellValue());
         product.setAddress(row.getCell(4).getStringCellValue());

@@ -3,10 +3,10 @@ package org.atlas.framework.rest.client.resttemplate.product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.atlas.business.product.application.contract.model.ProductDto;
 import org.atlas.framework.api.client.contract.product.IProductServiceClient;
 import org.atlas.framework.rest.client.contract.product.ListProductResponse;
 import org.atlas.framework.rest.client.resttemplate.core.RestTemplateService;
+import org.atlas.product.application.contract.model.ProductDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

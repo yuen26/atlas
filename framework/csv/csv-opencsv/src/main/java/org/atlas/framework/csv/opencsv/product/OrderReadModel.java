@@ -14,9 +14,9 @@ public class OrderReadModel {
     @CsvBindByPosition(position = 0)
     private String orderNo;
 
-    @CsvBindByName(column = "Customer ID")
+    @CsvBindByName(column = "User ID")
     @CsvBindByPosition(position = 1)
-    private Integer customerId;
+    private Integer userId;
 
     @CsvBindByName(column = "Product ID")
     @CsvBindByPosition(position = 2)

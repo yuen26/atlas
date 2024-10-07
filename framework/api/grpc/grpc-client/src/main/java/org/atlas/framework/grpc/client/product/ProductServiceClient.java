@@ -1,12 +1,12 @@
 package org.atlas.framework.grpc.client.product;
 
 import net.devh.boot.grpc.client.inject.GrpcClient;
-import org.atlas.business.product.application.contract.model.ProductDto;
 import org.atlas.framework.api.client.contract.product.IProductServiceClient;
 import org.atlas.framework.grpc.protobuf.product.ListProductRequestProto;
 import org.atlas.framework.grpc.protobuf.product.ProductListProto;
 import org.atlas.framework.grpc.protobuf.product.ProductProto;
 import org.atlas.framework.grpc.protobuf.product.ProductServiceGrpc;
+import org.atlas.product.application.contract.model.ProductDto;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

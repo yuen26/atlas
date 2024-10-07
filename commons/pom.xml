@@ -81,10 +81,9 @@
             <version>3.5.3</version>
         </dependency>
 
-        <!-- Business -->
         <dependency>
-            <groupId>org.atlas.business</groupId>
-            <artifactId>user-domain-shared</artifactId>
+            <groupId>org.atlas</groupId>
+            <artifactId>auth-domain-shared</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

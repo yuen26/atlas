@@ -1,6 +1,6 @@
 app:
-  internal:
-    user:
+  rest:
+    customer:
       base-url: http://localhost:8081
     product:
       base-url: http://localhost:8082

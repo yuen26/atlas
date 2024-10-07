@@ -9,8 +9,8 @@ import io.grpc.Metadata;
 import io.grpc.MethodDescriptor;
 import net.devh.boot.grpc.client.interceptor.GrpcGlobalClientInterceptor;
 import org.atlas.commons.constant.CustomHeaders;
+import org.atlas.commons.context.CurrentUser;
 import org.atlas.commons.context.UserContext;
-import org.atlas.commons.context.UserInfo;
 
 @GrpcGlobalClientInterceptor
 public class UserContextInterceptor implements ClientInterceptor {
@@ -24,13 +24,13 @@ public class UserContextInterceptor implements ClientInterceptor {
     public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> method,
                                                                CallOptions callOptions,
                                                                Channel next) {
-        UserInfo userInfo = UserContext.getCurrentUser();
+        CurrentUser currentUser = UserContext.getCurrentUser();
         return new ForwardingClientCall.SimpleForwardingClientCall<>(next.newCall(method, callOptions)) {
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
-                if (userInfo != null) {
-                    headers.put(USER_ID_HEADER, String.valueOf(userInfo.getUserId()));
-                    headers.put(USER_ROLE_HEADER, userInfo.getRole().name());
+                if (currentUser != null) {
+                    headers.put(USER_ID_HEADER, String.valueOf(currentUser.getUserId()));
+                    headers.put(USER_ROLE_HEADER, currentUser.getRole().name());
                 }
                 super.start(responseListener, headers);
             }

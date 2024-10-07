@@ -7,10 +7,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.atlas.business.order.domain.entity.Order;
-import org.atlas.business.order.infrastructure.contract.excel.ExcelWriter;
 import org.atlas.commons.constant.Constant;
 import org.atlas.commons.utils.DateUtil;
+import org.atlas.order.domain.entity.Order;
+import org.atlas.order.infrastructure.contract.excel.ExcelWriter;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
@@ -80,7 +80,7 @@ public class OrderExcelWriterAdapter implements ExcelWriter {
             cell.setCellStyle(style);
 
             cell = row.createCell(1);
-            cell.setCellValue(order.getCustomerId());
+            cell.setCellValue(order.getUserId());
             cell.setCellStyle(style);
 
             cell = row.createCell(2);

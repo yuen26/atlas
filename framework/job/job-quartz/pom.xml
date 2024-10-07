@@ -17,12 +17,13 @@
     <dependencies>
         <dependency>
             <groupId>org.atlas.framework</groupId>
-            <artifactId>job-logic</artifactId>
+            <artifactId>observability</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <dependency>
-            <groupId>org.atlas.framework</groupId>
-            <artifactId>observability</artifactId>
+            <groupId>org.atlas</groupId>
+            <artifactId>job-application-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

@@ -1,5 +1,10 @@
 package org.atlas.commons.exception;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum AppError {
 
     DEFAULT(1000, "error.common.default"),
@@ -7,7 +12,7 @@ public enum AppError {
     BAD_REQUEST(1002, "error.common.bad_request"),
     PERMISSION_DENIED(1003, "error.common.permission_denied"),
 
-    USER_NOT_FOUND(2000, "error.user.not_found"),
+    CUSTOMER_NOT_FOUND(2000, "error.customer.not_found"),
 
     PRODUCT_NOT_FOUND(3000, "error.product.not_found"),
 
@@ -17,19 +22,6 @@ public enum AppError {
 
     private final int errorCode;
     private final String messageCode;
-
-    AppError(int errorCode, String messageCode) {
-        this.errorCode = errorCode;
-        this.messageCode = messageCode;
-    }
-
-    public int getErrorCode() {
-        return errorCode;
-    }
-
-    public String getMessageCode() {
-        return messageCode;
-    }
 
     @Override
     public String toString() {

@@ -12,8 +12,8 @@ public class OrderReadModel {
     @ExcelProperty(value = "Order No")
     private String orderNo;
 
-    @ExcelProperty(value = "Customer ID")
-    private Integer customerId;
+    @ExcelProperty(value = "User ID")
+    private Integer userId;
 
     @ExcelProperty(value = "Product ID")
     private Integer productId;

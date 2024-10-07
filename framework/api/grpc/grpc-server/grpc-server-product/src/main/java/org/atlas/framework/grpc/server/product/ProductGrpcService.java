@@ -4,13 +4,13 @@ import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.apache.commons.collections4.CollectionUtils;
-import org.atlas.business.product.application.contract.command.ListProductCommand;
-import org.atlas.business.product.application.contract.model.ProductDto;
 import org.atlas.framework.command.gateway.CommandGateway;
 import org.atlas.framework.grpc.protobuf.product.ListProductRequestProto;
 import org.atlas.framework.grpc.protobuf.product.ProductListProto;
 import org.atlas.framework.grpc.protobuf.product.ProductProto;
 import org.atlas.framework.grpc.protobuf.product.ProductServiceGrpc;
+import org.atlas.product.application.contract.command.ListProductCommand;
+import org.atlas.product.application.contract.model.ProductDto;
 
 import java.util.List;
 

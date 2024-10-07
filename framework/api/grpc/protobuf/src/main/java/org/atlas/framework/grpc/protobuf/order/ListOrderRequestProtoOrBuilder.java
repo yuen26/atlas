@@ -15,10 +15,10 @@ public interface ListOrderRequestProtoOrBuilder extends
   int getId();
 
   /**
-   * <code>int32 customer_id = 2;</code>
-   * @return The customerId.
+   * <code>int32 user_id = 2;</code>
+   * @return The userId.
    */
-  int getCustomerId();
+  int getUserId();
 
   /**
    * <code>double min_amount = 3;</code>

@@ -8,7 +8,7 @@ import java.util.Date;
 public class OrderReadModel {
 
     private String orderNo;
-    private Integer customerId;
+    private Integer userId;
     private Integer productId;
     private Integer quantity;
     private String address;

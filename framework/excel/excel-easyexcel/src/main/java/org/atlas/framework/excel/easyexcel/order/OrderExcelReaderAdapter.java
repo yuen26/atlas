@@ -1,10 +1,10 @@
 package org.atlas.framework.excel.easyexcel.order;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.atlas.business.order.domain.entity.Order;
-import org.atlas.business.order.domain.entity.OrderItem;
-import org.atlas.business.order.infrastructure.contract.excel.ExcelReader;
 import org.atlas.framework.excel.easyexcel.core.EasyExcelReader;
+import org.atlas.order.domain.entity.Order;
+import org.atlas.order.domain.entity.OrderItem;
+import org.atlas.order.infrastructure.contract.excel.ExcelReader;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class OrderExcelReaderAdapter implements ExcelReader {
         for (OrderReadModel excelOrder : excelOrders) {
             Order order = orderMap.computeIfAbsent(excelOrder.getOrderNo(), orderNo -> {
                 Order newOrder = new Order();
-                newOrder.setCustomerId(excelOrder.getCustomerId());
+                newOrder.setUserId(excelOrder.getUserId());
                 newOrder.setAddress(excelOrder.getAddress());
                 newOrder.setCreatedAt(excelOrder.getCreatedAt());
                 return newOrder;

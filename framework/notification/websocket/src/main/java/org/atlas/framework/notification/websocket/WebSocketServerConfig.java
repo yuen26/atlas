@@ -23,7 +23,7 @@ public class WebSocketServerConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Client connects to this endpoint
         registry.addEndpoint(Constants.STOMP_ENDPOINT)
-            .setAllowedOrigins("http://localhost:3000")  // Allow specific origin
+            .setAllowedOrigins("*")  // Allow specific origin
             .withSockJS();
     }
 }

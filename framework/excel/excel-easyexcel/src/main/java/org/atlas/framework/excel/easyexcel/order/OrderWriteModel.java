@@ -13,8 +13,8 @@ public class OrderWriteModel {
     @ExcelProperty(value = "Order ID")
     private Integer id;
 
-    @ExcelProperty(value = "Customer ID")
-    private Integer customerId;
+    @ExcelProperty(value = "User ID")
+    private Integer userId;
 
     @ExcelProperty(value = "Amount")
     private BigDecimal amount;

@@ -19,12 +19,12 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
-            - name: GRPC_CLIENT_USER_ADDRESS
-              value: "dns:///user-service:50051"
+            - name: GRPC_CLIENT_CUSTOMER_ADDRESS
+              value: "dns:///customer-service:50051"
             - name: GRPC_CLIENT_PRODUCT_ADDRESS
               value: "dns:///product-service:50052"
-            - name: REST_USER_BASE_URL
-              value: "http://user-service:8081"
+            - name: REST_CUSTOMER_BASE_URL
+              value: "http://customer-service:8081"
             - name: REST_PRODUCT_BASE_URL
               value: "http://product-service:8082"
             - name: MYSQL_URL

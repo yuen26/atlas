@@ -2,13 +2,13 @@ package org.atlas.commons.context;
 
 public class UserContext {
 
-    private static final ThreadLocal<UserInfo> userContext = new ThreadLocal<>();
+    private static final ThreadLocal<CurrentUser> userContext = new ThreadLocal<>();
 
-    public static UserInfo getCurrentUser() {
+    public static CurrentUser getCurrentUser() {
         return userContext.get();
     }
 
-    public static void setCurrentUser(UserInfo context) {
+    public static void setCurrentUser(CurrentUser context) {
         userContext.set(context);
     }
 

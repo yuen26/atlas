@@ -29,10 +29,11 @@ public final class Common {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014common.proto\022\006common\"<\n\rCustomerProto\022" +
-      "\n\n\002id\030\001 \001(\005\022\020\n\010username\030\002 \001(\t\022\r\n\005email\030\003" +
-      " \001(\tB,\n(org.atlas.framework.grpc.protobu" +
-      "f.commonP\001b\006proto3"
+      "\n\014common.proto\022\006common\"l\n\rCustomerProto\022" +
+      "\017\n\007user_id\030\001 \001(\005\022\022\n\nfirst_name\030\002 \001(\t\022\021\n\t" +
+      "last_name\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\024\n\014phone_" +
+      "number\030\005 \001(\tB,\n(org.atlas.framework.grpc" +
+      ".protobuf.commonP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -43,7 +44,7 @@ public final class Common {
     internal_static_common_CustomerProto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_common_CustomerProto_descriptor,
-        new java.lang.String[] { "Id", "Username", "Email", });
+        new java.lang.String[] { "UserId", "FirstName", "LastName", "Email", "PhoneNumber", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -1,10 +1,10 @@
 package org.atlas.framework.csv.opencsv.product;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.atlas.business.order.domain.entity.Order;
-import org.atlas.business.order.domain.entity.OrderItem;
-import org.atlas.business.order.infrastructure.contract.csv.CsvReader;
 import org.atlas.framework.csv.opencsv.core.OpenCsvReader;
+import org.atlas.order.domain.entity.Order;
+import org.atlas.order.domain.entity.OrderItem;
+import org.atlas.order.infrastructure.contract.csv.CsvReader;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class OrderCsvReaderAdapter implements CsvReader {
         for (OrderReadModel csvProduct : csvProducts) {
             Order order = orderMap.computeIfAbsent(csvProduct.getOrderNo(), orderNo -> {
                 Order newOrder = new Order();
-                newOrder.setCustomerId(csvProduct.getCustomerId());
+                newOrder.setUserId(csvProduct.getUserId());
                 newOrder.setAddress(csvProduct.getAddress());
                 newOrder.setCreatedAt(csvProduct.getCreatedAt());
                 return newOrder;

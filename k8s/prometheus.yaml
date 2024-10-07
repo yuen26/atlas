@@ -30,21 +30,21 @@ data:
         scrape_interval: 5s
         static_configs:
           - targets: ['gateway-server:8080']
-      - job_name: 'auth-server-metrics'
+      - job_name: 'auth-service-metrics'
         metrics_path: '/actuator/prometheus'
         scrape_interval: 5s
         static_configs:
-          - targets: ['auth-server:8091']
-      - job_name: 'notification-server-metrics'
+          - targets: ['auth-service:8091']
+      - job_name: 'notification-service-metrics'
         metrics_path: '/actuator/prometheus'
         scrape_interval: 5s
         static_configs:
-          - targets: ['notification-server:8092']
-      - job_name: 'job-server-metrics'
+          - targets: ['notification-service:8092']
+      - job_name: 'job-service-metrics'
         metrics_path: '/actuator/prometheus'
         scrape_interval: 5s
         static_configs:
-          - targets: ['job-server:8093']
+          - targets: ['job-service:8093']
 ---
 apiVersion: apps/v1
 kind: Deployment

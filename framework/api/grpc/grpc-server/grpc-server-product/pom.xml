@@ -16,7 +16,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.atlas.business</groupId>
+            <groupId>org.atlas</groupId>
             <artifactId>product-application-contract</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

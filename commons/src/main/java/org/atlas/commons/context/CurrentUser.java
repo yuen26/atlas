@@ -1,13 +1,19 @@
 package org.atlas.commons.context;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import lombok.Data;
+import org.atlas.auth.domain.shared.enums.Role;
 
-@Target(ElementType.PARAMETER)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface CurrentUser {
+@Data
+public class CurrentUser {
+
+    private Integer userId;
+    private Role role;
+
+    public boolean isAdmin() {
+        return Role.ADMIN.equals(role);
+    }
+
+    public boolean isCustomer() {
+        return Role.CUSTOMER.equals(role);
+    }
 }

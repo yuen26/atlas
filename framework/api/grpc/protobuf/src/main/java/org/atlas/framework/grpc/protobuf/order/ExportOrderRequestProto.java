@@ -56,15 +56,15 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int CUSTOMER_ID_FIELD_NUMBER = 2;
-  private int customerId_ = 0;
+  public static final int USER_ID_FIELD_NUMBER = 2;
+  private int userId_ = 0;
   /**
-   * <code>int32 customer_id = 2;</code>
-   * @return The customerId.
+   * <code>int32 user_id = 2;</code>
+   * @return The userId.
    */
   @java.lang.Override
-  public int getCustomerId() {
-    return customerId_;
+  public int getUserId() {
+    return userId_;
   }
 
   public static final int MIN_AMOUNT_FIELD_NUMBER = 3;
@@ -340,8 +340,8 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0) {
       output.writeInt32(1, id_);
     }
-    if (customerId_ != 0) {
-      output.writeInt32(2, customerId_);
+    if (userId_ != 0) {
+      output.writeInt32(2, userId_);
     }
     if (java.lang.Double.doubleToRawLongBits(minAmount_) != 0) {
       output.writeDouble(3, minAmount_);
@@ -380,9 +380,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, id_);
     }
-    if (customerId_ != 0) {
+    if (userId_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, customerId_);
+        .computeInt32Size(2, userId_);
     }
     if (java.lang.Double.doubleToRawLongBits(minAmount_) != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -427,8 +427,8 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
-    if (getCustomerId()
-        != other.getCustomerId()) return false;
+    if (getUserId()
+        != other.getUserId()) return false;
     if (java.lang.Double.doubleToLongBits(getMinAmount())
         != java.lang.Double.doubleToLongBits(
             other.getMinAmount())) return false;
@@ -460,8 +460,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId();
-    hash = (37 * hash) + CUSTOMER_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getCustomerId();
+    hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getUserId();
     hash = (37 * hash) + MIN_AMOUNT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getMinAmount()));
@@ -612,7 +612,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       id_ = 0;
-      customerId_ = 0;
+      userId_ = 0;
       minAmount_ = 0D;
       maxAmount_ = 0D;
       address_ = "";
@@ -658,7 +658,7 @@ private static final long serialVersionUID = 0L;
         result.id_ = id_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.customerId_ = customerId_;
+        result.userId_ = userId_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
         result.minAmount_ = minAmount_;
@@ -733,8 +733,8 @@ private static final long serialVersionUID = 0L;
       if (other.getId() != 0) {
         setId(other.getId());
       }
-      if (other.getCustomerId() != 0) {
-        setCustomerId(other.getCustomerId());
+      if (other.getUserId() != 0) {
+        setUserId(other.getUserId());
       }
       if (other.getMinAmount() != 0D) {
         setMinAmount(other.getMinAmount());
@@ -804,7 +804,7 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 8
             case 16: {
-              customerId_ = input.readInt32();
+              userId_ = input.readInt32();
               bitField0_ |= 0x00000002;
               break;
             } // case 16
@@ -897,34 +897,34 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int customerId_ ;
+    private int userId_ ;
     /**
-     * <code>int32 customer_id = 2;</code>
-     * @return The customerId.
+     * <code>int32 user_id = 2;</code>
+     * @return The userId.
      */
     @java.lang.Override
-    public int getCustomerId() {
-      return customerId_;
+    public int getUserId() {
+      return userId_;
     }
     /**
-     * <code>int32 customer_id = 2;</code>
-     * @param value The customerId to set.
+     * <code>int32 user_id = 2;</code>
+     * @param value The userId to set.
      * @return This builder for chaining.
      */
-    public Builder setCustomerId(int value) {
+    public Builder setUserId(int value) {
 
-      customerId_ = value;
+      userId_ = value;
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 customer_id = 2;</code>
+     * <code>int32 user_id = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearCustomerId() {
+    public Builder clearUserId() {
       bitField0_ = (bitField0_ & ~0x00000002);
-      customerId_ = 0;
+      userId_ = 0;
       onChanged();
       return this;
     }

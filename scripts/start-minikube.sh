@@ -29,7 +29,7 @@ kubectl apply -f k8s/zookeeper.yaml
 kubectl apply -f k8s/kafka.yaml
 kubectl apply -f k8s/zipkin.yaml
 
-for service in user-service product-service order-service auth-server notification-server gateway-server; do
+for service in user-service product-service order-service auth-service notification-service gateway-server; do
     # Delete the Kubernetes service if it exists
     kubectl delete -f k8s/$service.yaml || true
 
